@@ -2,9 +2,9 @@
 filetype off
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
+filetype plugin indent on
 
 " Color!
-filetype on
 colorscheme herald
 "set background=dark
 
@@ -68,3 +68,6 @@ set guifont=Monospace\ 9
 " NerdTree
 map <C-F> :NERDTreeToggle
 imap <C-F> :NERDTreeToggle
+
+" Gundo
+nnoremap <F5> :GundoToggle<CR>
