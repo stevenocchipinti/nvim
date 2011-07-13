@@ -61,3 +61,9 @@ set guifont=Monospace\ 9
 
 " This is for line numbers along the side:
 "set nu
+
+""" PLUGIN STUFF
+
+" NerdTree
+map <C-F> :NERDTreeToggle
+imap <C-F> :NERDTreeToggle
