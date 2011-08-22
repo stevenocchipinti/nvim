@@ -48,6 +48,10 @@ map <C-Down> 
 map <C-Up> 
 imap <C-Down> a
 imap <C-Up> a
+map <C-j> 
+map <C-k> 
+imap <C-j> a
+imap <C-k> a
 
 
 " Map =x to filter the file through xmllint to indent XML
@@ -71,8 +75,10 @@ nmap <F3> :set list!:set list?
 nmap <F4> :set nu!:set nu?
 
 " Make switching windows easier
-nmap <F5> 
-imap <F5> a
+nmap <F5> w
+imap <F5> wa
+nmap <S-F5> W
+imap <S-F5> Wa
 
 
 """ PLUGIN STUFF
