@@ -22,8 +22,6 @@ set incsearch
 set ruler
 "set columns=80
 set wildmenu
-set list
-set listchars=tab:»·,trail:·
 
 set ignorecase
 set smartcase
@@ -44,6 +42,10 @@ imap <C-Up> a
 " Map <F2> (in normal mode) to toggle highlighting for searches
 nmap <F2> :set hls!:set hls?
 "set hlsearch
+
+set list
+set listchars=tab:»·,trail:·
+nmap <F3> :set list!:set list?
 
 " Map =x to filter the file through xmllint to indent XML
 map =x :%!xmllint -format -
@@ -70,4 +72,7 @@ map <C-F> :NERDTreeToggle
 imap <C-F> :NERDTreeToggle
 
 " Gundo
-nnoremap <F5> :GundoToggle<CR>
+nnoremap <F4> :GundoToggle<CR>
+
+map <F5> 
+imap <F5> a
