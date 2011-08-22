@@ -35,8 +35,8 @@ if has("gui_running")
 	hi CursorLine     guibg=#000000               gui=none
 
 	" -> Folding
-	hi FoldColumn     guibg=#001336 guifg=#003DAD gui=none
-	hi Folded         guibg=#001336 guifg=#003DAD gui=none
+	hi FoldColumn     guibg=#1A1A1A guifg=#494547 gui=none
+	hi Folded         guibg=#1A1A1A guifg=#494547 gui=none
 
 	" -> Line info  
 	hi LineNr         guibg=#000000 guifg=#696567 gui=none
