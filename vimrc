@@ -71,7 +71,7 @@ set listchars=tab:»·,trail:·
 nmap <F3> :set list!:set list?
 
 " This is for line numbers along the side:
-"set nu
+set nu
 nmap <F4> :set nu!:set nu?
 
 " Make switching windows easier
