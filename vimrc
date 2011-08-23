@@ -54,6 +54,16 @@ imap <C-j> a
 imap <C-k> a
 
 
+" Shortcuts to configure folding
+map <leader>fm :set foldmethod=manual
+map <leader>fi :set foldmethod=indent
+map <leader>fd :set foldmethod=diff
+map <leader>f{ :set foldmethod=marker
+map <leader>f} :set foldmethod=marker
+map <leader>fc :set foldcolumn=1
+map <leader>fn :set foldcolumn=0
+
+
 " Map =x to filter the file through xmllint to indent XML
 map =x :%!xmllint -format -
 
