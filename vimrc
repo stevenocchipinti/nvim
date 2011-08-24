@@ -5,7 +5,7 @@ call pathogen#helptags()
 filetype plugin indent on
 
 
-" Color!
+" Colors are good!
 colorscheme herald
 "set background=dark
 
@@ -14,7 +14,6 @@ colorscheme herald
 "autocmd BufEnter *.ace source $VIM/vim71/syntax/ace.vim
 
 
-set autoindent
 set ts=2 sw=2
 set expandtab
 set wrap
@@ -25,26 +24,17 @@ set wildmenu
 set ignorecase
 set smartcase
 set linebreak
+set warn              " Show what mode your in (insert, etc.)
+set scrolloff=5       " Always show at least 5 lines at the top and the bottom
+set mouse=a           " Make the mouse work - even in terminals
+set autoindent        " Copy the indentation from the previous line
+"set smartindent      " Auto indent after newlines, etc.
+"set textwidth=80     " This automatically puts chars > 80 on the next line
 "set cursorline
 "set columns=80
 
 
-" Always show at least 5 lines at the top and the bottom
-set scrolloff=5
-" Show what mode your in (insert, etc.)
-set warn
-" Make the mouse work - even in terminals
-set mouse=a
-" GUI font was too big
-set guifont=Monospace\ 9
-" This automatically puts chars > 80 on the next line
-"set textwidth=80
-" Auto indents after '{', etc., except if a comment char is placed afterwards
-"set si
-
-
-" Map <ctrl> + <up> and <ctrl> + <down> to scroll the page without moving the
-" cursor, using <ctrl> + <e> and <ctrl> + <y> respectively.
+" Map ctrl+up and ctrl+down to scroll the page without moving the cursor
 map <C-Down> 
 map <C-Up> 
 imap <C-Down> a
@@ -72,20 +62,33 @@ map =x :%!xmllint -format -
 " When you dont have write access, :W will write with sudo
 command! W w !sudo tee % > /dev/null
 
+" NerdTree plugin
+nmap <C-F> :NERDTreeToggle
 
-" Map <F2> (in normal mode) to toggle highlighting for searches
-"set hlsearch
+
+" Function keys
+
+
+"""""" F2
+" Toggle highlighting for searches (in normal mode)
 nmap <F2> :set hls!:set hls?
+"set hlsearch
 
-" This makes trailing whitespace and tab characters visible
+
+"""""" F3
+" Toggle trailing whitespace and tab characters visibility
+nmap <F3> :set list!:set list?
 set list
 set listchars=tab:»·,trail:·
-nmap <F3> :set list!:set list?
 
-" This is for line numbers along the side:
-set nu
+
+"""""" F4
+" Toggle line numbers along the side
 nmap <F4> :set nu!:set nu?
+set nu
 
+
+"""""" F5
 " Make switching windows easier
 nmap <F5> w
 imap <F5> wa
@@ -93,10 +96,11 @@ nmap <S-F5> W
 imap <S-F5> Wa
 
 
-""" PLUGIN STUFF
-
-" NerdTree
-nmap <C-F> :NERDTreeToggle
-
-" Gundo
+"""""" F6
+" Toggle Gundo plugin
 nmap <F6> :GundoToggle<CR>
+
+
+"""""" F7
+" Toggle spellcheck
+nmap <F7> :set spell!:set spell?
