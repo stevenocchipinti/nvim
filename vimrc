@@ -25,7 +25,7 @@ set wildmenu
 set ignorecase
 set smartcase
 set linebreak
-set cursorline
+"set cursorline
 "set columns=80
 
 
