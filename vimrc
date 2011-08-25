@@ -46,13 +46,14 @@ imap <C-k> a
 
 
 " Shortcuts to configure folding
-map <leader>fs :set foldmethod
+map <leader>fs :set foldmethod?
 map <leader>fm :set foldmethod=manual
 map <leader>fi :set foldmethod=indent
 map <leader>fd :set foldmethod=diff
 map <leader>f{ :set foldmethod=marker
 map <leader>f} :set foldmethod=marker
 map <leader>fc :set foldcolumn=1
+map <leader>fC :set foldcolumn=4
 map <leader>fn :set foldcolumn=0
 
 
