@@ -80,7 +80,7 @@ nmap <F2> :set hls!:set hls?
 " Toggle trailing whitespace and tab characters visibility
 nmap <F3> :set list!:set list?
 set list
-set listchars=tab:»·,trail:·
+set listchars=tab:=»,trail:·
 
 
 """""" F4
