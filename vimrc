@@ -57,9 +57,6 @@ imap <C-j> a
 imap <C-k> a
 
 
-" Make  do the opposite of  (i.e. pop from the tag stack)
-map  
-
 " Map =x to filter the file through xmllint to indent XML
 map =x :%!xmllint -format -
 
