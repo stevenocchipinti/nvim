@@ -34,17 +34,6 @@ set autoindent        " Copy the indentation from the previous line
 "set columns=80
 
 
-" Map ctrl+up and ctrl+down to scroll the page without moving the cursor
-map <C-Down> 
-map <C-Up> 
-imap <C-Down> a
-imap <C-Up> a
-map <C-j> 
-map <C-k> 
-imap <C-j> a
-imap <C-k> a
-
-
 " Shortcuts to configure folding
 map <leader>fs :set foldmethod?
 map <leader>fm :set foldmethod=manual
@@ -57,14 +46,28 @@ map <leader>fC :set foldcolumn=4
 map <leader>fn :set foldcolumn=0
 
 
+" Map ctrl+up and ctrl+down to scroll the page without moving the cursor
+map <C-Down> 
+map <C-Up> 
+imap <C-Down> a
+imap <C-Up> a
+map <C-j> 
+map <C-k> 
+imap <C-j> a
+imap <C-k> a
+
+
+" Make  do the opposite of  (i.e. pop from the tag stack)
+map  
+
 " Map =x to filter the file through xmllint to indent XML
 map =x :%!xmllint -format -
 
-" When you dont have write access, :W will write with sudo
-command! W w !sudo tee % > /dev/null
-
 " NerdTree plugin
 nmap <C-F> :NERDTreeToggle
+
+" When you dont have write access, :W will write with sudo
+command! W w !sudo tee % > /dev/null
 
 
 " Function keys
