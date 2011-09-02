@@ -38,7 +38,10 @@ if has("gui_running")
 	hi FoldColumn     guibg=#1A1A1A guifg=#494547 gui=none
 	hi Folded         guibg=#1A1A1A guifg=#494547 gui=none
 
-	" -> Line info  
+	" -> Color column should match look similar to folding
+	hi ColorColumn    guibg=#2A2A2A               gui=none
+
+	" -> Line info
 	hi LineNr         guibg=#000000 guifg=#696567 gui=none
 	hi StatusLine     guibg=#000000 guifg=#696567 gui=none
 	hi StatusLineNC   guibg=#25365a guifg=#696567 gui=none
@@ -50,8 +53,8 @@ if has("gui_running")
 	hi MoreMsg        guibg=#1F1F1F guifg=#FFA500 gui=none
 	hi ModeMsg        guibg=#1F1F1F guifg=#FFA500 gui=none
 
-	" -> Search 
-	hi Search         guibg=#FF9E16               gui=none 
+	" -> Search
+	hi Search         guibg=#FF9E16               gui=none
 	hi IncSearch      guibg=#FF9E16               gui=none
 
 	" -> Diff

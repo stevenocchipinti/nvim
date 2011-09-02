@@ -29,9 +29,9 @@ set scrolloff=5       " Always show at least 5 lines at the top and the bottom
 set mouse=a           " Make the mouse work - even in terminals
 set autoindent        " Copy the indentation from the previous line
 "set smartindent      " Auto indent after newlines, etc.
+"set cursorline       " Highlights the line that haqs the cursor
 "set textwidth=80     " This automatically puts chars > 80 on the next line
-"set cursorline
-"set columns=80
+"set colorcolumn=81   " Highlight the 81st column (shorthand = :set cc=81)
 
 
 " Shortcuts to configure folding
