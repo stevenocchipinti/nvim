@@ -105,3 +105,8 @@ nmap <F6> :GundoToggle<CR>
 """""" F7
 " Toggle spellcheck
 nmap <F7> :set spell!:set spell?
+
+
+"""""" F8
+" Toggle diff view (need to toggle on both desired buffers)
+nmap <F8> :set diff! scb!:set diff?
