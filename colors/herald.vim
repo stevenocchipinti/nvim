@@ -54,8 +54,8 @@ if has("gui_running")
 	hi ModeMsg        guibg=#1F1F1F guifg=#FFA500 gui=none
 
 	" -> Search
-	hi Search         guibg=#FF9E16               gui=none
-	hi IncSearch      guibg=#FF9E16               gui=none
+	hi Search         guibg=#C4A000               gui=none
+	hi IncSearch      guibg=#C4A000               gui=none
 
 	" -> Diff
 	hi DiffAdd        guibg=#006124 guifg=#ED9000 gui=none
