@@ -1,5 +1,17 @@
 let g:netrw_dirhistmax  =10
+<<<<<<< HEAD
 let g:netrw_dirhist_cnt =3
 let g:netrw_dirhist_1='/home/steve/code/ruby/rails/simpletasks'
 let g:netrw_dirhist_2='/home/steve/code/ruby/projects/tank/www'
 let g:netrw_dirhist_3='/home/steve/code/ruby/projects/tank'
+=======
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/etc/apache2/apps'
+let g:netrw_dirhist_2='/opt/melbs/theTheme/metlink'
+let g:netrw_dirhist_3='/opt/blueprint'
+let g:netrw_dirhist_4='/opt/blueprint/script/importer/wp_export_files'
+let g:netrw_dirhist_5='/opt/blueprint'
+let g:netrw_dirhist_6='/opt/Readings/vendor/plugins/annotate_models/tasks'
+let g:netrw_dirhist_7='/opt/Readings'
+let g:netrw_dirhist_8='/home/steve/.purple'
+>>>>>>> da86fbad70779848d8bc109fdbeb1f211de8d5d0

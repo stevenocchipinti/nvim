@@ -32,20 +32,9 @@ set scrolloff=5       " Always show at least 5 lines at the top and the bottom
 set mouse=a           " Make the mouse work - even in terminals
 set autoindent        " Copy the indentation from the previous line
 "set smartindent      " Auto indent after newlines, etc.
+"set cursorline       " Highlights the line that haqs the cursor
 "set textwidth=80     " This automatically puts chars > 80 on the next line
-"set cursorline
-"set columns=80
-
-
-" Map ctrl+up and ctrl+down to scroll the page without moving the cursor
-map <C-Down> 
-map <C-Up> 
-imap <C-Down> a
-imap <C-Up> a
-map <C-j> 
-map <C-k> 
-imap <C-j> a
-imap <C-k> a
+"set colorcolumn=81   " Highlight the 81st column (shorthand = :set cc=81)
 
 
 " Shortcuts to configure folding
@@ -60,14 +49,25 @@ map <leader>fC :set foldcolumn=4
 map <leader>fn :set foldcolumn=0
 
 
+" Map ctrl+up and ctrl+down to scroll the page without moving the cursor
+map <C-Down> 
+map <C-Up> 
+imap <C-Down> a
+imap <C-Up> a
+map <C-j> 
+map <C-k> 
+imap <C-j> a
+imap <C-k> a
+
+
 " Map =x to filter the file through xmllint to indent XML
 map =x :%!xmllint -format -
 
-" When you dont have write access, :W will write with sudo
-command! W w !sudo tee % > /dev/null
-
 " NerdTree plugin
 nmap <C-F> :NERDTreeToggle
+
+" When you dont have write access, :W will write with sudo
+command! W w !sudo tee % > /dev/null
 
 
 " Function keys
@@ -83,7 +83,7 @@ nmap <F2> :set hls!:set hls?
 " Toggle trailing whitespace and tab characters visibility
 nmap <F3> :set list!:set list?
 set list
-set listchars=tab:»·,trail:·
+set listchars=tab:=»,trail:·
 
 
 """""" F4
