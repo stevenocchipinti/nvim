@@ -10,8 +10,11 @@ colorscheme herald
 "set background=dark
 
 
-" This is how to do stuff based on file extension
+" This is how to source a file based on file extension
 "autocmd BufEnter *.ace source $VIM/vim71/syntax/ace.vim
+
+" This will set filetype instead of sourcing a file
+au! BufRead,BufNewFile *.haml setfiletype haml
 
 
 set ts=2 sw=2
