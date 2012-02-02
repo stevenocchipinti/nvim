@@ -49,6 +49,22 @@ map <leader>fC :set foldcolumn=4
 map <leader>fn :set foldcolumn=0
 
 
+" Shortcuts for searching with FuzzyFinder
+" See :help fuf-vimrc-example for a full example
+map <leader>sb :FufBuffer
+map <leader>sf :FufFile
+map <leader>sF :FufFileWithCurrentBufferDir
+map <leader>sd :FufDir
+map <leader>sD :FufDirWithCurrentBuffer
+map <leader>st :FufTag
+map <leader>s] :FufTagWithCursorWord
+map <leader>sj :FufJumpList
+map <leader>sc :FufChangeList
+map <leader>sq :FufQuickfix
+map <leader>sl :FufLine
+map <leader>sh :FufHelp
+
+
 " Map ctrl+up and ctrl+down to scroll the page without moving the cursor
 map <C-Down> 
 map <C-Up> 
