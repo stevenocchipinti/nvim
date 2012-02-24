@@ -65,15 +65,15 @@ map <leader>sl :FufLine
 map <leader>sh :FufHelp
 
 
-" Map ctrl+up and ctrl+down to scroll the page without moving the cursor
+" Map CTRL+<ARROW> to scroll the page without moving the cursor
 map <C-Down> 
-map <C-Up> 
 imap <C-Down> a
+map <C-Up> 
 imap <C-Up> a
-map <C-j> 
-map <C-k> 
-imap <C-j> a
-imap <C-k> a
+map <C-Right> zL
+imap <C-Right> zLa
+map <C-Left> zH
+imap <C-Left> zHa
 
 
 " Map =x to filter the file through xmllint to indent XML
