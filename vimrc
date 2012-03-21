@@ -76,6 +76,9 @@ map <C-Left> zH
 imap <C-Left> zHa
 
 
+" Easier way to paste from the global clipboard
+map <leader>p "+p
+
 " Map =x to filter the file through xmllint to indent XML
 map =x :%!xmllint -format -
 
