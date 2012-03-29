@@ -35,6 +35,7 @@ set autoindent        " Copy the indentation from the previous line
 "set cursorline       " Highlights the line that has the cursor
 "set textwidth=80     " This automatically puts chars > 80 on the next line
 set colorcolumn=81    " Highlight the 81st column (shorthand = :set cc=81)
+set laststatus=2      " Alsways show a status bar
 
 
 " Shortcuts to configure folding
