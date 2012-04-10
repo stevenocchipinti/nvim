@@ -6,6 +6,7 @@ filetype plugin indent on
 
 
 " Colors are good!
+syntax on
 colorscheme herald
 "set background=dark
 
@@ -31,11 +32,31 @@ set warn              " Show what mode your in (insert, etc.)
 set scrolloff=5       " Always show at least 5 lines at the top and the bottom
 set mouse=a           " Make the mouse work - even in terminals
 set autoindent        " Copy the indentation from the previous line
+set colorcolumn=81    " Highlight the 81st column (shorthand = :set cc=81)
+set laststatus=2      " Always show a status bar
 "set smartindent      " Auto indent after newlines, etc.
 "set cursorline       " Highlights the line that has the cursor
 "set textwidth=80     " This automatically puts chars > 80 on the next line
-set colorcolumn=81    " Highlight the 81st column (shorthand = :set cc=81)
-set laststatus=2      " Alsways show a status bar
+
+
+" Make Powerline look nicer
+let g:Powerline_symbols='unicode'
+
+
+" Activate l33t mode!
+map <Down> ""
+imap <Down> 
+map <Up> ""
+imap <Up> 
+map <Right> ""
+imap <Right> 
+map <Left> ""
+imap <Left> 
+
+
+" Shortcuts for development
+map <leader>d orequire 'ruby-debug'; debugger
+map <leader>D Orequire 'ruby-debug'; debugger
 
 
 " Shortcuts to configure folding
