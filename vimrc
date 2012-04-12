@@ -34,13 +34,14 @@ set mouse=a           " Make the mouse work - even in terminals
 set autoindent        " Copy the indentation from the previous line
 set colorcolumn=81    " Highlight the 81st column (shorthand = :set cc=81)
 set laststatus=2      " Always show a status bar
-"set smartindent      " Auto indent after newlines, etc.
-"set cursorline       " Highlights the line that has the cursor
-"set textwidth=80     " This automatically puts chars > 80 on the next line
+"set smartindent       " Auto indent after newlines, etc.
+"set cursorline        " Highlights the line that has the cursor
+"set textwidth=80      " This automatically puts chars > 80 on the next line
 
 
 " Make Powerline look nicer
 let g:Powerline_symbols='unicode'
+set t_Co=128
 
 
 " Activate l33t mode!
@@ -60,15 +61,15 @@ map <leader>D Orequire 'ruby-debug'; debugger
 
 
 " Shortcuts to configure folding
-map <leader>fs :set foldmethod?
-map <leader>fm :set foldmethod=manual
-map <leader>fi :set foldmethod=indent
-map <leader>fd :set foldmethod=diff
-map <leader>f{ :set foldmethod=marker
-map <leader>f} :set foldmethod=marker
-map <leader>fc :set foldcolumn=1
-map <leader>fC :set foldcolumn=4
-map <leader>fn :set foldcolumn=0
+map <leader>zs :set foldmethod?
+map <leader>zm :set foldmethod=manual
+map <leader>zi :set foldmethod=indent
+map <leader>zd :set foldmethod=diff
+map <leader>z{ :set foldmethod=marker
+map <leader>z} :set foldmethod=marker
+map <leader>zc :set foldcolumn=1
+map <leader>zC :set foldcolumn=4
+map <leader>zn :set foldcolumn=0
 
 
 " Shortcuts for searching with FuzzyFinder
@@ -105,7 +106,10 @@ map <leader>p "+p
 map =x :%!xmllint -format -
 
 " NerdTree plugin
-nmap <C-F> :NERDTreeToggle
+nmap <leader>f :NERDTreeToggle
+
+" TagList plugin
+nmap <leader>t :TlistToggle
 
 " When you dont have write access, :W will write with sudo
 command! W w !sudo tee % > /dev/null
