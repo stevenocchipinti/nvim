@@ -99,19 +99,22 @@ map <C-Left> zH
 imap <C-Left> zHa
 
 
+" Show files - NerdTree plugin
+nmap <leader>f :NERDTreeToggle
+" Show tags - TagList plugin
+nmap <leader>t :TlistToggle
+" Show buffers - BufferList plugin
+nmap <leader>b :call BufferList()
+
+
 " Easier way to paste from the global clipboard
 map <leader>p "+p
 
 " Map =x to filter the file through xmllint to indent XML
 map =x :%!xmllint -format -
 
-" NerdTree plugin
-nmap <leader>f :NERDTreeToggle
-
-" TagList plugin
-nmap <leader>t :TlistToggle
-
 " When you dont have write access, :W will write with sudo
+" Without this, you could use ':w !sudo tee %'
 command! W w !sudo tee % > /dev/null
 
 
