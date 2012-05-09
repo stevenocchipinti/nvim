@@ -45,14 +45,14 @@ set t_Co=128
 
 
 " Activate l33t mode!
-map <Down> ""
-imap <Down> 
-map <Up> ""
-imap <Up> 
-map <Right> ""
-imap <Right> 
-map <Left> ""
-imap <Left> 
+"map <Down> ""
+"imap <Down> 
+"map <Up> ""
+"imap <Up> 
+"map <Right> ""
+"imap <Right> 
+"map <Left> ""
+"imap <Left> 
 
 
 " Shortcuts for development
@@ -86,6 +86,10 @@ map <leader>sc :FufChangeList
 map <leader>sq :FufQuickfix
 map <leader>sl :FufLine
 map <leader>sh :FufHelp
+
+
+" Toggle Gundo plugin
+map <leader>u :GundoToggle
 
 
 " Map CTRL+<ARROW> to scroll the page without moving the cursor
@@ -149,8 +153,7 @@ imap <S-F5> Wa
 
 
 """""" F6
-" Toggle Gundo plugin
-nmap <F6> :GundoToggle<CR>
+nmap <F6> :set wrap!:set wrap?
 
 
 """""" F7
