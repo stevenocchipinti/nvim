@@ -107,8 +107,6 @@ imap <C-Left> zHa
 nmap <leader>f :NERDTreeToggle
 " Show tags - TagList plugin
 nmap <leader>t :TlistToggle
-" Show buffers - BufferList plugin
-nmap <leader>b :call BufferList()
 
 
 " Easier way to paste from the global clipboard
