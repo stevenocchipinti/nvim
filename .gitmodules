@@ -45,3 +45,6 @@
 [submodule "bundle/fileline"]
 	path = bundle/fileline
 	url = https://github.com/bogado/file-line.git
+[submodule "syntastic"]
+	path = syntastic
+	url = https://github.com/scrooloose/syntastic.git
