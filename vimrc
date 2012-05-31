@@ -41,6 +41,7 @@ set laststatus=2      " Always show a status bar
 
 " Make Powerline look nicer
 let g:Powerline_symbols='unicode'
+let g:syntastic_mode_map = { 'mode': 'active' }
 set t_Co=128
 
 
@@ -114,6 +115,9 @@ map <leader>p "+p
 
 " Map =x to filter the file through xmllint to indent XML
 map =x :%!xmllint -format -
+
+" Y should act like C and D!
+map Y y$
 
 " When you dont have write access, :W will write with sudo
 " Without this, you could use ':w !sudo tee %'
