@@ -68,7 +68,6 @@ if has("gui_running")
 	hi PmenuSel       guibg=#F17A00 guifg=#4C0200 gui=none
 	hi PmenuSbar      guibg=#430300               gui=none
 	hi PmenuThumb     guibg=#720300               gui=none
-	hi PmenuSel       guibg=#F17A00 guifg=#4C0200 gui=none
 
 	" -> Tabs
 	hi TabLine        guibg=#FFFFFF guifg=#1F1F1F gui=none

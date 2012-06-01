@@ -41,18 +41,19 @@ set laststatus=2      " Always show a status bar
 
 " Make Powerline look nicer
 let g:Powerline_symbols='unicode'
+let g:syntastic_mode_map = { 'mode': 'active' }
 set t_Co=128
 
 
 " Activate l33t mode!
-map <Down> ""
-imap <Down> 
-map <Up> ""
-imap <Up> 
-map <Right> ""
-imap <Right> 
-map <Left> ""
-imap <Left> 
+"map <Down> ""
+"imap <Down> 
+"map <Up> ""
+"imap <Up> 
+"map <Right> ""
+"imap <Right> 
+"map <Left> ""
+"imap <Left> 
 
 
 " Shortcuts for development
@@ -88,6 +89,10 @@ map <leader>sl :FufLine
 map <leader>sh :FufHelp
 
 
+" Toggle Gundo plugin
+map <leader>u :GundoToggle
+
+
 " Map CTRL+<ARROW> to scroll the page without moving the cursor
 map <C-Down> 
 imap <C-Down> a
@@ -103,8 +108,6 @@ imap <C-Left> zHa
 nmap <leader>f :NERDTreeToggle
 " Show tags - TagList plugin
 nmap <leader>t :TlistToggle
-" Show buffers - BufferList plugin
-nmap <leader>b :call BufferList()
 
 
 " Easier way to paste from the global clipboard
@@ -112,6 +115,9 @@ map <leader>p "+p
 
 " Map =x to filter the file through xmllint to indent XML
 map =x :%!xmllint -format -
+
+" Y should act like C and D!
+map Y y$
 
 " When you dont have write access, :W will write with sudo
 " Without this, you could use ':w !sudo tee %'
@@ -149,8 +155,7 @@ imap <S-F5> Wa
 
 
 """""" F6
-" Toggle Gundo plugin
-nmap <F6> :GundoToggle<CR>
+nmap <F6> :set wrap!:set wrap?
 
 
 """""" F7
