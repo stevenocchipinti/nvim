@@ -113,6 +113,9 @@ nmap <leader>t :TlistToggle
 " Easier way to paste from the global clipboard
 map <leader>p "+p
 
+" Map =j to filter the file through Python to format it
+map =j :%!python -m json.tool
+
 " Map =x to filter the file through xmllint to indent XML
 map =x :%!xmllint -format -
 
