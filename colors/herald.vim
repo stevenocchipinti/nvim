@@ -127,6 +127,9 @@ elseif &t_Co == 256
 	hi FoldColumn     ctermbg=234  ctermfg=25    cterm=none
 	hi Folded         ctermbg=234  ctermfg=25    cterm=none
 
+	" -> Color column should match look similar to folding
+	hi ColorColumn    ctermbg=235                cterm=none
+
 	" -> Line info  
 	hi LineNr         ctermbg=0    ctermfg=241   cterm=none
 	hi StatusLine     ctermbg=0    ctermfg=241   cterm=none
