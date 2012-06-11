@@ -89,10 +89,6 @@ map <leader>sl :FufLine
 map <leader>sh :FufHelp
 
 
-" Toggle Gundo plugin
-map <leader>u :GundoToggle
-
-
 " Map CTRL+<ARROW> to scroll the page without moving the cursor
 map <C-Down> 
 imap <C-Down> a
@@ -108,19 +104,21 @@ imap <C-Left> zHa
 nmap <leader>f :NERDTreeToggle
 " Show tags - TagList plugin
 nmap <leader>t :TlistToggle
+" Toggle Gundo plugin
+map <leader>u :GundoToggle
 
 
-" Easier way to paste from the global clipboard
+" Easier way to copy and paste from the global clipboard
 map <leader>p "+p
+map <leader>y "+y
+" Y should act like C and D!
+map Y y$
+
 
 " Map =j to filter the file through Python to format it
 map =j :%!python -m json.tool
-
 " Map =x to filter the file through xmllint to indent XML
 map =x :%!xmllint -format -
-
-" Y should act like C and D!
-map Y y$
 
 " When you dont have write access, :W will write with sudo
 " Without this, you could use ':w !sudo tee %'
