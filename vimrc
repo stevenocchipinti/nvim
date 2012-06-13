@@ -60,6 +60,15 @@ set t_Co=256
 map <leader>d orequire 'ruby-debug'; debugger
 map <leader>D Orequire 'ruby-debug'; debugger
 
+" Run RSpec tests in Spin server
+map <leader>t :!bundle exec spin push %
+" Spin doesn't seem to support line numbers :(
+map <leader>T :call SpinLine()
+function SpinLine()
+  let num = line('.')
+  exe "!bundle exec spin push ".expand('%').":".num
+endfunction
+
 
 " Shortcuts to configure folding
 map <leader>zs :set foldmethod?
@@ -100,10 +109,13 @@ map <C-Left> zH
 imap <C-Left> zHa
 
 
+" Show ctags - TagList plugin
+nmap <leader>c :TlistToggle
+" Build ctags (requires exuberant-ctags)
+nmap <leader>C :!ctags -R .
+
 " Show files - NerdTree plugin
 nmap <leader>f :NERDTreeToggle
-" Show tags - TagList plugin
-nmap <leader>t :TlistToggle
 " Toggle Gundo plugin
 map <leader>u :GundoToggle
 
