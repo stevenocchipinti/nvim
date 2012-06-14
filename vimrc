@@ -62,7 +62,6 @@ map <leader>D Orequire 'ruby-debug'; debugger
 
 " Run RSpec tests in Spin server
 map <leader>t :!bundle exec spin push %
-" Spin doesn't seem to support line numbers :(
 map <leader>T :call SpinLine()
 function SpinLine()
   let num = line('.')
