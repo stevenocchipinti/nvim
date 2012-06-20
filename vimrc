@@ -128,6 +128,8 @@ map Y y$
 
 " Map =j to filter the file through Python to format it
 map =j :%!python -m json.tool
+" Map =r to convert a ruby hash into json and run the above python script
+map =r :%s/=>/:/g:%!python -m json.tool
 " Map =x to filter the file through xmllint to indent XML
 map =x :%!xmllint -format -
 
