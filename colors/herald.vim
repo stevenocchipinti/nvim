@@ -142,9 +142,9 @@ elseif &t_Co == 256
 	hi MoreMsg        ctermbg=234  ctermfg=214   cterm=none
 	hi ModeMsg        ctermbg=234  ctermfg=214   cterm=none
 
-	" -> Search 
-	hi Search         ctermbg=214                cterm=none 
-	hi IncSearch      ctermbg=214                cterm=none
+	" -> Search
+	hi Search         ctermbg=11   ctermfg=24    cterm=none
+	hi IncSearch      ctermbg=11   ctermfg=24    cterm=none
 
 	" -> Diff
 	hi DiffAdd        ctermbg=22   ctermfg=208   cterm=none
