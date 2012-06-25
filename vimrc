@@ -46,14 +46,10 @@ set t_Co=256
 
 
 " Activate l33t mode!
-"map <Down> ""
-"imap <Down> 
-"map <Up> ""
-"imap <Up> 
-"map <Right> ""
-"imap <Right> 
-"map <Left> ""
-"imap <Left> 
+noremap <Up> <nop>
+noremap <Down> <nop>
+noremap <Left> <nop>
+noremap <Right> <nop>
 
 
 " Shortcuts for development
