@@ -33,6 +33,7 @@ set scrolloff=3       " Number of lines to always show at at the top and bottom
 set mouse=a           " Make the mouse work - even in terminals
 set autoindent        " Copy the indentation from the previous line
 set colorcolumn=81    " Highlight the 81st column (shorthand = :set cc=81)
+set cursorline        " Highlight the line which the cursor is on
 set laststatus=2      " Always show a status bar
 "set smartindent       " Auto indent after newlines, etc.
 "set cursorline        " Highlights the line that has the cursor
@@ -46,10 +47,10 @@ set t_Co=256
 
 
 " Activate l33t mode!
-noremap <Up> <nop>
-noremap <Down> <nop>
-noremap <Left> <nop>
-noremap <Right> <nop>
+"noremap <Up> <nop>
+"noremap <Down> <nop>
+"noremap <Left> <nop>
+"noremap <Right> <nop>
 
 
 " Shortcuts for development
@@ -145,9 +146,9 @@ nmap <F2> :set hls!:set hls?
 
 """""" F3
 " Toggle trailing whitespace and tab characters visibility
-nmap <F3> :set list!:set list?
 set list
 set listchars=tab:=»,trail:·
+nmap <F3> :set list!:set list?
 
 
 """""" F4
