@@ -131,11 +131,10 @@ map =x :%!xmllint -format -
 
 
 " Run RSpec tests in Spin server
-map <leader>t :!bundle exec spin push %
-map <leader>T :call SpinLine()
+map <leader>t :w:!bundle exec spin push %
+map <leader>T :w:call SpinLine()
 function! SpinLine()
-  let num = line('.')
-  exe "!bundle exec spin push ".expand('%').":".num
+  exe "!bundle exec spin push ".expand('%').":".line('.')
 endfunction
 
 
