@@ -154,6 +154,7 @@ nmap <leader>C :!ctags -R .
 
 " NERDTREE PLUGIN - (mnemonic: Files)
 nmap <leader>f :NERDTreeToggle
+nmap <leader>F :NERDTreeFind
 
 
 " NERDCOMMENTER PLUGIN - toggle line comment
