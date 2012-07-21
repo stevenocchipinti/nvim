@@ -153,6 +153,7 @@ nmap <leader>C :!ctags -R .
 
 " NERDTREE PLUGIN - (mnemonic: Files)
 nmap <leader>f :NERDTreeToggle
+nmap <leader>F :NERDTreeFind
 
 
 " NERDCOMMENTER PLUGIN - toggle line comment
@@ -166,6 +167,16 @@ map <leader>u :GundoToggle
 " POWERLINE PLUGIN
 let g:Powerline_symbols='unicode'
 let g:syntastic_mode_map = { 'mode': 'active' }
+
+
+" CTRL-P PLUGIN
+let g:ctrlp_user_command = {
+  \ 'types': {
+    \ 1: ['.git/', 'cd %s && git ls-files'],
+    \ 2: ['.hg/', 'hg --cwd %s locate -I .'],
+  \ },
+  \ 'fallback': 'find %s -type f'
+\ }
 
 
 " FUZZY FINDER (mnemonic: Search-X)
