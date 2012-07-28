@@ -143,6 +143,19 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
+" ZENCODING PLUGIN - (mnemonic: Helper)
+let g:user_zen_leader_key = '<c-h>' " Something that wasn't already used
+let g:user_zen_settings = {
+\   "indentation": "  ",
+\   "ruby": {
+\     "snippets": {
+\       "debug": "require 'ruby-debug'; debugger"
+\     }
+\   }
+\ }
+imap <C-@> <c-h>,
+
+
 " TAG LIST PLUGIN - show tags (mnemonic: Ctags)
 nmap <leader>c :TlistToggle
 " Show the tags from just the focused file
@@ -171,11 +184,11 @@ let g:syntastic_mode_map = { 'mode': 'active' }
 
 " CTRL-P PLUGIN
 let g:ctrlp_user_command = {
-  \ 'types': {
-    \ 1: ['.git/', 'cd %s && git ls-files'],
-    \ 2: ['.hg/', 'hg --cwd %s locate -I .'],
-  \ },
-  \ 'fallback': 'find %s -type f'
+\   'types': {
+\     1: ['.git/', 'cd %s && git ls-files'],
+\     2: ['.hg/', 'hg --cwd %s locate -I .'],
+\   },
+\   'fallback': 'find %s -type f'
 \ }
 
 
