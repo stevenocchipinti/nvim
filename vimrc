@@ -157,9 +157,9 @@ imap <C-@> <c-h>,
 
 
 " TAG LIST PLUGIN - show tags (mnemonic: Ctags)
-nmap <leader>c :TlistToggle
 " Show the tags from just the focused file
 let g:Tlist_Show_One_File=1
+nmap <leader>c :TlistToggle
 " Build ctags (requires exuberant-ctags)
 nmap <leader>C :!ctags -R .
 
@@ -179,6 +179,9 @@ map <leader>u :GundoToggle
 
 " POWERLINE PLUGIN
 let g:Powerline_symbols='unicode'
+
+
+" SYNTASTIC PLUGIN
 let g:syntastic_mode_map = { 'mode': 'active' }
 
 
@@ -192,7 +195,7 @@ let g:ctrlp_user_command = {
 \ }
 
 
-" FUZZY FINDER (mnemonic: Search-X)
+" FUZZY FINDER PLUGIN (mnemonic: Search-X)
 map <leader>sb :FufBuffer
 map <leader>sf :FufFile
 map <leader>sF :FufFileWithCurrentBufferDir
