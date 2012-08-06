@@ -186,6 +186,7 @@ let g:syntastic_mode_map = { 'mode': 'active' }
 
 
 " CTRL-P PLUGIN
+let g:ctrlp_cmd = 'CtrlPMRU'
 let g:ctrlp_user_command = {
 \   'types': {
 \     1: ['.git/', 'cd %s && git ls-files'],
@@ -250,3 +251,5 @@ nmap <F7> :set spell!:set spell?
 
 " F8 - Toggle diff view (need to toggle on both desired buffers)
 nmap <F8> :set diff! scb!:set diff?
+
+
