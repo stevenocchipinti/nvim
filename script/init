@@ -3,12 +3,8 @@
 # Install this custom .vim directory on a fresh machine
 #
 
-if [ -d ~/.vim ]; then
-  echo "You already have a .vim directory!"
-  exit 1
-fi
-
-git clone git@github.com:stevenocchipinti/dotvim.git ~/.vim
+# First step is to run this command to clone the repo:
+# git clone git@github.com:stevenocchipinti/dotvim.git ~/.vim
 
 # Backup the originals (if they're not there, don't complain)
 [ -f ~/.vim/vimrc ]  && mv -i ~/.vim/vimrc{,.bak}
