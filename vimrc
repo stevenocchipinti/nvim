@@ -164,13 +164,15 @@ nmap <leader>c :TlistToggle
 nmap <leader>C :!ctags -R .
 
 
+" TABULAR
+vmap <leader><tab>p :Tabularize /\|
+vmap <leader><tab>= :Tabularize /=
+vmap <leader><tab>: :Tabularize /:
+
+
 " NERDTREE PLUGIN - (mnemonic: Files)
 nmap <leader>f :NERDTreeToggle
 nmap <leader>F :NERDTreeFind
-
-
-" NERDCOMMENTER PLUGIN - toggle line comment
-map <Leader>/  <plug>NERDCommenterToggle<cr>
 
 
 " GUNDO PLUGIN - show undo tree (mnemonic: Undo)
