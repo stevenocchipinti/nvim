@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+# Remove a git submodule
+#
+
+# FIXME: This needs to be safer and not leave files lying around!
+
+if [ $# -eq 1 ]; then
+  sed -i .old "/$1/d" ~/.vim/.gitmodules
+  sed -i .old "/$1/d" ~/.vim/.git/config
+  git rm --cached ~/.vim/bundle/$1
+
+else
+  echo "Usage: $0 <bundle-subdirectory>"
+  exit 1
+fi
