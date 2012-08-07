@@ -1,0 +1,7 @@
+#!/bin/bash
+#
+# Update a all submodules under the ~/.vim/bundle directory
+#
+
+cd ~/.vim
+git submodule foreach git pull origin master

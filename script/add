@@ -1,0 +1,29 @@
+#!/bin/bash
+#
+# Download a new plugin from GitHub under the ~/.vim/bundle directory
+#
+
+# If only one argument provided, infer the name from the URL
+if [ $# -eq 1 ]; then
+  URL=$1
+  NAME=`echo "$1" | sed "s/.*\/\(.*\).git/\1/g"`
+
+# If two arguments are provided, use the second one as the name
+elif [ $# -eq 2 ]; then
+  URL=$1
+  NAME=$2
+
+else
+  echo "Usage: $0 <github-url> [<name>]"
+  exit 1
+fi
+
+# Download the plugin
+cd ~/.vim
+git submodule add $URL bundle/$NAME
+git add .
+git commit -m "Install \"$NAME\" bundle as a submodule."
+#git push
+
+echo "DONE! $NAME has been installed to your bundle directory"
+echo "Don't forget to 'git push'!"

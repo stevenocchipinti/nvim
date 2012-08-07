@@ -1,0 +1,15 @@
+#!/bin/bash
+#
+# Install this custom .vim directory on a fresh machine
+#
+
+git clone git@github.com:stevenocchipinti/dotvim.git ~/.vim
+
+# Backup the originals (if they're not there, don't complain)
+mv ~/.vim/vimrc{,.bak} 2> /dev/null
+mv ~/.vim/gvimrc{,.bak} 2> /dev/null
+
+ln -s ~/.vim/vimrc ~/.vimrc
+ln -s ~/.vim/gvimrc ~/.gvimrc
+cd ~/.vim
+git submodule update --init

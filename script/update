@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+# Update a given submodule under the ~/.vim/bundle directory
+#
+
+if [ $# -eq 1 ]; then
+  cd ~/.vim/bundle/$1
+  [ $? -ne 0 ] && exit 1
+  git pull origin master
+
+else
+  echo "Usage: $0 <bundle-subdirectory>"
+  exit 1
+fi
