@@ -49,3 +49,9 @@ Credit
 I learned this technique (git submodules) from vimcasts.org  
 A full screencast and article is available from here:  
 http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/
+
+
+Todo
+----
+
+* `~/.vim/script/remove` should be able to properly uninstall a git submodule
