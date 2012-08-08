@@ -14,7 +14,7 @@ I have written some bash scripts to automate installing, updating, etc.
 How to install this repo
 ------------------------
 
-    git clone git@github.com:stevenocchipinti/dotvim.git ~/.vim
+    git clone https://github.com/stevenocchipinti/dotvim.git ~/.vim
     ~/.vim/script/init
 
 
