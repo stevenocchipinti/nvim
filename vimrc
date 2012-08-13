@@ -198,6 +198,10 @@ let g:ctrlp_user_command = {
 \ }
 
 
+" VIMUX PLUGIN
+let g:VimuxUseRemoteSession = 'vimux'
+
+
 " FUZZY FINDER PLUGIN (mnemonic: Search-X)
 map <leader>sb :FufBuffer
 map <leader>sf :FufFile
