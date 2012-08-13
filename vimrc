@@ -49,11 +49,11 @@ set smartcase
 set linebreak
 set warn              " Show what mode your in (insert, etc.)
 set scrolloff=3       " Number of lines to always show at at the top and bottom
-set mouse=a           " Make the mouse work - even in terminals
 set autoindent        " Copy the indentation from the previous line
 set colorcolumn=81    " Highlight the 81st column (shorthand = :set cc=81)
 set cursorline        " Highlight the line which the cursor is on
 set laststatus=2      " Always show a status bar
+"set mouse=a           " Make the mouse work - even in terminals
 "set smartindent       " Auto indent after newlines, etc.
 "set textwidth=80      " This automatically puts chars > 80 on the next line
 
