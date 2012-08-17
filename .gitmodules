@@ -63,15 +63,6 @@
 [submodule "bundle/tabular"]
 	path = bundle/tabular
 	url = https://github.com/godlygeek/tabular.git
-[submodule "bundle/vimux"]
-	path = bundle/vimux
-	url = git@github.com:stevenocchipinti/vimux.git
-[submodule "bundle/vimux-ruby-test"]
-	path = bundle/vimux-ruby-test
-	url = https://github.com/pgr0ss/vimux-ruby-test.git
-[submodule "bundle/vimux-cucumber"]
-	path = bundle/vimux-cucumber
-	url = https://github.com/cloud8421/vimux-cucumber.git
 [submodule "bundle/tslime"]
 	path = bundle/tslime
 	url = https://github.com/kikijump/tslime.vim.git
