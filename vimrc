@@ -129,18 +129,14 @@ map =r :%s/=>/:/g:%!python -m json.tool
 map =x :%!xmllint -format -
 
 
-" Run RSpec tests in Spin server
-map <leader>t :w:!bundle exec spin push %
-map <leader>T :w:call SpinLine()
-function! SpinLine()
-  exe "!bundle exec spin push ".expand('%').":".line('.')
-endfunction
-
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                  PLUGINS                                     "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+" RunnerMux
+let g:runnermux_use_spin = 'always'
 
 
 " ZENCODING PLUGIN - (mnemonic: Helper)
@@ -253,5 +249,3 @@ nmap <F7> :set spell!:set spell?
 
 " F8 - Toggle diff view (need to toggle on both desired buffers)
 nmap <F8> :set diff! scb!:set diff?
-
-
