@@ -135,10 +135,6 @@ map =x :%!xmllint -format -
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-" RunnerMux
-let g:runnermux_use_spin = 'always'
-
-
 " ZENCODING PLUGIN - (mnemonic: Helper)
 let g:user_zen_leader_key = '<c-h>' " Something that wasn't already used
 let g:user_zen_settings = {
