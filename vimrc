@@ -106,22 +106,24 @@ map <leader>y "+y
 map Y y$
 
 
-" Replace the last pasted text with the given register - poor mans yank ring
-map <expr> <leader>0 '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"0p'
-map <expr> <leader>1 '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"1p'
-map <expr> <leader>2 '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"2p'
-map <expr> <leader>3 '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"3p'
-map <expr> <leader>4 '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"4p'
-map <expr> <leader>5 '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"5p'
-map <expr> <leader>6 '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"6p'
-map <expr> <leader>7 '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"7p'
-map <expr> <leader>8 '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"8p'
-map <expr> <leader>9 '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"9p'
-map <expr> <leader>+ '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"+p'
-map <expr> <leader>* '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"*p'
-map <expr> <leader>: '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d":p'
-map <expr> <leader>/ '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"/p'
-map <expr> <leader>% '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"%p'
+" Replace the last pasted text with the given register
+" Poor mans yank ring - only really works for whole lines
+map <expr> <leader>v '`[' . strpart(getregtype(), 0, 1) . '`]'
+map <expr> <leader>0 '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"0P'
+map <expr> <leader>1 '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"1P'
+map <expr> <leader>2 '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"2P'
+map <expr> <leader>3 '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"3P'
+map <expr> <leader>4 '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"4P'
+map <expr> <leader>5 '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"5P'
+map <expr> <leader>6 '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"6P'
+map <expr> <leader>7 '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"7P'
+map <expr> <leader>8 '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"8P'
+map <expr> <leader>9 '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"9P'
+map <expr> <leader>+ '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"+P'
+map <expr> <leader>* '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"*P'
+map <expr> <leader>: '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d":P'
+map <expr> <leader>/ '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"/P'
+map <expr> <leader>% '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"%P'
 
 
 " Shortcuts for ruby development and debugging
