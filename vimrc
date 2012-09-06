@@ -155,6 +155,11 @@ map =x :%!xmllint -format -
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
+" GREP PLUGIN
+map <leader>g :Rgrep
+map <leader>G :Grep
+
+
 " ZENCODING PLUGIN - (mnemonic: Helper)
 let g:user_zen_leader_key = '<c-h>' " Something that wasn't already used
 let g:user_zen_settings = {
@@ -270,4 +275,4 @@ nmap <F8> :set diff! scb!:set diff?
 
 
 
-let g:tmux_sessionname = 'runnermux'
+"let g:tmux_sessionname = 'runnermux'
