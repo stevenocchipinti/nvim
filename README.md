@@ -6,9 +6,8 @@ Description
 -----------
 
 This repo is for my .vim directory.  
-It contains my .vimrc and the plugins/scripts I use.  
-The plugins are installed with Pathogen to allow easy updating via git.
-I have written some bash scripts to automate installing, updating, etc.
+It contains my .vimrc and the plugins I use.  
+The plugins are installed with Vundle to allow easy updating via git.
 
 
 How to install this repo
@@ -18,40 +17,8 @@ How to install this repo
     ~/.vim/script/init
 
 
-Adding a new plugin from Github
--------------------------------
+More information
+----------------
 
-    ~/.vim/script/add https://github.com/tpope/vim-fugitive.git
-
-will create a `bundle/vim-fugitive` submodule
-
-    ~/.vim/script/add https://github.com/tpope/vim-fugitive.git fugitive
-
-will create a `bundle/fugitive` submodule
-
-
-Updating a particular plugin
-----------------------------
-
-    ~/.vim/script/update fugitive
-
-Where `fugitive` is the name of the subdirectory under `~/.vim/bundle`
-
-Updating all plugins
---------------------
-
-    ~/.vim/script/update-all
-
-
-Credit
-------
-
-I learned this technique (git submodules) from vimcasts.org  
-A full screencast and article is available from here:  
-http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/
-
-
-Todo
-----
-
-* `~/.vim/script/remove` should be able to properly uninstall a git submodule
+For more information about my setup, take a look at `vimrc`.  
+It has comments!

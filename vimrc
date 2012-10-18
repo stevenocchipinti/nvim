@@ -12,10 +12,37 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-" Use Pathogen to keep plugins in bundles
+" Use Vundle to manage plugins
 filetype off
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+Bundle 'L9'
+Bundle 'FuzzyFinder'
+Bundle 'gmarik/vundle'
+Bundle 'bogado/file-line'
+Bundle 'ecomba/vim-ruby-refactoring'
+Bundle 'godlygeek/tabular'
+Bundle 'groenewege/vim-less'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'kien/ctrlp.vim'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'mattn/zencoding-vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'sjl/gundo.vim'
+Bundle 'stevenocchipinti/runnermux'
+Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-cucumber'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-ragtag'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'tsaleh/vim-matchit'
+Bundle 'vim-scripts/grep.vim'
+Bundle 'vim-scripts/taglist.vim'
 filetype plugin indent on
 
 
