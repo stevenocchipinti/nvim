@@ -9,10 +9,9 @@ The plugins are installed with Vundle.
 How to install this repo
 ------------------------
 
-    git clone https://github.com/stevenocchipinti/dotvim.git ~/.vim
+To get started, clone this repo to `~/.vim` and run this script:
+
     ~/.vim/script/init
-    vim
-    :BundleInstall
 
 
 More information
