@@ -16,9 +16,9 @@
 filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
+Bundle 'gmarik/vundle'
 Bundle 'L9'
 Bundle 'FuzzyFinder'
-Bundle 'gmarik/vundle'
 Bundle 'bogado/file-line'
 Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'godlygeek/tabular'

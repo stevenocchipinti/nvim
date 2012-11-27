@@ -13,6 +13,9 @@ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 [ -f ~/.vimrc ]  && mv -i ~/.vimrc{,.bak}
 [ -f ~/.gvimrc ] && mv -i ~/.gvimrc{,.bak}
 
-# Symlink em!
+# Symlink version controlled files to the home directory
 ln -s ~/.vim/vimrc ~/.vimrc
 ln -s ~/.vim/gvimrc ~/.gvimrc
+
+# Install all the plugins
+vim +BundleInstall +qall
