@@ -2,12 +2,8 @@ DOT-VIM REPOSITORY
 ==================
 
 
-Description
------------
-
-This repo is for my .vim directory.  
-It contains my .vimrc and the plugins I use.  
-The plugins are installed with Vundle to allow easy updating via git.
+This repo is for my vim setup.  
+The plugins are installed with Vundle.
 
 
 How to install this repo
@@ -20,5 +16,4 @@ How to install this repo
 More information
 ----------------
 
-For more information about my setup, take a look at `vimrc`.  
-It has comments!
+For more information about my setup, take a look at `vimrc` - It has comments!
