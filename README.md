@@ -11,6 +11,8 @@ How to install this repo
 
     git clone https://github.com/stevenocchipinti/dotvim.git ~/.vim
     ~/.vim/script/init
+    vim
+    :BundleInstall
 
 
 More information
