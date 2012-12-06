@@ -165,8 +165,8 @@ elseif &t_Co == 256
 	hi TabLineSel     ctermbg=234  ctermfg=230   cterm=bold
 	"
 	" -> Visual Mode
-	hi Visual         ctermbg=0    ctermfg=215   cterm=none
-	hi VisualNOS      ctermbg=0    ctermfg=241   cterm=none
+	hi Visual         ctermbg=8                  cterm=none
+	hi VisualNOS      ctermbg=8                  cterm=none
 
 	" -> Code
 	hi Comment                     ctermfg=241   cterm=none
