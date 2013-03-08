@@ -91,11 +91,8 @@ set mouse=a           " Make the mouse work - even in terminals
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-" Activate l33t mode!
-"noremap <Up> <nop>
-"noremap <Down> <nop>
-"noremap <Left> <nop>
-"noremap <Right> <nop>
+" Quicker escaping
+imap jk 
 
 
 " When you dont have write access, :W will write with sudo
@@ -115,15 +112,15 @@ map <leader>zC :set foldcolumn=4
 map <leader>zn :set foldcolumn=0
 
 
-" Map CTRL+<ARROW> to scroll the page without moving the cursor
-map <C-Down> 
-imap <C-Down> a
-map <C-Up> 
-imap <C-Up> a
-map <C-Right> zL
-imap <C-Right> zLa
-map <C-Left> zH
-imap <C-Left> zHa
+" Map CTRL+<ARROW> to switch windows
+map <C-Down> j
+imap <C-Down> j
+map <C-Up> k
+imap <C-Up> k
+map <C-Right> l
+imap <C-Right> l
+map <C-Left> h
+imap <C-Left> h
 
 
 " Easier way to copy and paste from the global clipboard
@@ -297,9 +294,3 @@ nmap <F7> :set spell!:set spell?
 
 " F8 - Toggle diff view (need to toggle on both desired buffers)
 nmap <F8> :set diff! scb!:set diff?
-
-
-
-
-
-"let g:tmux_sessionname = 'runnermux'
