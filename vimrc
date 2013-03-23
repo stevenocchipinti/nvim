@@ -43,6 +43,7 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'tsaleh/vim-matchit'
 Bundle 'vim-scripts/grep.vim'
 Bundle 'vim-scripts/taglist.vim'
+Bundle 'vim-scripts/YankRing.vim'
 filetype plugin indent on
 
 
@@ -230,6 +231,10 @@ let g:Powerline_symbols='unicode'
 
 " SYNTASTIC PLUGIN
 let g:syntastic_mode_map = { 'mode': 'active' }
+
+
+" YANK-RING PLUGIN - use <C-P> and <C-N> after pasting (mnemonic: Killring)
+nnoremap <silent> <leader>k :YRShow<CR>
 
 
 " CTRL-P PLUGIN
