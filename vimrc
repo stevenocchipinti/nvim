@@ -173,6 +173,10 @@ map =r :%s/=>/:/g:%!python -m json.tool
 map =x :%!xmllint -format -
 
 
+" Remove un-needed whitespace
+map <silent> =w :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                  PLUGINS                                     "
