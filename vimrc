@@ -93,7 +93,7 @@ set mouse=a           " Make the mouse work - even in terminals
 
 
 " Quicker escaping
-imap jk 
+imap kj 
 
 
 " When you dont have write access, :W will write with sudo
