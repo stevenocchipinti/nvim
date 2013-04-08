@@ -101,19 +101,7 @@ imap kj 
 command! W w !sudo tee % > /dev/null
 
 
-" Shortcuts to configure folding
-map <leader>zs :set foldmethod?
-map <leader>zm :set foldmethod=manual
-map <leader>zi :set foldmethod=indent
-map <leader>zd :set foldmethod=diff
-map <leader>z{ :set foldmethod=marker
-map <leader>z} :set foldmethod=marker
-map <leader>zc :set foldcolumn=1
-map <leader>zC :set foldcolumn=4
-map <leader>zn :set foldcolumn=0
-
-
-" Map CTRL+<ARROW> to switch windows
+" Map CTRL+<ARROW> to switch windows (doesn't work in Mac)
 map <C-Down> j
 imap <C-Down> j
 map <C-Up> k
