@@ -43,9 +43,9 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'tsaleh/vim-matchit'
 Bundle 'vim-scripts/grep.vim'
 Bundle 'vim-scripts/taglist.vim'
-Bundle 'vim-scripts/YankRing.vim'
+Bundle 'maxbrunsfeld/vim-yankstack'
+call yankstack#setup()
 filetype plugin indent on
-
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -131,26 +131,6 @@ map <leader>y "+y
 map Y y$
 
 
-" Replace the last pasted text with the given register
-" Poor mans yank ring - only really works for whole lines
-map <expr> <leader>v '`[' . strpart(getregtype(), 0, 1) . '`]'
-map <expr> <leader>0 '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"0P'
-map <expr> <leader>1 '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"1P'
-map <expr> <leader>2 '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"2P'
-map <expr> <leader>3 '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"3P'
-map <expr> <leader>4 '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"4P'
-map <expr> <leader>5 '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"5P'
-map <expr> <leader>6 '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"6P'
-map <expr> <leader>7 '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"7P'
-map <expr> <leader>8 '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"8P'
-map <expr> <leader>9 '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"9P'
-map <expr> <leader>+ '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"+P'
-map <expr> <leader>* '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"*P'
-map <expr> <leader>: '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d":P'
-map <expr> <leader>/ '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"/P'
-map <expr> <leader>% '`[' . strpart(getregtype(), 0, 1) . '`]' . '"_d"%P'
-
-
 " Shortcuts for ruby development and debugging
 map <leader>d orequire 'ruby-debug'; debugger
 map <leader>D Orequire 'ruby-debug'; debugger
@@ -182,6 +162,11 @@ map <silent> =w :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                  PLUGINS                                     "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+" YANKSTACK PLUGIN
+nmap <leader>o <Plug>yankstack_substitute_older_paste
+nmap <leader>i <Plug>yankstack_substitute_newer_paste
 
 
 " GREP PLUGIN
@@ -231,10 +216,6 @@ let g:Powerline_symbols='unicode'
 
 " SYNTASTIC PLUGIN
 let g:syntastic_mode_map = { 'mode': 'active' }
-
-
-" YANK-RING PLUGIN - use <C-P> and <C-N> after pasting (mnemonic: Killring)
-nnoremap <silent> <leader>k :YRShow<CR>
 
 
 " CTRL-P PLUGIN
