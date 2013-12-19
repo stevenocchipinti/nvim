@@ -24,8 +24,8 @@ Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'godlygeek/tabular'
 Bundle 'groenewege/vim-less'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'bling/vim-airline'
 Bundle 'kien/ctrlp.vim'
-Bundle 'Lokaltog/vim-powerline'
 Bundle 'mattn/zencoding-vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
@@ -198,12 +198,13 @@ nmap <leader>F :NERDTreeFind
 map <leader>u :GundoToggle
 
 
-" POWERLINE PLUGIN
-let g:Powerline_symbols='unicode'
+" AIRLINE PLUGIN
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 0
 
 
 " SYNTASTIC PLUGIN
-let g:syntastic_mode_map = { 'mode': 'active' }
+"let g:syntastic_mode_map = { 'mode': 'active' }
 
 
 " CTRL-P PLUGIN
