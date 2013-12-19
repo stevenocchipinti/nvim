@@ -120,8 +120,8 @@ map Y y$
 
 
 " Shortcuts for ruby development and debugging
-map <leader>d orequire 'ruby-debug'; debugger
-map <leader>D Orequire 'ruby-debug'; debugger
+map <leader>d orequire 'debugger'; debugger; puts ""
+map <leader>D Orequire 'debugger'; debugger; puts ""
 
 
 
