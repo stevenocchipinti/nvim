@@ -44,6 +44,8 @@ Bundle 'tsaleh/vim-matchit'
 Bundle 'vim-scripts/grep.vim'
 Bundle 'vim-scripts/taglist.vim'
 Bundle 'maxbrunsfeld/vim-yankstack'
+Bundle 'tangledhelix/vim-octopress'
+Bundle 'cakebaker/scss-syntax.vim'
 call yankstack#setup()
 filetype plugin indent on
 
@@ -65,6 +67,7 @@ au BufWritePost .vimrc,_vimrc,vimrc so $MYVIMRC
 " This will set filetype instead of sourcing a file
 au! BufRead,BufNewFile *.haml setfiletype haml
 au! BufRead,BufNewFile *.ino setfiletype cpp
+autocmd BufNewFile,BufRead *.markdown,*.textile set filetype=octopress
 
 
 set ts=2 sw=2
