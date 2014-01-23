@@ -214,7 +214,6 @@ let g:airline#extensions#tabline#show_buffers = 0
 
 
 " CTRL-P PLUGIN
-let g:ctrlp_cmd = 'CtrlPMRU'
 let g:ctrlp_user_command = {
 \   'types': {
 \     1: ['.git/', 'cd %s && git ls-files'],
