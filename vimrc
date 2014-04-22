@@ -17,20 +17,16 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
-Bundle 'L9'
-Bundle 'FuzzyFinder'
+Bundle 'kien/ctrlp.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'bling/vim-airline'
 Bundle 'bogado/file-line'
+Bundle 'stevenocchipinti/runnermux'
 Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'godlygeek/tabular'
-Bundle 'groenewege/vim-less'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'bling/vim-airline'
-Bundle 'kien/ctrlp.vim'
 Bundle 'mattn/zencoding-vim'
-Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'sjl/gundo.vim'
-Bundle 'stevenocchipinti/runnermux'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-cucumber'
 Bundle 'tpope/vim-fugitive'
@@ -40,12 +36,17 @@ Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
+Bundle 'tpope/vim-rake'
 Bundle 'tsaleh/vim-matchit'
 Bundle 'vim-scripts/grep.vim'
 Bundle 'vim-scripts/taglist.vim'
 Bundle 'maxbrunsfeld/vim-yankstack'
+Bundle 'kchmck/vim-coffee-script'
 Bundle 'tangledhelix/vim-octopress'
 Bundle 'cakebaker/scss-syntax.vim'
+Bundle 'groenewege/vim-less'
+Bundle 'vim-ruby/vim-ruby'
+" Bundle 'flazz/vim-colorschemes'
 call yankstack#setup()
 filetype plugin indent on
 
@@ -70,16 +71,16 @@ au! BufRead,BufNewFile *.ino setfiletype cpp
 autocmd BufNewFile,BufRead *.markdown,*.textile set filetype=octopress
 
 
-set ts=2 sw=2
-set expandtab
-set wrap
-set backspace=indent,eol,start
-set incsearch
-set ruler
-set wildmenu
-set ignorecase
-set smartcase
+set ts=2 sw=2         " Use 2 spaces for tabs
+set expandtab         " Use spaces instead of tab characters
+set wrap              " Wrap the display lines (not actual text)
 set linebreak
+set backspace=indent,eol,start
+set incsearch         " Show matching search results as typing
+set ruler             " Show row and column in status bar
+set wildmenu          " Nicer tab completion for :ex commands
+set ignorecase        " Case insensitive search by default
+set smartcase         " Use case sensitive search in a captial letter is used
 set warn              " Show what mode your in (insert, etc.)
 set scrolloff=3       " Number of lines to always show at at the top and bottom
 set autoindent        " Copy the indentation from the previous line
@@ -87,8 +88,8 @@ set colorcolumn=81    " Highlight the 81st column (shorthand = :set cc=81)
 set cursorline        " Highlight the line which the cursor is on
 set laststatus=2      " Always show a status bar
 set mouse=a           " Make the mouse work - even in terminals
-"set smartindent       " Auto indent after newlines, etc.
-"set textwidth=80      " This automatically puts chars > 80 on the next line
+set list              " Show `listchars` characters
+set listchars=tab:=»,trail:·
 
 
 
@@ -105,17 +106,6 @@ set mouse=a           " Make the mouse work - even in terminals
 " When you dont have write access, :W will write with sudo
 " Without this, you could use ':w !sudo tee %'
 command! W w !sudo tee % > /dev/null
-
-
-" Map CTRL+<ARROW> to switch windows (doesn't work in Mac)
-map <C-Down> j
-imap <C-Down> j
-map <C-Up> k
-imap <C-Up> k
-map <C-Right> l
-imap <C-Right> l
-map <C-Left> h
-imap <C-Left> h
 
 
 " Easier way to copy and paste from the global clipboard
@@ -252,8 +242,6 @@ nmap <F2> :set hls!:set hls?
 
 
 " F3 - Toggle trailing whitespace and tab characters visibility
-set list
-set listchars=tab:=»,trail:·
 nmap <F3> :set list!:set list?
 
 
