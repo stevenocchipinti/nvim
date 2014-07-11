@@ -24,7 +24,7 @@ Bundle 'bogado/file-line'
 Bundle 'stevenocchipinti/runnermux'
 Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'godlygeek/tabular'
-Bundle 'mattn/zencoding-vim'
+Bundle 'mattn/emmet-vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'sjl/gundo.vim'
 Bundle 'tpope/vim-commentary'
@@ -156,19 +156,6 @@ nmap <leader>i <Plug>yankstack_substitute_newer_paste
 " GREP PLUGIN
 map <leader>g :Rgrep
 map <leader>G :Grep
-
-
-" ZENCODING PLUGIN - (mnemonic: Helper)
-let g:user_zen_leader_key = '<c-h>' " Something that wasn't already used
-let g:user_zen_settings = {
-\   "indentation": "  ",
-\   "ruby": {
-\     "snippets": {
-\       "debug": "require 'ruby-debug'; debugger"
-\     }
-\   }
-\ }
-imap <C-@> <c-h>,
 
 
 " TAG LIST PLUGIN - show tags (mnemonic: Ctags)
