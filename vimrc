@@ -62,6 +62,10 @@ colorscheme herald
 set t_Co=256
 "set background=dark
 
+" Improve vim's scrolling speed
+set ttyfast
+set ttyscroll=3
+set lazyredraw
 
 " This allows instant reloading of changes to the vimrc upon save.
 au BufWritePost .vimrc,_vimrc,vimrc so $MYVIMRC
@@ -71,26 +75,35 @@ au! BufRead,BufNewFile *.ino setfiletype cpp
 autocmd BufNewFile,BufRead *.markdown,*.textile set filetype=octopress
 
 
-set ts=2 sw=2         " Use 2 spaces for tabs
-set expandtab         " Use spaces instead of tab characters
-set wrap              " Wrap the display lines (not actual text)
+set ts=2 sw=2           " Use 2 spaces for tabs
+set expandtab           " Use spaces instead of tab characters
+set wrap                " Wrap the display lines (not actual text)
 set linebreak
+set splitright          " open vertical splits on the right
+set splitbelow          " open the horizontal split below
 set backspace=indent,eol,start
-set incsearch         " Show matching search results as typing
-set ruler             " Show row and column in status bar
-set wildmenu          " Nicer tab completion for :ex commands
-set ignorecase        " Case insensitive search by default
-set smartcase         " Use case sensitive search in a captial letter is used
-set warn              " Show what mode your in (insert, etc.)
-set scrolloff=3       " Number of lines to always show at at the top and bottom
-set autoindent        " Copy the indentation from the previous line
-set colorcolumn=81    " Highlight the 81st column (shorthand = :set cc=81)
-set cursorline        " Highlight the line which the cursor is on
-set laststatus=2      " Always show a status bar
-set mouse=a           " Make the mouse work - even in terminals
-set list              " Show `listchars` characters
+set incsearch           " Show matching search results as typing
+set ruler               " Show row and column in status bar
+set wildmenu            " Nicer tab completion for :ex commands
+set ignorecase          " Case insensitive search by default
+set smartcase           " Use case sensitive search in a captial letter is used
+set warn                " Show what mode your in (insert, etc.)
+set scrolloff=3         " Number of lines to always show at at the top & bottom
+set autoindent          " Copy the indentation from the previous line
+set colorcolumn=81,120  " Highlight the 81st column (shorthand = :set cc=81)
+set cursorline          " Highlight the line which the cursor is on
+set laststatus=2        " Always show a status bar
+set mouse=a             " Make the mouse work - even in terminals
+set list                " Show `listchars` characters
+set nojoinspaces        " Use 1 space after "." when joining lines instead of 2
+set shiftround          " indent to the closest shiftwidth
 set listchars=tab:=»,trail:·
 
+" Make vim remember undos, even when the file is closed!
+set undofile                    " Save undo's after file closes
+set undodir=~/.vim/undo         " where to save undo histories
+set undolevels=1000             " How many undos
+set undoreload=10000            " number of lines to save for undo
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -115,10 +128,17 @@ map <leader>y "+y
 map Y y$
 
 
-" Shortcuts for ruby development and debugging
-map <leader>d orequire 'debugger'; debugger; puts ""
-map <leader>D Orequire 'debugger'; debugger; puts ""
+" Shortcuts for debugging
+autocmd FileType ruby map <leader>d orequire 'pry'; binding.pry; puts ""
+autocmd FileType ruby map <leader>D Orequire 'pry'; binding.pry; puts ""
+autocmd FileType ruby map <leader>s osave_screenshot("/tmp/screenshot.png", full: true)
+autocmd FileType ruby map <leader>S Osave_screenshot("/tmp/screenshot.png", full: true)
 
+autocmd FileType javascript map <leader>d odebugger;
+autocmd FileType javascript map <leader>D Odebugger;
+
+au BufEnter *.rb syn match error contained "\<binding.pry\>"
+au BufEnter *.rb,*.js syn match error contained "\<debugger\>"
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
