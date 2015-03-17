@@ -123,6 +123,10 @@ set undoreload=10000            " number of lines to save for undo
 command! W w !sudo tee % > /dev/null
 
 
+" Save myself from accidental :Q
+cnoreabbrev Q q
+
+
 " Easier way to copy and paste from the global clipboard
 map <leader>p "+p
 map <leader>y "+y
