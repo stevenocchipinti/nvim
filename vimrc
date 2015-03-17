@@ -79,8 +79,8 @@ set ts=2 sw=2           " Use 2 spaces for tabs
 set expandtab           " Use spaces instead of tab characters
 set wrap                " Wrap the display lines (not actual text)
 set linebreak
-set splitright          " open vertical splits on the right
-set splitbelow          " open the horizontal split below
+set splitright          " Open vertical splits on the right
+set splitbelow          " Open the horizontal split below
 set backspace=indent,eol,start
 set incsearch           " Show matching search results as typing
 set ruler               " Show row and column in status bar
@@ -96,7 +96,9 @@ set laststatus=2        " Always show a status bar
 set mouse=a             " Make the mouse work - even in terminals
 set list                " Show `listchars` characters
 set nojoinspaces        " Use 1 space after "." when joining lines instead of 2
-set shiftround          " indent to the closest shiftwidth
+set shiftround          " Indent to the closest shiftwidth
+set exrc                " Allow a .vimrc in the project directory
+set secure              " Make sure those project .vimrc's are safe
 set listchars=tab:=»,trail:·
 
 " Make vim remember undos, even when the file is closed!
