@@ -225,7 +225,7 @@ let g:ctrlp_user_command = {
 \   },
 \   'fallback': 'find %s -type f'
 \ }
-map <leader><C-P> :CtrlPCurFile
+map <leader><C-P> <C-P><C-\>w
 
 
 " FUZZY FINDER PLUGIN (mnemonic: Search-X)
