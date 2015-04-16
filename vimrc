@@ -73,6 +73,7 @@ au BufWritePost .vimrc,_vimrc,vimrc so $MYVIMRC
 au! BufRead,BufNewFile *.haml setfiletype haml
 au! BufRead,BufNewFile *.ino setfiletype cpp
 autocmd BufNewFile,BufRead *.markdown,*.textile set filetype=octopress
+autocmd BufNewFile,BufRead *.hbs,*.handlebars set filetype=html
 
 
 set ts=2 sw=2           " Use 2 spaces for tabs
