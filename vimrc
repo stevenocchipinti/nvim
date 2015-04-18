@@ -66,8 +66,6 @@ set ttyfast
 set ttyscroll=3
 set lazyredraw
 
-" This allows instant reloading of changes to the vimrc upon save.
-au BufWritePost .vimrc,_vimrc,vimrc so $MYVIMRC
 " This will set filetype instead of sourcing a file
 au! BufRead,BufNewFile *.haml setfiletype haml
 au! BufRead,BufNewFile *.ino setfiletype cpp
