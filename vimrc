@@ -28,7 +28,6 @@ Bundle 'mattn/emmet-vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'sjl/gundo.vim'
 Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-cucumber'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-ragtag'
@@ -124,7 +123,7 @@ set undoreload=10000            " number of lines to save for undo
 command! W w !sudo tee % > /dev/null
 
 
-" Save myself from accidental :Q
+" :Q is an accidental error for :q
 cnoreabbrev Q q
 
 
@@ -193,12 +192,6 @@ nmap <leader>c :TlistToggle
 nmap <leader>C :!ctags -R .
 
 
-" TABULAR
-vmap <leader><tab>p :Tabularize /\|
-vmap <leader><tab>= :Tabularize /=
-vmap <leader><tab>: :Tabularize /:
-
-
 " NERDTREE PLUGIN - (mnemonic: Files)
 nmap <leader>f :NERDTreeToggle
 nmap <leader>F :NERDTreeFind
@@ -227,21 +220,6 @@ let g:ctrlp_user_command = {
 \ }
 map <leader><C-P> <C-P><C-\>w
 
-
-" FUZZY FINDER PLUGIN (mnemonic: Search-X)
-map <leader>sb :FufBuffer
-map <leader>sf :FufFile
-map <leader>sF :FufFileWithCurrentBufferDir
-map <leader>sd :FufDir
-map <leader>sD :FufDirWithCurrentBuffer
-map <leader>st :FufTag
-map <leader>s] :FufTagWithCursorWord
-map <leader>sj :FufJumpList
-map <leader>sc :FufChangeList
-map <leader>sq :FufQuickfix
-map <leader>sl :FufLine
-map <leader>sh :FufHelp
-" See :help fuf-vimrc-example for a full example
 
 
 
