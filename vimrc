@@ -219,6 +219,9 @@ let g:ctrlp_user_command = {
 map <leader><C-P> <C-P><C-\>w
 
 
+" EMMET PLUGIN
+" I use <C-y> (default) much more often than <C-f>
+let g:user_emmet_leader_key='<C-f>'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
