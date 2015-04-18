@@ -205,7 +205,7 @@ let g:airline#extensions#tabline#show_buffers = 0
 
 
 " SYNTASTIC PLUGIN
-"let g:syntastic_mode_map = { 'mode': 'active' }
+let g:syntastic_javascript_checkers = ['eslint']
 
 
 " CTRL-P PLUGIN
