@@ -45,6 +45,7 @@ Bundle 'tangledhelix/vim-octopress'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'groenewege/vim-less'
 Bundle 'vim-ruby/vim-ruby'
+Bundle 'editorconfig/editorconfig-vim'
 " Bundle 'flazz/vim-colorschemes'
 call yankstack#setup()
 filetype plugin indent on
