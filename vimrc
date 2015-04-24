@@ -217,7 +217,9 @@ let g:ctrlp_user_command = {
 \   },
 \   'fallback': 'find %s -type f'
 \ }
+" Not sure which one I prefer, so I'll use both for now
 map <leader><C-P> <C-P><C-\>w
+map <leader><C-]> <C-P><C-\>w
 
 
 " EMMET PLUGIN
