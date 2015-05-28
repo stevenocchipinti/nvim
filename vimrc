@@ -45,6 +45,7 @@ Bundle 'tangledhelix/vim-octopress'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'groenewege/vim-less'
 Bundle 'vim-ruby/vim-ruby'
+Bundle "pangloss/vim-javascript"
 Bundle 'editorconfig/editorconfig-vim'
 " Bundle 'flazz/vim-colorschemes'
 call yankstack#setup()
@@ -70,8 +71,8 @@ set lazyredraw
 " This will set filetype instead of sourcing a file
 au! BufRead,BufNewFile *.haml setfiletype haml
 au! BufRead,BufNewFile *.ino setfiletype cpp
-autocmd BufNewFile,BufRead *.markdown,*.textile set filetype=octopress
-autocmd BufNewFile,BufRead *.hbs,*.handlebars set filetype=html
+au BufRead,BufNewFile *.markdown,*.textile set filetype=octopress
+au BufRead,BufNewFile *.hbs,*.handlebars set filetype=html
 
 
 set ts=2 sw=2           " Use 2 spaces for tabs
