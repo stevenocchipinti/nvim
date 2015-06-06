@@ -48,6 +48,7 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle "pangloss/vim-javascript"
 Bundle 'editorconfig/editorconfig-vim'
 " Bundle 'flazz/vim-colorschemes'
+Bundle 'nanotech/jellybeans.vim'
 call yankstack#setup()
 filetype plugin indent on
 
@@ -59,7 +60,7 @@ filetype plugin indent on
 
 " Colors are good!
 syntax on
-colorscheme herald
+colorscheme jellybeans
 set t_Co=256
 "set background=dark
 
