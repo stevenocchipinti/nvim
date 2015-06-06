@@ -87,7 +87,7 @@ set incsearch           " Show matching search results as typing
 set ruler               " Show row and column in status bar
 set wildmenu            " Nicer tab completion for :ex commands
 set ignorecase          " Case insensitive search by default
-set smartcase           " Use case sensitive search in a captial letter is used
+set smartcase           " Use case sensitive search in a capital letter is used
 set warn                " Show what mode your in (insert, etc.)
 set scrolloff=3         " Number of lines to always show at at the top & bottom
 set autoindent          " Copy the indentation from the previous line
@@ -146,6 +146,16 @@ autocmd FileType javascript map <leader>D Odebugger;
 
 au BufEnter *.rb syn match error contained "\<binding.pry\>"
 au BufEnter *.rb,*.js syn match error contained "\<debugger\>"
+
+
+" Set a nicer foldtext function
+set foldtext=MinimalFoldText()
+function! MinimalFoldText()
+  let line = getline(v:foldstart)
+  let n = v:foldend - v:foldstart + 1
+  set fillchars=fold:\ 
+  return line . " ⏎ " . n
+endfunction
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
