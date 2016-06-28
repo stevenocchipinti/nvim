@@ -36,16 +36,17 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-rake'
+Bundle 'tpope/vim-haml'
 Bundle 'vim-scripts/matchit.zip'
 Bundle 'vim-scripts/grep.vim'
 Bundle 'vim-scripts/taglist.vim'
 Bundle 'maxbrunsfeld/vim-yankstack'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'tangledhelix/vim-octopress'
-Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'groenewege/vim-less'
 Bundle 'vim-ruby/vim-ruby'
-Bundle "pangloss/vim-javascript"
+Bundle 'pangloss/vim-javascript'
+Bundle 'digitaltoad/vim-jade'
 Bundle 'editorconfig/editorconfig-vim'
 " Bundle 'flazz/vim-colorschemes'
 Bundle 'nanotech/jellybeans.vim'
@@ -66,7 +67,6 @@ set t_Co=256
 
 " Improve vim's scrolling speed
 set ttyfast
-set ttyscroll=3
 set lazyredraw
 
 " This will set filetype instead of sourcing a file
