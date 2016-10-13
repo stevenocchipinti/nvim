@@ -16,40 +16,46 @@
 filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
+
 Bundle 'gmarik/vundle'
+"Bundle 'flazz/vim-colorschemes'
+Bundle 'nanotech/jellybeans.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'bling/vim-airline'
 Bundle 'bogado/file-line'
 Bundle 'stevenocchipinti/runnermux'
-Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'godlygeek/tabular'
 Bundle 'mattn/emmet-vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'sjl/gundo.vim'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-ragtag'
-Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
-Bundle 'tpope/vim-rake'
-Bundle 'tpope/vim-haml'
 Bundle 'vim-scripts/matchit.zip'
 Bundle 'vim-scripts/grep.vim'
 Bundle 'vim-scripts/taglist.vim'
 Bundle 'maxbrunsfeld/vim-yankstack'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'tangledhelix/vim-octopress'
-Bundle 'groenewege/vim-less'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'pangloss/vim-javascript'
-Bundle 'digitaltoad/vim-jade'
 Bundle 'editorconfig/editorconfig-vim'
-" Bundle 'flazz/vim-colorschemes'
-Bundle 'nanotech/jellybeans.vim'
+
+" Technology specific plugins
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'ecomba/vim-ruby-refactoring'
+Bundle 'tpope/vim-rake'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-haml'
+Bundle 'tpope/vim-markdown'
+Bundle 'tangledhelix/vim-octopress'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'groenewege/vim-less'
+Bundle 'pangloss/vim-javascript'
+Bundle 'jelera/vim-javascript-syntax'
+Bundle 'vim-scripts/JavaScript-Indent'
+Bundle 'digitaltoad/vim-jade'
+
 call yankstack#setup()
 filetype plugin indent on
 
@@ -78,7 +84,7 @@ au BufRead,BufNewFile *.hbs,*.handlebars set filetype=html
 
 set ts=2 sw=2           " Use 2 spaces for tabs
 set expandtab           " Use spaces instead of tab characters
-set wrap                " Wrap the display lines (not actual text)
+set nowrap              " (Dont) Wrap the display lines (not actual text)
 set linebreak
 set splitright          " Open vertical splits on the right
 set splitbelow          " Open the horizontal split below
