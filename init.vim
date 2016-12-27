@@ -75,24 +75,30 @@ colorscheme tomorrow-night
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                          NEOVIM SPECIFIC SETTINGS                            "
+"                     NEOVIM SPECIFIC (mostly bugfixes)                        "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 if has("nvim")
-  set inccommand=nosplit  " Live search and replace
-  map <C-l> :mode  " Workaround https://github.com/neovim/neovim/issues/3929
+  " Live search and replace!
+  set inccommand=nosplit
+
+  " Temp workaround for <C-l> -- https://github.com/neovim/neovim/issues/3929
+  map <C-l> :mode
+
+  " Temp workaround for :W -- https://github.com/neovim/neovim/issues/1716
+  command! W w !sudo -n tee % > /dev/null || echo "Press <leader>w to authenticate and try again"
+  map <leader>w :new:term sudo true
+
+else
+  " When you dont have write access, :W will write with sudo
+  " Without this, you could use ':w !sudo tee %'
+  command! W w !sudo tee % > /dev/null
 endif
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                          CUSTOM VIM FUNCTIONALITY                            "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-" When you dont have write access, :W will write with sudo
-" Without this, you could use ':w !sudo tee %'
-command! W w !sudo tee % > /dev/null
-
 
 " Shortcut for spellcheck
 map <leader>z :set spellz=
