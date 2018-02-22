@@ -11,7 +11,6 @@
 "                                                                              "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
 call plug#begin('~/.config/nvim/plugged')
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
@@ -26,7 +25,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
 Plug 'mattn/emmet-vim'
 Plug 'bogado/file-line'
-Plug 'bfredl/nvim-miniyank'
+Plug 'mhinz/vim-startify'
 
 " Technology specific plugins
 Plug 'vim-ruby/vim-ruby'
@@ -39,6 +38,11 @@ Plug 'pangloss/vim-javascript'
 Plug 'othree/yajs.vim'
 Plug 'moll/vim-node'
 Plug 'mxw/vim-jsx'
+Plug 'prettier/vim-prettier'
+Plug 'StanAngeloff/php.vim'
+Plug 'styled-components/vim-styled-components'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'dag/vim-fish'
 call plug#end()
 
 
@@ -140,6 +144,10 @@ map <leader>y "+y
 map Y y$
 
 
+" Easier way to make a blank line but not go into insert mode
+map <leader>o o
+map <leader>O O
+
 " Easier way to toggle highlighted search
 map <leader>h :set hls!<bar>set hls?
 
@@ -201,9 +209,12 @@ map <silent> =w :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 
 " Format javascript with prettier
-if executable("prettier")
-  autocmd FileType javascript set formatprg=prettier\ --stdin
-endif
+autocmd BufWritePre
+  \ *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md
+  \ PrettierAsync
+let g:prettier#config#semi = 'false'
+let g:prettier#config#jsx_bracket_same_line = 'false'
+command! WW noautocmd w " To save without Prettier (or use `:noa w`)
 
 
 
@@ -246,11 +257,11 @@ map <leader>G :Ggrep!  **/*
 let g:jsx_ext_required = 0
 
 
-" MINI-YANK
-map p <Plug>(miniyank-autoput)
-map P <Plug>(miniyank-autoPut)
-map <leader>n <Plug>(miniyank-cycle)
-map <leader>N g-
+" VIM-CSS3-SYNTAX
+augroup VimCSS3Syntax
+  autocmd!
+  autocmd FileType css,javascript.jsx setlocal iskeyword+=-
+augroup END
 
 
 " AIRLINE
@@ -259,4 +270,12 @@ let g:airline_right_sep=''
 
 
 " EMMET
-let g:user_emmet_leader_key='<C-q>'
+" `<C-q>` is a decent, less used alternative to `<C-y>` (the default)
+" I use `<C-y>` a fair bit to scroll the buffer and don't want the lag.
+"let g:user_emmet_leader_key='<C-q>'
+" Even better leader key!
+let g:user_emmet_leader_key='<C-\>'
+
+
+" STARTIFT
+let g:startify_session_persistence = 1
