@@ -14,18 +14,21 @@
 call plug#begin('~/.config/nvim/plugged')
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'neomake/neomake'
+Plug 'w0rp/ale'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-unimpaired'
 Plug 'vim-scripts/matchit.zip'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
 Plug 'mattn/emmet-vim'
 Plug 'bogado/file-line'
 Plug 'mhinz/vim-startify'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Technology specific plugins
 Plug 'vim-ruby/vim-ruby'
@@ -38,11 +41,12 @@ Plug 'pangloss/vim-javascript'
 Plug 'othree/yajs.vim'
 Plug 'moll/vim-node'
 Plug 'mxw/vim-jsx'
-Plug 'prettier/vim-prettier'
+Plug 'digitaltoad/vim-pug'
 Plug 'StanAngeloff/php.vim'
 Plug 'styled-components/vim-styled-components'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'dag/vim-fish'
+Plug 'metakirby5/codi.vim'
 call plug#end()
 
 
@@ -67,9 +71,11 @@ set cursorline          " Highlight the line which the cursor is on
 set nojoinspaces        " Use 1 space after "." when joining lines instead of 2
 set shiftround          " Indent to the closest shiftwidth
 set secure              " Make sure those project .vimrc's are safe
+set mouse=a             " Enable the mouse
 set list                " Show `listchars` characters
 set listchars=tab:├─,trail:·
 set showbreak=⤿
+set encoding=UTF-8
 
 " Make vim remember undos, even when the file is closed!
 set undofile            " Save undo's after file closes
@@ -101,8 +107,8 @@ if has("nvim")
 
   " BUG: Interactive shell commands don't work with the terminal anymore
   " Temp workaround for :W -- https://github.com/neovim/neovim/issues/1716
-  command! W w !sudo -n tee % > /dev/null || echo "Press <leader>w to authenticate and try again"
-  map <leader>w :new:term sudo true
+  command! W w !sudo -n tee % > /dev/null || echo "Press <leader>s to authenticate and try again"
+  map <leader>s :new:term sudo true
 
 else
   " To use different cursor modes in iTerm2
@@ -148,8 +154,15 @@ map Y y$
 map <leader>o o
 map <leader>O O
 
+
 " Easier way to toggle highlighted search
 map <leader>h :set hls!<bar>set hls?
+
+
+" Subword navigation for camelCase words
+map <leader>w /\<\\|[A-Z]
+map <leader>e /\>\\|[A-Z]
+map <leader>b ?\<\\|[A-Z]
 
 
 " Shortcuts for debugging
@@ -170,12 +183,6 @@ autocmd FileType octopress,markdown map <leader>- yyp:s/./-/g
 autocmd FileType octopress,markdown,gitcommit setlocal spell
 autocmd FileType octopress,markdown,gitcommit setlocal textwidth=80
 
-
-" Just the stuff I use from vim-unimparied
-map ]l :lnext
-map [l :lprevious
-map ]q :cnext
-map [q :cprevious
 
 " Set a nicer foldtext function
 set foldtext=MinimalFoldText()
@@ -208,16 +215,6 @@ map =x :%!xmllint -format -
 map <silent> =w :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 
-" Format javascript with prettier
-autocmd BufWritePre
-  \ *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md
-  \ PrettierAsync
-let g:prettier#config#semi = 'false'
-let g:prettier#config#jsx_bracket_same_line = 'false'
-command! WW noautocmd w " To save without Prettier (or use `:noa w`)
-
-
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            PLUGIN CONFIGURATION                              "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -232,7 +229,7 @@ autocmd FileType netrw set nolist
 " CTRL-P
 let g:ctrlp_user_command = [
 \  '.git',
-\  'cd %s && git ls-files . -co --exclude-standard',
+\  'cd %s; and git ls-files . -co --exclude-standard',
 \  'find %s -type f'
 \]
 map <leader><C-P> <C-P><C-\>w
@@ -243,10 +240,21 @@ nmap <leader>f :NERDTreeToggle
 nmap <leader>F :NERDTreeFind
 
 
-" NEOMAKE
-let g:neomake_javascript_enabled_makers = ['eslint']
-autocmd! BufWritePost * Neomake
+" VIM-NERDTREE-SYNTAX-HIGHLIGHT PLUGIN
+let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreeExtensionHighlightColor['md'] = "834F79"
+let g:NERDTreeExtensionHighlightColor['sh'] = "8FAA54"
 
+
+" ALE
+let g:ale_fixers = {
+\   'javascript': ['prettier'],
+\   'css': ['prettier'],
+\}
+let g:ale_fix_on_save = 1
+command! WW noautocmd w " To save without formatting (or use `:noa w`)
+nmap <silent> <leader>a <Plug>(ale_next_wrap)
+nmap <silent> <leader>A <Plug>(ale_previous_wrap)
 
 " GREP (with fugitive)
 map <leader>g :Ggrep!  <Bar> copen
@@ -258,15 +266,16 @@ let g:jsx_ext_required = 0
 
 
 " VIM-CSS3-SYNTAX
-augroup VimCSS3Syntax
-  autocmd!
-  autocmd FileType css,javascript.jsx setlocal iskeyword+=-
-augroup END
+" augroup VimCSS3Syntax
+"   autocmd!
+"   autocmd FileType css,javascript.jsx setlocal iskeyword+=-
+" augroup END
 
 
 " AIRLINE
 let g:airline_left_sep=''
 let g:airline_right_sep=''
+let g:airline_powerline_fonts = 1
 
 
 " EMMET
@@ -277,5 +286,5 @@ let g:airline_right_sep=''
 let g:user_emmet_leader_key='<C-\>'
 
 
-" STARTIFT
+" STARTIFY
 let g:startify_session_persistence = 1
