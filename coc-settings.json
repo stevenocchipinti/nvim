@@ -1,0 +1,32 @@
+{
+  "diagnostic.errorSign": " ",
+  "diagnostic.warningSign": " ",
+  "diagnostic.infoSign": "",
+  "diagnostic.hintSign": " ",
+
+  // List
+  "list.indicator": ">",
+  "list.selectedSignText": " ",
+
+  // Explorer
+  "explorer.width": 30,
+  "explorer.icon.enableNerdfont": true,
+  "explorer.previewAction.onHover": false,
+  "explorer.openAction.strategy": "sourceWindow",
+  "explorer.keyMappings": {
+    "<cr>": ["expandable?", ["expanded?", "collapse", "expand"], "open"],
+    "v": "open:vsplit"
+  },
+
+  // Prettier
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "markdown",
+    "javascript",
+    "graphql",
+    "html",
+    "yaml",
+    "json",
+    "python"
+  ]
+}
