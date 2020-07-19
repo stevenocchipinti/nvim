@@ -21,14 +21,30 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
+Plug 'michaeljsmith/vim-indent-object'
 Plug 'vim-scripts/matchit.zip'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
 Plug 'mattn/emmet-vim'
 Plug 'bogado/file-line'
 Plug 'mhinz/vim-startify'
-Plug 'ryanoasis/vim-devicons'
+Plug 'wincent/terminus'
+Plug 'blueyed/vim-diminactive'
+" Plug 'ryanoasis/vim-devicons'  # The indentation is driving me nuts
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+" Javascript specific plugins
+Plug 'pangloss/vim-javascript'
+Plug 'othree/yajs.vim'
+Plug 'moll/vim-node'
+Plug 'mxw/vim-jsx'
+Plug 'jxnblk/vim-mdx-js'
+Plug 'digitaltoad/vim-pug'
+Plug 'styled-components/vim-styled-components'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Technology specific plugins
 Plug 'vim-ruby/vim-ruby'
@@ -37,16 +53,9 @@ Plug 'tpope/vim-rake'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-markdown'
 Plug 'tangledhelix/vim-octopress'
-Plug 'pangloss/vim-javascript'
-Plug 'othree/yajs.vim'
-Plug 'moll/vim-node'
-Plug 'mxw/vim-jsx'
-Plug 'digitaltoad/vim-pug'
 Plug 'StanAngeloff/php.vim'
-Plug 'styled-components/vim-styled-components'
-Plug 'hail2u/vim-css3-syntax'
 Plug 'dag/vim-fish'
-Plug 'metakirby5/codi.vim'
+Plug 'sudar/vim-arduino-syntax'
 call plug#end()
 
 
@@ -95,19 +104,12 @@ if has("nvim")
   " Live search and replace!
   set inccommand=nosplit
 
-  " Use pipe in insert-mode and a block in normal-mode
-  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-
   " BUG: netrw is really slow
   " No workaround yet except to use another file explorer
 
-  " BUG: ctrl-l doesn't repaint the screen when its messed up by resizing
-  " Temp workaround for <C-l> -- https://github.com/neovim/neovim/issues/3929
-  map <C-l> :mode
-
   " BUG: Interactive shell commands don't work with the terminal anymore
   " Temp workaround for :W -- https://github.com/neovim/neovim/issues/1716
-  command! W w !sudo -n tee % > /dev/null || echo "Press <leader>s to authenticate and try again"
+  command! W w !sudo -n tee % > /dev/null; or echo "Press <leader>s to authenticate and try again"
   map <leader>s :new:term sudo true
 
 else
@@ -156,7 +158,7 @@ map <leader>O O
 
 
 " Easier way to toggle highlighted search
-map <leader>h :set hls!<bar>set hls?
+map <leader>/ :set hls!<bar>set hls?
 
 
 " Subword navigation for camelCase words
@@ -170,10 +172,10 @@ autocmd FileType ruby map <leader>d orequire 'pry'; binding.pry;puts ""
 autocmd FileType ruby map <leader>D Orequire 'pry'; binding.pry;puts ""
 autocmd FileType ruby map <leader>s osave_screenshot("/tmp/screenshot.png", full: true)
 autocmd FileType ruby map <leader>S Osave_screenshot("/tmp/screenshot.png", full: true)
-autocmd FileType javascript map <leader>d odebugger;
-autocmd FileType javascript map <leader>D Odebugger;
 autocmd BufEnter *.rb syn match error contained "\<binding.pry\>"
 autocmd BufEnter *.rb,*.js syn match error contained "\<debugger\>"
+autocmd FileType javascript map <leader>d odebugger;
+autocmd FileType javascript map <leader>D Odebugger;
 
 
 " Filetype specific
@@ -182,6 +184,10 @@ autocmd FileType octopress,markdown map <leader>= yyp:s/./=/g
 autocmd FileType octopress,markdown map <leader>- yyp:s/./-/g
 autocmd FileType octopress,markdown,gitcommit setlocal spell
 autocmd FileType octopress,markdown,gitcommit setlocal textwidth=80
+
+
+" Styled components theme helper
+map <leader>t a${({ theme }) => theme.};hi
 
 
 " Set a nicer foldtext function
@@ -248,9 +254,11 @@ let g:NERDTreeExtensionHighlightColor['sh'] = "8FAA54"
 
 " ALE
 let g:ale_fixers = {
-\   'javascript': ['prettier'],
-\   'css': ['prettier'],
+\ 'javascript': ['prettier'],
+\ 'typescript': ['prettier'],
+\ 'css': ['prettier']
 \}
+let g:ale_linters = { 'javascript': ['eslint'] }
 let g:ale_fix_on_save = 1
 command! WW noautocmd w " To save without formatting (or use `:noa w`)
 nmap <silent> <leader>a <Plug>(ale_next_wrap)
@@ -265,13 +273,6 @@ map <leader>G :Ggrep!  **/*
 let g:jsx_ext_required = 0
 
 
-" VIM-CSS3-SYNTAX
-" augroup VimCSS3Syntax
-"   autocmd!
-"   autocmd FileType css,javascript.jsx setlocal iskeyword+=-
-" augroup END
-
-
 " AIRLINE
 let g:airline_left_sep=''
 let g:airline_right_sep=''
@@ -281,10 +282,56 @@ let g:airline_powerline_fonts = 1
 " EMMET
 " `<C-q>` is a decent, less used alternative to `<C-y>` (the default)
 " I use `<C-y>` a fair bit to scroll the buffer and don't want the lag.
-"let g:user_emmet_leader_key='<C-q>'
-" Even better leader key!
+" `<C-\>` is an even better leader key!
 let g:user_emmet_leader_key='<C-\>'
+" and <C-\><C-\> is easier than <C-\>,
+imap <C-\><C-\> <plug>(emmet-expand-abbr)
 
 
 " STARTIFY
 let g:startify_session_persistence = 1
+let g:startify_session_autoload = 1
+let g:startify_change_to_vcs_root = 1
+
+" COC
+let g:coc_global_extensions = [
+\ 'coc-emoji',
+\ 'coc-eslint',
+\ 'coc-prettier',
+\ 'coc-tsserver',
+\ 'coc-tslint',
+\ 'coc-tslint-plugin',
+\ 'coc-css',
+\ 'coc-json',
+\ 'coc-pyls',
+\ 'coc-yaml'
+\]
+
+set cmdheight=2    " Better display for messages
+set updatetime=300 " Smaller updatetime for CursorHold & CursorHoldI
+set shortmess+=c   " don't give |ins-completion-menu| messages.
+set signcolumn=yes " always show signcolumns
+
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>cd <Plug>(coc-definition)
+nmap <silent> <leader>ct <Plug>(coc-type-definition)
+nmap <silent> <leader>ci <Plug>(coc-implementation)
+nmap <silent> <leader>cf <Plug>(coc-references)
+nmap <leader>cr <Plug>(coc-rename)
+nmap <silent> <Esc> <Plug>(coc-float-hide)
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use K for show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
