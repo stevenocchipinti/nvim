@@ -1,14 +1,22 @@
 let g:coc_global_extensions = [
 \ 'coc-css',
+\ 'coc-emmet',
 \ 'coc-emoji',
 \ 'coc-eslint',
+\ 'coc-explorer',
+\ 'coc-fish',
+\ 'coc-git',
+\ 'coc-import-cost',
 \ 'coc-json',
+\ 'coc-lists',
 \ 'coc-marketplace',
 \ 'coc-prettier',
 \ 'coc-styled-components',
 \ 'coc-tslint-plugin',
 \ 'coc-tsserver',
+\ 'coc-tsserver',
 \ 'coc-yaml',
+\ 'coc-yank',
 \]
 
 " Config below was mostly copied from the coc.nvim readme (modified a little):
