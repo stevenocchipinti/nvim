@@ -4,6 +4,13 @@
   "diagnostic.infoSign": "",
   "diagnostic.hintSign": " ",
 
+  // Git
+  "git.changedSign.text": "|",
+  "git.addedSign.text": "|",
+  "git.removedSign.text": "◢",
+  "git.topRemovedSign.text": "◥",
+  "git.changeRemovedSign.text": "|",
+
   // List
   "list.indicator": ">",
   "list.selectedSignText": " ",
@@ -13,7 +20,7 @@
   "explorer.icon.enableNerdfont": true,
   "explorer.previewAction.onHover": false,
   "explorer.openAction.strategy": "sourceWindow",
-  "explorer.keyMappings": {
+  "explorer.keyMappings.global": {
     "<cr>": ["expandable?", ["expanded?", "collapse", "expand"], "open"],
     "v": "open:vsplit"
   },

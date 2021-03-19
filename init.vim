@@ -52,7 +52,7 @@ set ignorecase          " Case insensitive search by default
 set smartcase           " Use case sensitive search in a capital letter is used
 set nohlsearch          " Don't highlight searches, useful for jumping around
 set scrolloff=3         " Number of lines to always show at at the top & bottom
-set colorcolumn=81,91   " Highlight the 81st column (shorthand = :set cc=81)
+set colorcolumn=81      " Highlight the 81st column (shorthand = :set cc=81)
 set cursorline          " Highlight the line which the cursor is on
 set nojoinspaces        " Use 1 space after "." when joining lines instead of 2
 set shiftround          " Indent to the closest shiftwidth
@@ -70,7 +70,8 @@ set undolevels=1000     " How many undos
 set undoreload=10000    " number of lines to save for undo
 
 " COLOR!
-colorscheme tomorrow-night
+" colorscheme tomorrow-night
+colorscheme codedark
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -220,6 +221,10 @@ map <leader>G :Ggrep!  **/*
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_powerline_fonts = 1
+let g:airline_section_a=''
+let g:airline_section_x=''
+let g:airline_section_y=''
+let g:airline_section_z=''
 
 
 " EMMET
