@@ -18,6 +18,7 @@ let g:coc_global_extensions = [
 \ 'coc-yank',
 \]
 
+" Git change markers in the sidebar
 highlight CocGitAddedSign ctermfg=43 guifg=#4EC9B0
 highlight CocGitRemovedSign ctermfg=167 guifg=#D16969
 highlight CocGitTopRemovedSign ctermfg=167 guifg=#D16969
@@ -186,3 +187,6 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+" Clear floating windows when pressing esc
+nnoremap <silent><nowait> <esc> :call coc#float#close_all()<CR>

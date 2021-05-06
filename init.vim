@@ -28,12 +28,24 @@ Plug 'mhinz/vim-startify'
 Plug 'wincent/terminus'
 Plug 'blueyed/vim-diminactive'
 Plug 'ryanoasis/vim-devicons'
+Plug 'gcmt/taboo.vim'
 
 " Technology specific plugins
 Plug 'sheerun/vim-polyglot'
 Plug 'styled-components/vim-styled-components'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = { "c", "rust" },  -- list of language that will be disabled
+  },
+}
+EOF
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -128,8 +140,15 @@ map <leader>o o
 map <leader>O O
 
 
-" Easier way to toggle highlighted search
-map <leader>/ :set hls!<bar>set hls?
+" Double slash to do a search WITH highlighting to see where results are
+" Also allows //<ESC> to turn on highlighting
+nnoremap // :set hls<CR>/
+" Single slash to a search WITHOUT highlighting for jumping around a file
+" Also allows /<ESC> to turn off highlighting
+nnoremap / :set nohls<CR>/
+" Keep the cursor still when pressing *
+nnoremap <silent><expr> * v:count ? '*'
+\ : ':execute "keepjumps normal! *" <Bar> call winrestview(' . string(winsaveview()) . ')<CR>'
 
 
 " Subword navigation for camelCase words
@@ -221,7 +240,7 @@ map <leader>G :Ggrep!  **/*
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_powerline_fonts = 1
-let g:airline_section_a=''
+let g:airline_section_a='b%n' " Shows the buffer number
 let g:airline_section_x=''
 let g:airline_section_y=''
 let g:airline_section_z=''
@@ -246,3 +265,7 @@ let g:startify_custom_header = [
 let g:startify_session_persistence = 1
 let g:startify_session_autoload = 1
 let g:startify_change_to_vcs_root = 1
+
+
+" Taboo
+let g:taboo_renamed_tab_format = '〔%l〕%m'
