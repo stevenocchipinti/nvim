@@ -82,9 +82,9 @@ set undolevels=1000     " How many undos
 set undoreload=10000    " number of lines to save for undo
 
 " COLOR!
-" colorscheme tomorrow-night
+set termguicolors       " Use the colours from the terminal
+set winblend=5          " Use 5% pseudo-transparency on floating windows
 colorscheme codedark
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                              NEOVIM SPECIFIC                                 "
