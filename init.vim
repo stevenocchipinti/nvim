@@ -62,7 +62,7 @@ set ruler               " Show row and column in status bar
 set showcmd             " Show partial commands (such as 'd' when typing 'dw')
 set ignorecase          " Case insensitive search by default
 set smartcase           " Use case sensitive search in a capital letter is used
-set nohlsearch          " Don't highlight searches, useful for jumping around
+"set nohlsearch          " Don't highlight searches, useful for jumping around
 set scrolloff=3         " Number of lines to always show at at the top & bottom
 set colorcolumn=81      " Highlight the 81st column (shorthand = :set cc=81)
 set cursorline          " Highlight the line which the cursor is on
@@ -146,9 +146,10 @@ nnoremap // :set hls<CR>/
 " Single slash to a search WITHOUT highlighting for jumping around a file
 " Also allows /<ESC> to turn off highlighting
 nnoremap / :set nohls<CR>/
-" Keep the cursor still when pressing *
-nnoremap <silent><expr> * v:count ? '*'
-\ : ':execute "keepjumps normal! *" <Bar> call winrestview(' . string(winsaveview()) . ')<CR>'
+" Keep the cursor still and highlight matches when pressing *
+nnoremap <silent><expr> * v:count
+\ ? '*'
+\ : ':set hls <Bar> execute "keepjumps normal! *" <Bar> call winrestview(' . string(winsaveview()) . ')<CR>'
 
 
 " Subword navigation for camelCase words
