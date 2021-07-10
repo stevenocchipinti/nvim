@@ -1,7 +1,7 @@
 {
-  "diagnostic.errorSign": " ",
+  "diagnostic.errorSign": " ",
   "diagnostic.warningSign": " ",
-  "diagnostic.infoSign": "",
+  "diagnostic.infoSign": " ",
   "diagnostic.hintSign": " ",
 
   // Git
@@ -31,6 +31,7 @@
     "markdown",
     "javascript",
     "typescript",
+    "typescriptreact",
     "graphql",
     "html",
     "yaml",

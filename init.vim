@@ -12,14 +12,13 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 call plug#begin('~/.config/nvim/plugged')
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'chaoren/vim-wordmotion'
 Plug 'vim-scripts/matchit.zip'
 Plug 'godlygeek/tabular'
 Plug 'mattn/emmet-vim'
@@ -27,25 +26,23 @@ Plug 'bogado/file-line'
 Plug 'mhinz/vim-startify'
 Plug 'wincent/terminus'
 Plug 'blueyed/vim-diminactive'
-Plug 'ryanoasis/vim-devicons'
 Plug 'gcmt/taboo.vim'
 
-" Technology specific plugins
-Plug 'sheerun/vim-polyglot'
-Plug 'styled-components/vim-styled-components'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Neovim specific
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'sudormrfbin/cheatsheet.nvim'
+Plug 'hoob3rt/lualine.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-call plug#end()
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'fannheyward/telescope-coc.nvim'
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-    disable = { "c", "rust" },  -- list of language that will be disabled
-  },
-}
-EOF
+" Technology specific plugins
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+call plug#end()
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -62,7 +59,7 @@ set ruler               " Show row and column in status bar
 set showcmd             " Show partial commands (such as 'd' when typing 'dw')
 set ignorecase          " Case insensitive search by default
 set smartcase           " Use case sensitive search in a capital letter is used
-"set nohlsearch          " Don't highlight searches, useful for jumping around
+set nohlsearch          " Don't highlight searches, useful for jumping around
 set scrolloff=3         " Number of lines to always show at at the top & bottom
 set colorcolumn=81      " Highlight the 81st column (shorthand = :set cc=81)
 set cursorline          " Highlight the line which the cursor is on
@@ -83,47 +80,125 @@ set undoreload=10000    " number of lines to save for undo
 
 " COLOR!
 set termguicolors       " Use the colours from the terminal
-set winblend=5          " Use 5% pseudo-transparency on floating windows
+set winblend=5          " Use pseudo-transparency on floating windows
 colorscheme codedark
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                              NEOVIM SPECIFIC                                 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-if has("nvim")
-  " Live search and replace!
-  set inccommand=nosplit
 
-  " Highlight what was just yanked
-  if exists('##TextYankPost')
-    " Timeout doesn't seem to take effect, maybe next update?
-    au TextYankPost * silent! lua vim.highlight.on_yank {timeout=50}
-  endif
+" Live search and replace!
+set inccommand=nosplit
 
-  cmap w!! w !sudo tee %
-else
-  " When you dont have write access, :W will write with sudo
-  " Without this, you could use ':w !sudo tee %'
-  command! W w !sudo tee % > /dev/null
 
-  " Neovim has this on by default, but vim does not
-  set t_Co=256
-endif
+" Highlight what was just yanked
+" Timeout doesn't seem to take effect, maybe next update?
+au TextYankPost * silent! lua vim.highlight.on_yank {timeout=50}
+
+
+" Sudo write
+cmap w!! w !sudo tee %
+
+
+" Configure LUA plugins
+lua <<EOF
+require('nvim-treesitter.configs').setup {
+  ensure_installed = "maintained",
+  highlight = { enable = true },
+}
+
+
+require('telescope').setup {
+  defaults = {
+    winblend = 5,
+    selection_caret = ' ',
+    prompt_prefix = " ",
+    mappings = {
+      i = {
+        ["<C-j>"] = require('telescope.actions').move_selection_better,
+        ["<C-k>"] = require('telescope.actions').move_selection_worse,
+      }
+    }
+  }
+}
+require('telescope').load_extension('coc')
+
+
+require('lualine').setup {
+  options = {
+    theme  = 'codedark',
+    section_separators = {'', ''},
+    component_separators = {'', ''}
+  },
+  sections = {
+    lualine_a = {function() return "﬘ "..vim.api.nvim_get_current_buf() end},
+    lualine_b = {'branch'},
+    lualine_c = {{'filename', path = 1}},
+    lualine_x = {},
+    lualine_y = {{
+      'diagnostics',
+      sources = {'coc'},
+      symbols = {error = ' ', warn = ' ', info= ' ', hint = ' '},
+    }},
+    lualine_z = {{'filetype', colored = false}},
+  },
+  inactive_sections = {
+    lualine_a = {function() return "﬘ "..vim.api.nvim_get_current_buf() end},
+    lualine_b = {},
+    lualine_c = {{'filename', path = 1}},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {}
+  },
+}
+EOF
+
+" Find files using Telescope command-line sugar.
+nnoremap <leader>tt <cmd>Telescope<cr>
+nnoremap <leader>tf <cmd>Telescope find_files<cr>
+nnoremap <leader>tg <cmd>Telescope live_grep<cr>
+nnoremap <leader>tG <cmd>Telescope grep_string<cr>
+nnoremap <leader>tb <cmd>Telescope buffers<cr>
+nnoremap <leader>th <cmd>Telescope help_tags<cr>
+nnoremap <leader>te <cmd>Telescope file_browser<cr>
+nnoremap <leader>tq <cmd>Telescope quickfix<cr>
+nnoremap <leader>tr i<cmd>Telescope registers<cr>
+imap <C-r> <cmd>Telescope registers<cr>
+nnoremap <C-p> <cmd>Telescope find_files<cr>
+
+" COC in Telescope
+nnoremap <leader>cm <cmd>Telescope coc mru<cr>
+nnoremap <leader>cl <cmd>Telescope coc links<cr>
+nnoremap <leader>cc <cmd>Telescope coc commands<cr>
+" nnoremap <leader>cc <cmd>Telescope coc locations<cr>
+nnoremap <leader>cr <cmd>Telescope coc references<cr>
+nnoremap <leader>cd <cmd>Telescope coc definitions<cr>
+nnoremap <leader>cD <cmd>Telescope coc declarations<cr>
+nnoremap <leader>ci <cmd>Telescope coc implementations<cr>
+nnoremap <leader>ct <cmd>Telescope coc type_definitions<cr>
+nnoremap <leader>cg <cmd>Telescope coc diagnostics<cr>
+nnoremap <leader>ca <cmd>Telescope coc code_actions<cr>
+" nnoremap <leader>cc <cmd>Telescope coc line_code_actions<cr>
+nnoremap <leader>cA <cmd>Telescope coc file_code_actions<cr>
+nnoremap <leader>cs <cmd>Telescope coc document_symbols<cr>
+nnoremap <leader>cS <cmd>Telescope coc workspace_symbols<cr>
+nnoremap <leader>cG <cmd>Telescope coc workspace_diagnostics<cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                          CUSTOM VIM FUNCTIONALITY                            "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
 " Shortcut for spellcheck
-map <leader>z :set spellz=
-map <leader>Z :set nospell
+map <leader>z :set spell<cr>:Telescope spell_suggest<cr>
+map <leader>Z :set nospell<cr>
 
 
 " :Q is an accidental error for :q
 cnoreabbrev Q q
-
-
 " Q is another common accidental error to launch :ex mode - which I don't use
 nnoremap Q <nop>
 
@@ -133,11 +208,6 @@ map <leader>p "+p
 map <leader>y "+y
 " Y should act like C and D!
 map Y y$
-
-
-" Easier way to make a blank line but not go into insert mode
-map <leader>o o
-map <leader>O O
 
 
 " Double slash to do a search WITH highlighting to see where results are
@@ -152,16 +222,8 @@ nnoremap <silent><expr> * v:count
 \ : ':set hls <Bar> execute "keepjumps normal! *" <Bar> call winrestview(' . string(winsaveview()) . ')<CR>'
 
 
-" Subword navigation for camelCase words
-map <leader>w /\<\\|[A-Z]
-map <leader>e /\>\\|[A-Z]
-map <leader>b ?\<\\|[A-Z]
-
-
-" Shortcuts for debugging
+" Highlighting for debugging
 autocmd BufEnter *.rb,*.js syn match error contained "\<debugger\>"
-autocmd FileType javascript map <leader>d odebugger;
-autocmd FileType javascript map <leader>D Odebugger;
 
 
 " Better Markdown file defaults
@@ -172,12 +234,8 @@ autocmd FileType octopress,markdown,gitcommit setlocal spell
 autocmd FileType octopress,markdown,gitcommit setlocal textwidth=80
 
 
-" auto source when writing to init.vm alternatively you can run :source $MYVIMRC
+" Auto source when editing init.vim, alternatively you can run :source $MYVIMRC
 au! BufWritePost $MYVIMRC source %
-
-
-" Styled components theme helper
-map <leader>t a${({ theme }) => theme.};hi
 
 
 " Set a nicer foldtext function
@@ -207,11 +265,10 @@ map =x :%!xmllint -format -
 map <silent> =w :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 
-
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            PLUGIN CONFIGURATION                              "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 " COC-NVIM (lot's here, needs it's own file)
 source $HOME/.config/nvim/coc.vim
@@ -221,30 +278,6 @@ source $HOME/.config/nvim/coc.vim
 let g:netrw_banner=0
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+,\(^\|\s\s\)ntuser\.\S\+'
 autocmd FileType netrw set nolist
-
-
-" CTRL-P
-let g:ctrlp_user_command = [
-\  '.git',
-\  'cd %s; and git ls-files . -co --exclude-standard',
-\  'find %s -type f'
-\]
-map <leader><C-P> <C-P><C-\>w
-
-
-" GREP (with fugitive)
-map <leader>g :Ggrep!  <Bar> copen
-map <leader>G :Ggrep!  **/*
-
-
-" AIRLINE
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline_powerline_fonts = 1
-let g:airline_section_a='b%n' " Shows the buffer number
-let g:airline_section_x=''
-let g:airline_section_y=''
-let g:airline_section_z=''
 
 
 " EMMET
@@ -268,5 +301,30 @@ let g:startify_session_autoload = 1
 let g:startify_change_to_vcs_root = 1
 
 
-" Taboo
+" TABOO
 let g:taboo_renamed_tab_format = '〔%l〕%m'
+nnoremap <leader>rt :TabooRename 
+
+
+" VIM-WORDMOTION
+let g:wordmotion_prefix = '<Leader>'
+
+
+" FIRENVIM
+let g:firenvim_config = { 
+  \ 'globalSettings': {
+  \   'alt': 'all',
+  \  },
+  \ 'localSettings': {
+  \   '.*': {
+  \     'cmdline': 'neovim',
+  \     'content': 'text',
+  \     'priority': 0,
+  \     'selector': 'textarea',
+  \     'takeover': 'always',
+  \   },
+  \ }
+  \ }
+if exists('g:started_by_firenvim')
+  set guifont=Caskaydia\ Cove\ Nerd\ Font\ Mono:h20
+endif
