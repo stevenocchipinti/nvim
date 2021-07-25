@@ -35,8 +35,12 @@ Plug 'sudormrfbin/cheatsheet.nvim'
 Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'JoosepAlviste/nvim-ts-context-commentstring'
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'nvim-treesitter/playground'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'fannheyward/telescope-coc.nvim'
+Plug 'karb94/neoscroll.nvim'
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 " Technology specific plugins
@@ -48,6 +52,7 @@ call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           STANDARD VIM SETTINGS                              "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 set ts=2 sw=2           " Use 2 spaces for tabs
 set expandtab           " Use spaces instead of tab characters
@@ -83,14 +88,12 @@ set termguicolors       " Use the colours from the terminal
 set winblend=5          " Use pseudo-transparency on floating windows
 colorscheme codedark
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                              NEOVIM SPECIFIC                                 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
 " Live search and replace!
 set inccommand=nosplit
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                            CUSTOM FUNCTIONALITY                              "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 " Highlight what was just yanked
@@ -102,99 +105,9 @@ au TextYankPost * silent! lua vim.highlight.on_yank {timeout=50}
 cmap w!! w !sudo tee %
 
 
-" Configure LUA plugins
-lua <<EOF
-require('nvim-treesitter.configs').setup {
-  ensure_installed = "maintained",
-  highlight = { enable = true },
-}
-
-
-require('telescope').setup {
-  defaults = {
-    winblend = 5,
-    selection_caret = ' ',
-    prompt_prefix = " ",
-    mappings = {
-      i = {
-        ["<C-j>"] = require('telescope.actions').move_selection_better,
-        ["<C-k>"] = require('telescope.actions').move_selection_worse,
-      }
-    }
-  }
-}
-require('telescope').load_extension('coc')
-
-
-require('lualine').setup {
-  options = {
-    theme  = 'codedark',
-    section_separators = {'', ''},
-    component_separators = {'', ''}
-  },
-  sections = {
-    lualine_a = {function() return "﬘ "..vim.api.nvim_get_current_buf() end},
-    lualine_b = {'branch'},
-    lualine_c = {{'filename', path = 1}},
-    lualine_x = {},
-    lualine_y = {{
-      'diagnostics',
-      sources = {'coc'},
-      symbols = {error = ' ', warn = ' ', info= ' ', hint = ' '},
-    }},
-    lualine_z = {{'filetype', colored = false}},
-  },
-  inactive_sections = {
-    lualine_a = {function() return "﬘ "..vim.api.nvim_get_current_buf() end},
-    lualine_b = {},
-    lualine_c = {{'filename', path = 1}},
-    lualine_x = {},
-    lualine_y = {},
-    lualine_z = {}
-  },
-}
-EOF
-
-" Find files using Telescope command-line sugar.
-nnoremap <leader>tt <cmd>Telescope<cr>
-nnoremap <leader>tf <cmd>Telescope find_files<cr>
-nnoremap <leader>tg <cmd>Telescope live_grep<cr>
-nnoremap <leader>tG <cmd>Telescope grep_string<cr>
-nnoremap <leader>tb <cmd>Telescope buffers<cr>
-nnoremap <leader>th <cmd>Telescope help_tags<cr>
-nnoremap <leader>te <cmd>Telescope file_browser<cr>
-nnoremap <leader>tq <cmd>Telescope quickfix<cr>
-nnoremap <leader>tr i<cmd>Telescope registers<cr>
-imap <C-r> <cmd>Telescope registers<cr>
-nnoremap <C-p> <cmd>Telescope find_files<cr>
-
-" COC in Telescope
-nnoremap <leader>cm <cmd>Telescope coc mru<cr>
-nnoremap <leader>cl <cmd>Telescope coc links<cr>
-nnoremap <leader>cc <cmd>Telescope coc commands<cr>
-" nnoremap <leader>cc <cmd>Telescope coc locations<cr>
-nnoremap <leader>cr <cmd>Telescope coc references<cr>
-nnoremap <leader>cd <cmd>Telescope coc definitions<cr>
-nnoremap <leader>cD <cmd>Telescope coc declarations<cr>
-nnoremap <leader>ci <cmd>Telescope coc implementations<cr>
-nnoremap <leader>ct <cmd>Telescope coc type_definitions<cr>
-nnoremap <leader>cg <cmd>Telescope coc diagnostics<cr>
-nnoremap <leader>ca <cmd>Telescope coc code_actions<cr>
-" nnoremap <leader>cc <cmd>Telescope coc line_code_actions<cr>
-nnoremap <leader>cA <cmd>Telescope coc file_code_actions<cr>
-nnoremap <leader>cs <cmd>Telescope coc document_symbols<cr>
-nnoremap <leader>cS <cmd>Telescope coc workspace_symbols<cr>
-nnoremap <leader>cG <cmd>Telescope coc workspace_diagnostics<cr>
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                          CUSTOM VIM FUNCTIONALITY                            "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
 " Shortcut for spellcheck
-map <leader>z :set spell<cr>:Telescope spell_suggest<cr>
-map <leader>Z :set nospell<cr>
+nnoremap <leader>z :set spell<cr>:Telescope spell_suggest<cr>
+nnoremap <leader>Z :set nospell<cr>
 
 
 " :Q is an accidental error for :q
@@ -204,37 +117,38 @@ nnoremap Q <nop>
 
 
 " Easier way to copy and paste from the global clipboard
-map <leader>p "+p
-map <leader>y "+y
+noremap <leader>p "+p
+noremap <leader>y "+y
 " Y should act like C and D!
-map Y y$
+nnoremap Y y$
 
 
-" Double slash to do a search WITH highlighting to see where results are
-" Also allows //<ESC> to turn on highlighting
+" Better use of slash:
+"   Single slash = Search WITHOUT highlighting (for jumping around)
+"   Double slash = Search WITH highlighting (for viewing results)
+"
+" ProTip, this also allows:
+"   //<ESC> = turn on highlighting
+"   /<ESC>  = turn off highlighting
 nnoremap // :set hls<CR>/
-" Single slash to a search WITHOUT highlighting for jumping around a file
-" Also allows /<ESC> to turn off highlighting
 nnoremap / :set nohls<CR>/
+
 " Keep the cursor still and highlight matches when pressing *
 nnoremap <silent><expr> * v:count
 \ ? '*'
 \ : ':set hls <Bar> execute "keepjumps normal! *" <Bar> call winrestview(' . string(winsaveview()) . ')<CR>'
 
 
-" Highlighting for debugging
-autocmd BufEnter *.rb,*.js syn match error contained "\<debugger\>"
-
-
 " Better Markdown file defaults
 autocmd BufNewFile,BufRead *.markdown,*.textile setlocal filetype=octopress
-autocmd FileType octopress,markdown map <leader>= yyp:s/./=/g
-autocmd FileType octopress,markdown map <leader>- yyp:s/./-/g
+autocmd FileType octopress,markdown nnoremap <leader>= yyp:s/./=/g
+autocmd FileType octopress,markdown nnoremap <leader>- yyp:s/./-/g
 autocmd FileType octopress,markdown,gitcommit setlocal spell
 autocmd FileType octopress,markdown,gitcommit setlocal textwidth=80
 
 
-" Auto source when editing init.vim, alternatively you can run :source $MYVIMRC
+" Shortcut and auto source for init.vim
+nnoremap <leader>. :e $MYVIMRC<cr>
 au! BufWritePost $MYVIMRC source %
 
 
@@ -246,11 +160,6 @@ function! MinimalFoldText()
   set fillchars=fold:\ 
   return line . " ⏎ " . n
 endfunction
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                       CUSTOM EXTERNAL FUNCTIONALITY                          "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 " Format JSON - filter the file through Python to format it
@@ -311,7 +220,7 @@ let g:wordmotion_prefix = '<Leader>'
 
 
 " FIRENVIM
-let g:firenvim_config = { 
+let g:firenvim_config = {
   \ 'globalSettings': {
   \   'alt': 'all',
   \  },
@@ -321,10 +230,121 @@ let g:firenvim_config = {
   \     'content': 'text',
   \     'priority': 0,
   \     'selector': 'textarea',
-  \     'takeover': 'always',
+  \     'takeover': 'never',
   \   },
   \ }
   \ }
 if exists('g:started_by_firenvim')
   set guifont=Caskaydia\ Cove\ Nerd\ Font\ Mono:h20
 endif
+
+
+" LUA PLUGINS
+lua <<EOF
+require('nvim-treesitter.configs').setup {
+  ensure_installed = "maintained",
+  highlight = { enable = true },
+  indent = { enable = true },
+  context_commentstring = { enable = true },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "<leader>v",
+      node_incremental = "]v",
+      scope_incremental = "]V",
+      node_decremental = "[v",
+    }
+  },
+  textobjects = {
+    select = {
+      enable = true,
+      keymaps = {
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner"
+      }
+    }
+  },
+  playground = { enable = true }
+}
+
+require('lualine').setup {
+  options = {
+    theme  = 'codedark',
+    section_separators = {'', ''},
+    component_separators = {'', ''}
+  },
+  sections = {
+    lualine_a = {function() return "﬘ "..vim.api.nvim_get_current_buf() end},
+    lualine_b = {'branch'},
+    lualine_c = {{'filename', path = 1}},
+    lualine_x = {},
+    lualine_y = {{
+      'diagnostics',
+      sources = {'coc'},
+      symbols = {error = ' ', warn = ' ', info= ' ', hint = ' '},
+    }},
+    lualine_z = {{'filetype', colored = false}},
+  },
+  inactive_sections = {
+    lualine_a = {function() return "﬘ "..vim.api.nvim_get_current_buf() end},
+    lualine_b = {},
+    lualine_c = {{'filename', path = 1}},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {}
+  },
+}
+
+require('neoscroll').setup()
+
+require('telescope').setup {
+  defaults = {
+    winblend = 5,
+    selection_caret = ' ',
+    prompt_prefix = " ",
+    mappings = {
+      i = {
+        ["<C-j>"] = require('telescope.actions').move_selection_better,
+        ["<C-k>"] = require('telescope.actions').move_selection_worse,
+      }
+    }
+  }
+}
+require('telescope').load_extension('coc')
+EOF
+
+" Find files using Telescope command-line sugar.
+nnoremap <leader>tt <cmd>Telescope<cr>
+nnoremap <leader>tf <cmd>Telescope find_files<cr>
+nnoremap <leader>tg <cmd>Telescope live_grep<cr>
+nnoremap <leader>tG <cmd>Telescope grep_string<cr>
+nnoremap <leader>tb <cmd>Telescope buffers<cr>
+nnoremap <leader>th <cmd>Telescope help_tags<cr>
+nnoremap <leader>te <cmd>Telescope file_browser<cr>
+nnoremap <leader>tq <cmd>Telescope quickfix<cr>
+nnoremap <leader>tr i<cmd>Telescope registers<cr>
+" imap <C-r> <cmd>Telescope registers<cr>  " Buggy
+nnoremap <C-p> <cmd>Telescope find_files<cr>
+nnoremap <leader>g <cmd>Telescope grep_string<cr>
+nnoremap <leader>G <cmd>Telescope live_grep<cr>
+
+" COC in Telescope
+nnoremap <leader>cm <cmd>Telescope coc mru<cr>
+nnoremap <leader>cl <cmd>Telescope coc links<cr>
+nnoremap <leader>cc <cmd>Telescope coc commands<cr>
+" nnoremap <leader>cc <cmd>Telescope coc locations<cr>
+nnoremap <leader>cr <cmd>Telescope coc references<cr>
+nnoremap <leader>cd <cmd>Telescope coc definitions<cr>
+nnoremap <leader>cD <cmd>Telescope coc declarations<cr>
+nnoremap <leader>ci <cmd>Telescope coc implementations<cr>
+nnoremap <leader>ct <cmd>Telescope coc type_definitions<cr>
+nnoremap <leader>cg <cmd>Telescope coc diagnostics<cr>
+nnoremap <leader>ca <cmd>Telescope coc code_actions<cr>
+" nnoremap <leader>cc <cmd>Telescope coc line_code_actions<cr>
+nnoremap <leader>cA <cmd>Telescope coc file_code_actions<cr>
+nnoremap <leader>cs <cmd>Telescope coc document_symbols<cr>
+nnoremap <leader>cS <cmd>Telescope coc workspace_symbols<cr>
+nnoremap <leader>cG <cmd>Telescope coc workspace_diagnostics<cr>
+
