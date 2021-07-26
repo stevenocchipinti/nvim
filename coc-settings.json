@@ -4,13 +4,6 @@
   "diagnostic.infoSign": " ",
   "diagnostic.hintSign": " ",
 
-  // Git
-  "git.changedSign.text": "|",
-  "git.addedSign.text": "|",
-  "git.removedSign.text": "◢",
-  "git.topRemovedSign.text": "◥",
-  "git.changeRemovedSign.text": "|",
-
   // List
   "list.indicator": ">",
   "list.selectedSignText": " ",

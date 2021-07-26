@@ -5,7 +5,6 @@ let g:coc_global_extensions = [
 \ 'coc-eslint',
 \ 'coc-explorer',
 \ 'coc-fish',
-\ 'coc-git',
 \ 'coc-import-cost',
 \ 'coc-json',
 \ 'coc-lists',
@@ -17,13 +16,6 @@ let g:coc_global_extensions = [
 \ 'coc-yaml',
 \ 'coc-yank',
 \]
-
-" Git change markers in the sidebar
-highlight CocGitAddedSign ctermfg=43 guifg=#4EC9B0
-highlight CocGitRemovedSign ctermfg=167 guifg=#D16969
-highlight CocGitTopRemovedSign ctermfg=167 guifg=#D16969
-highlight CocGitChangedSign ctermfg=75 guifg=#569CD6
-highlight CocGitChangeRemovedSign ctermfg=75 guifg=#569CD6
 
 " Config below was mostly copied from the coc.nvim readme (modified a little):
 " https://github.com/neoclide/coc.nvim

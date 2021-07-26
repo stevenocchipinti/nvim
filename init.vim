@@ -43,6 +43,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'fannheyward/telescope-coc.nvim'
 Plug 'sunjon/shade.nvim'
 Plug 'karb94/neoscroll.nvim'
+Plug 'lewis6991/gitsigns.nvim'
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 " Technology specific plugins
@@ -300,8 +301,21 @@ require('lualine').setup {
   },
 }
 
-require('neoscroll').setup()
-require'shade'.setup({
+require('gitsigns').setup {
+  keymaps = {
+    ['n ]h'] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'"},
+    ['n [h'] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'"},
+  },
+  signs = {
+    add          = { text = '│' },
+    change       = { text = '│' },
+    delete       = { text = '◢' },
+    topdelete    = { text = '◥' },
+    changedelete = { text = '│' },
+  },
+}
+
+require'shade'.setup {
   overlay_opacity = 50,
   opacity_step = 1,
   keys = {
@@ -309,7 +323,7 @@ require'shade'.setup({
     brightness_down  = '<C-Down>',
     toggle           = '<Leader>s',
   }
-})
+}
 
 vim.g.tokyonight_style = "night"
 vim.cmd[[colorscheme tokyonight]]
