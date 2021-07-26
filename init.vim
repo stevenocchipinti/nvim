@@ -144,8 +144,8 @@ nnoremap <silent><expr> * v:count
 
 " Better Markdown file defaults
 autocmd BufNewFile,BufRead *.markdown,*.textile setlocal filetype=octopress
-autocmd FileType octopress,markdown nnoremap <leader>= yyp:s/./=/g
-autocmd FileType octopress,markdown nnoremap <leader>- yyp:s/./-/g
+autocmd FileType octopress,markdown nnoremap <leader>= yyp:s/./=/g<cr>
+autocmd FileType octopress,markdown nnoremap <leader>- yyp:s/./-/g<cr>
 autocmd FileType octopress,markdown,gitcommit setlocal spell
 autocmd FileType octopress,markdown,gitcommit setlocal textwidth=80
 
@@ -166,11 +166,11 @@ endfunction
 
 
 " Format JSON - filter the file through Python to format it
-map =j :%!python -m json.tool
+map =j :%!python -m json.tool<cr>
 
 
 " Format XML - filter the file through xmllint to indent XML
-map =x :%!xmllint -format -
+map =x :%!xmllint -format -<cr>
 
 
 " Remove un-needed whitespace
@@ -313,6 +313,10 @@ require('gitsigns').setup {
     topdelete    = { text = '◥' },
     changedelete = { text = '│' },
   },
+}
+
+require('neoscroll').setup {
+  mappings = { '<C-u>', '<C-d>', '<C-b>', '<C-f>', 'zt', 'zz', 'zb'},
 }
 
 require'shade'.setup {
