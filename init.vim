@@ -25,8 +25,8 @@ Plug 'mattn/emmet-vim'
 Plug 'bogado/file-line'
 Plug 'mhinz/vim-startify'
 Plug 'wincent/terminus'
-Plug 'blueyed/vim-diminactive'
 Plug 'gcmt/taboo.vim'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
 " Neovim specific
 Plug 'nvim-lua/popup.nvim'
@@ -34,12 +34,14 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'sudormrfbin/cheatsheet.nvim'
 Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug '~/code/neovim/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/playground'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'fannheyward/telescope-coc.nvim'
+Plug 'sunjon/shade.nvim'
 Plug 'karb94/neoscroll.nvim'
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
@@ -86,7 +88,7 @@ set undoreload=10000    " number of lines to save for undo
 " COLOR!
 set termguicolors       " Use the colours from the terminal
 set winblend=5          " Use pseudo-transparency on floating windows
-colorscheme codedark
+" colorscheme codedark  " This is done in LUA at the bottom now
 
 " Live search and replace!
 set inccommand=nosplit
@@ -271,7 +273,8 @@ require('nvim-treesitter.configs').setup {
 
 require('lualine').setup {
   options = {
-    theme  = 'codedark',
+    --theme  = 'codedark',
+    theme = 'tokyonight',
     section_separators = {'', ''},
     component_separators = {'', ''}
   },
@@ -298,6 +301,18 @@ require('lualine').setup {
 }
 
 require('neoscroll').setup()
+require'shade'.setup({
+  overlay_opacity = 50,
+  opacity_step = 1,
+  keys = {
+    brightness_up    = '<C-Up>',
+    brightness_down  = '<C-Down>',
+    toggle           = '<Leader>s',
+  }
+})
+
+vim.g.tokyonight_style = "night"
+vim.cmd[[colorscheme tokyonight]]
 
 require('telescope').setup {
   defaults = {
