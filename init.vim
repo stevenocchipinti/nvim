@@ -40,7 +40,7 @@ Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/playground'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'fannheyward/telescope-coc.nvim'
-Plug 'sunjon/shade.nvim'
+Plug 'TaDaa/vimade'
 Plug 'karb94/neoscroll.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
@@ -316,16 +316,6 @@ require('gitsigns').setup {
 
 require('neoscroll').setup {
   mappings = { '<C-u>', '<C-d>', '<C-b>', '<C-f>', 'zt', 'zz', 'zb'},
-}
-
-require'shade'.setup {
-  overlay_opacity = 50,
-  opacity_step = 1,
-  keys = {
-    brightness_up    = '<C-Up>',
-    brightness_down  = '<C-Down>',
-    toggle           = '<Leader>s',
-  }
 }
 
 vim.g.tokyonight_style = "night"
