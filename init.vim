@@ -31,9 +31,8 @@ Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 " Neovim specific
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'sudormrfbin/cheatsheet.nvim'
-Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'hoob3rt/lualine.nvim'
 " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug '~/code/neovim/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'
@@ -331,6 +330,7 @@ require'shade'.setup {
 
 vim.g.tokyonight_style = "night"
 vim.cmd[[colorscheme tokyonight]]
+vim.cmd[[hi ColorColumn guibg=#1f2335]]
 
 require('telescope').setup {
   defaults = {
