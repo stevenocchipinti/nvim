@@ -12,5 +12,4 @@ brew install neovim
 ## Setup
 
 1. Clone this repo to `~/.config/nvim`
-2. Install plugins: `nvim +PlugInstall +qall`
-3. Add `alias vim=nvim` to your shell config
+2. Add `alias vim=nvim` to shell config

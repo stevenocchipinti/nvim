@@ -4,6 +4,9 @@
   "diagnostic.infoSign": " ",
   "diagnostic.hintSign": " ",
 
+  // Lua
+  "Lua.diagnostics.globals": "vim",
+
   // List
   "list.indicator": ">",
   "list.selectedSignText": " ",
@@ -21,14 +24,15 @@
   // Prettier
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
-    "markdown",
-    "javascript",
-    "typescript",
-    "typescriptreact",
     "graphql",
     "html",
-    "yaml",
+    "javascript",
     "json",
-    "python"
+    "lua",
+    "markdown",
+    "python",
+    "typescript",
+    "typescriptreact",
+    "yaml"
   ]
 }

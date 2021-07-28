@@ -1,54 +1,57 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                                                              "
-"      _ __   ___  _____   _(_)_ __ ___       ___ ___  _ __  / _(_) __ _       "
-"     | '_ \ / _ \/ _ \ \ / / | '_ ` _ \     / __/ _ \| '_ \| |_| |/ _` |      "
-"     | | | |  __/ (_) \ V /| | | | | | |   | (_| (_) | | | |  _| | (_| |      "
-"     |_| |_|\___|\___/ \_/ |_|_| |_| |_|    \___\___/|_| |_|_| |_|\__, |      "
-"                                                                  |___/       "
-"                                                                              "
-"          http://stevenocchipinti.com                                         "
-"          https://github.com/stevenocchipinti/nvim                            "
-"                                                                              "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+lua << EOF
+--
+--             ███╗  ██╗███████╗ █████╗ ██╗   ██╗██╗███╗   ███╗
+--             ████╗ ██║██╔════╝██╔══██╗██║   ██║██║████╗ ████║
+--             ██╔██╗██║█████╗  ██║  ██║╚██╗ ██╔╝██║██╔████╔██║
+--             ██║╚████║██╔══╝  ██║  ██║ ╚████╔╝ ██║██║╚██╔╝██║
+--             ██║ ╚███║███████╗╚█████╔╝  ╚██╔╝  ██║██║ ╚═╝ ██║
+--             ╚═╝  ╚══╝╚══════╝ ╚════╝    ╚═╝   ╚═╝╚═╝     ╚═╝
+--
+--                  https://github.com/stevenocchipinti/nvim
+--
 
-call plug#begin('~/.config/nvim/plugged')
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-unimpaired'
-Plug 'michaeljsmith/vim-indent-object'
-Plug 'chaoren/vim-wordmotion'
-Plug 'vim-scripts/matchit.zip'
-Plug 'godlygeek/tabular'
-Plug 'mattn/emmet-vim'
-Plug 'bogado/file-line'
-Plug 'mhinz/vim-startify'
-Plug 'wincent/terminus'
-Plug 'gcmt/taboo.vim'
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+require "packer_bootstrap"
+require("packer").startup(function(use)
+  use "tpope/vim-commentary"
+  use "tpope/vim-fugitive"
+  use "tpope/vim-surround"
+  use "tpope/vim-repeat"
+  use "tpope/vim-unimpaired"
+  use "michaeljsmith/vim-indent-object"
+  use "chaoren/vim-wordmotion"
+  use "vim-scripts/matchit.zip"
+  use "godlygeek/tabular"
+  use "mattn/emmet-vim"
+  use "bogado/file-line"
+  use "mhinz/vim-startify"
+  use "wincent/terminus"
+  use "gcmt/taboo.vim"
+  use "folke/tokyonight.nvim"
 
-" Neovim specific
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'kyazdani42/nvim-web-devicons'
-Plug 'hoob3rt/lualine.nvim'
-" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug '~/code/neovim/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'JoosepAlviste/nvim-ts-context-commentstring'
-Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-Plug 'nvim-treesitter/playground'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'fannheyward/telescope-coc.nvim'
-Plug 'TaDaa/vimade'
-Plug 'karb94/neoscroll.nvim'
-Plug 'lewis6991/gitsigns.nvim'
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+  use { "neoclide/coc.nvim", branch = "release" }
 
-" Technology specific plugins
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-call plug#end()
+  -- lua
+  use "nvim-lua/popup.nvim"
+  use "nvim-lua/plenary.nvim"
+  use "kyazdani42/nvim-web-devicons"
+  use "hoob3rt/lualine.nvim"
+  use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
+  use "JoosepAlviste/nvim-ts-context-commentstring"
+  use "nvim-treesitter/nvim-treesitter-textobjects"
+  use "nvim-treesitter/playground"
+  use "nvim-telescope/telescope.nvim"
+  use "fannheyward/telescope-coc.nvim"
+  use "TaDaa/vimade"
+  use "karb94/neoscroll.nvim"
+  use "lewis6991/gitsigns.nvim"
+  use {
+    "glacambre/firenvim",
+    run = function()
+      vim.fn["firenvim#install"](0)
+    end,
+  }
+end)
+EOF
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -88,10 +91,13 @@ set undoreload=10000    " number of lines to save for undo
 " COLOR!
 set termguicolors       " Use the colours from the terminal
 set winblend=5          " Use pseudo-transparency on floating windows
-" colorscheme codedark  " This is done in LUA at the bottom now
+let g:tokyonight_style = "night"
+colorscheme tokyonight
+
 
 " Live search and replace!
 set inccommand=nosplit
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            CUSTOM FUNCTIONALITY                              "
@@ -149,11 +155,6 @@ autocmd FileType octopress,markdown,gitcommit setlocal spell
 autocmd FileType octopress,markdown,gitcommit setlocal textwidth=80
 
 
-" Shortcut and auto source for init.vim
-nnoremap <leader>. :e $MYVIMRC<cr>
-au! BufWritePost $MYVIMRC source %
-
-
 " Set a nicer foldtext function
 set foldtext=MinimalFoldText()
 function! MinimalFoldText()
@@ -179,10 +180,6 @@ map <silent> =w :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            PLUGIN CONFIGURATION                              "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-" COC-NVIM (lot's here, needs it's own file)
-source $HOME/.config/nvim/coc.vim
 
 
 " NETRW (builtin plugin)
@@ -241,103 +238,6 @@ if exists('g:started_by_firenvim')
 endif
 
 
-" LUA PLUGINS
-lua <<EOF
-vim.g.tokyonight_style = "night"
-vim.cmd[[colorscheme tokyonight]]
-vim.cmd[[hi ColorColumn guibg=#1f2335]]
-vim.cmd[[hi Folded guibg=#1f2335]]
-
-require('lualine').setup {
-  options = {
-    theme = 'tokyonight',
-    section_separators = {'', ''},
-    component_separators = {'', ''}
-  },
-  sections = {
-    lualine_a = {function() return "﬘ "..vim.api.nvim_get_current_buf() end},
-    lualine_b = {'branch'},
-    lualine_c = {{'filename', path = 1}},
-    lualine_x = {},
-    lualine_y = {{
-      'diagnostics',
-      sources = {'coc'},
-      symbols = {error = ' ', warn = ' ', info= ' ', hint = ' '},
-    }},
-    lualine_z = {{'filetype', colored = false}},
-  },
-  inactive_sections = {
-    lualine_a = {function() return "﬘ "..vim.api.nvim_get_current_buf() end},
-    lualine_b = {},
-    lualine_c = {{'filename', path = 1}},
-    lualine_x = {},
-    lualine_y = {},
-    lualine_z = {}
-  },
-}
-
-require('nvim-treesitter.configs').setup {
-  ensure_installed = "maintained",
-  highlight = { enable = true },
-  indent = { enable = true },
-  context_commentstring = { enable = true },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "<leader>v",
-      node_incremental = "]v",
-      scope_incremental = "]V",
-      node_decremental = "[v",
-    }
-  },
-  textobjects = {
-    select = {
-      enable = true,
-      keymaps = {
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
-        ["ac"] = "@class.outer",
-        ["ic"] = "@class.inner"
-      }
-    }
-  },
-  playground = { enable = true }
-}
-
-require('gitsigns').setup {
-  keymaps = {
-    ['n ]h'] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'"},
-    ['n [h'] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'"},
-  },
-  signs = {
-    add          = { text = '│' },
-    change       = { text = '│' },
-    delete       = { text = '◢' },
-    topdelete    = { text = '◥' },
-    changedelete = { text = '│' },
-  },
-}
-
-require('neoscroll').setup {
-  mappings = { '<C-u>', '<C-d>', '<C-b>', '<C-f>', 'zt', 'zz', 'zb'},
-}
-
-require('telescope').setup {
-  defaults = {
-    winblend = 5,
-    selection_caret = ' ',
-    prompt_prefix = " ",
-    mappings = {
-      i = {
-        ["<C-j>"] = require('telescope.actions').move_selection_better,
-        ["<C-k>"] = require('telescope.actions').move_selection_worse,
-      }
-    }
-  }
-}
-require('telescope').load_extension('coc')
-EOF
-
 " Find files using Telescope command-line sugar.
 nnoremap <leader>tt <cmd>Telescope<cr>
 nnoremap <leader>tf <cmd>Telescope find_files<cr>
@@ -353,11 +253,16 @@ nnoremap <C-p> <cmd>Telescope find_files<cr>
 nnoremap <leader>g <cmd>Telescope grep_string<cr>
 nnoremap <leader>G <cmd>Telescope live_grep<cr>
 
+" Shortcut and auto source for init.vim
+au! BufWritePost $MYVIMRC source %
+nnoremap <leader>. :lua require('telescope.builtin').find_files({
+  \ search_dirs={"~/.config/nvim"}
+  \ })<cr>
+
 " COC in Telescope
 nnoremap <leader>cm <cmd>Telescope coc mru<cr>
 nnoremap <leader>cl <cmd>Telescope coc links<cr>
 nnoremap <leader>cc <cmd>Telescope coc commands<cr>
-" nnoremap <leader>cc <cmd>Telescope coc locations<cr>
 nnoremap <leader>cr <cmd>Telescope coc references<cr>
 nnoremap <leader>cd <cmd>Telescope coc definitions<cr>
 nnoremap <leader>cD <cmd>Telescope coc declarations<cr>
@@ -365,9 +270,118 @@ nnoremap <leader>ci <cmd>Telescope coc implementations<cr>
 nnoremap <leader>ct <cmd>Telescope coc type_definitions<cr>
 nnoremap <leader>cg <cmd>Telescope coc diagnostics<cr>
 nnoremap <leader>ca <cmd>Telescope coc code_actions<cr>
-" nnoremap <leader>cc <cmd>Telescope coc line_code_actions<cr>
 nnoremap <leader>cA <cmd>Telescope coc file_code_actions<cr>
 nnoremap <leader>cs <cmd>Telescope coc document_symbols<cr>
 nnoremap <leader>cS <cmd>Telescope coc workspace_symbols<cr>
 nnoremap <leader>cG <cmd>Telescope coc workspace_diagnostics<cr>
 
+" COC config (lot's here, needs it's own file)
+source $HOME/.config/nvim/coc.vim
+
+lua << EOF
+require("lualine").setup {
+  options = {
+    theme = "tokyonight",
+    section_separators = { "", "" },
+    component_separators = { "", "" },
+  },
+  sections = {
+    lualine_a = {
+      function()
+        return "﬘ " .. vim.api.nvim_get_current_buf()
+      end,
+    },
+    lualine_b = { "branch" },
+    lualine_c = { { "filename", path = 1 } },
+    lualine_x = {},
+    lualine_y = {
+      {
+        "diagnostics",
+        sources = { "coc" },
+        symbols = { error = " ", warn = " ", info = " ", hint = " " },
+      },
+    },
+    lualine_z = { { "filetype", colored = false } },
+  },
+  inactive_sections = {
+    lualine_a = {
+      function()
+        return "﬘ " .. vim.api.nvim_get_current_buf()
+      end,
+    },
+    lualine_b = {},
+    lualine_c = { { "filename", path = 1 } },
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {},
+  },
+}
+
+require("nvim-treesitter.configs").setup {
+  ensure_installed = "maintained",
+  highlight = { enable = true },
+  indent = { enable = true },
+  context_commentstring = { enable = true },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "<leader>v",
+      node_incremental = "]v",
+      scope_incremental = "]V",
+      node_decremental = "[v",
+    },
+  },
+  textobjects = {
+    select = {
+      enable = true,
+      keymaps = {
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+      },
+    },
+  },
+  playground = { enable = true },
+}
+
+require("gitsigns").setup {
+  keymaps = {
+    ["n ]h"] = {
+      expr = true,
+      "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'",
+    },
+    ["n [h"] = {
+      expr = true,
+      "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'",
+    },
+  },
+  signs = {
+    add = { text = "│" },
+    change = { text = "│" },
+    delete = { text = "◢" },
+    topdelete = { text = "◥" },
+    changedelete = { text = "│" },
+  },
+}
+
+require("neoscroll").setup {
+  mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-f>", "zt", "zz", "zb" },
+}
+
+require("telescope").setup {
+  defaults = {
+    winblend = 5,
+    selection_caret = " ",
+    prompt_prefix = " ",
+    mappings = {
+      i = {
+        ["<C-j>"] = require("telescope.actions").move_selection_better,
+        ["<C-k>"] = require("telescope.actions").move_selection_worse,
+      },
+    },
+  },
+}
+require("telescope").load_extension "coc"
+
+EOF
