@@ -243,6 +243,39 @@ endif
 
 " LUA PLUGINS
 lua <<EOF
+vim.g.tokyonight_style = "night"
+vim.cmd[[colorscheme tokyonight]]
+vim.cmd[[hi ColorColumn guibg=#1f2335]]
+vim.cmd[[hi Folded guibg=#1f2335]]
+
+require('lualine').setup {
+  options = {
+    theme = 'tokyonight',
+    section_separators = {'', ''},
+    component_separators = {'', ''}
+  },
+  sections = {
+    lualine_a = {function() return "﬘ "..vim.api.nvim_get_current_buf() end},
+    lualine_b = {'branch'},
+    lualine_c = {{'filename', path = 1}},
+    lualine_x = {},
+    lualine_y = {{
+      'diagnostics',
+      sources = {'coc'},
+      symbols = {error = ' ', warn = ' ', info= ' ', hint = ' '},
+    }},
+    lualine_z = {{'filetype', colored = false}},
+  },
+  inactive_sections = {
+    lualine_a = {function() return "﬘ "..vim.api.nvim_get_current_buf() end},
+    lualine_b = {},
+    lualine_c = {{'filename', path = 1}},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {}
+  },
+}
+
 require('nvim-treesitter.configs').setup {
   ensure_installed = "maintained",
   highlight = { enable = true },
@@ -271,35 +304,6 @@ require('nvim-treesitter.configs').setup {
   playground = { enable = true }
 }
 
-require('lualine').setup {
-  options = {
-    --theme  = 'codedark',
-    theme = 'tokyonight',
-    section_separators = {'', ''},
-    component_separators = {'', ''}
-  },
-  sections = {
-    lualine_a = {function() return "﬘ "..vim.api.nvim_get_current_buf() end},
-    lualine_b = {'branch'},
-    lualine_c = {{'filename', path = 1}},
-    lualine_x = {},
-    lualine_y = {{
-      'diagnostics',
-      sources = {'coc'},
-      symbols = {error = ' ', warn = ' ', info= ' ', hint = ' '},
-    }},
-    lualine_z = {{'filetype', colored = false}},
-  },
-  inactive_sections = {
-    lualine_a = {function() return "﬘ "..vim.api.nvim_get_current_buf() end},
-    lualine_b = {},
-    lualine_c = {{'filename', path = 1}},
-    lualine_x = {},
-    lualine_y = {},
-    lualine_z = {}
-  },
-}
-
 require('gitsigns').setup {
   keymaps = {
     ['n ]h'] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'"},
@@ -317,10 +321,6 @@ require('gitsigns').setup {
 require('neoscroll').setup {
   mappings = { '<C-u>', '<C-d>', '<C-b>', '<C-f>', 'zt', 'zz', 'zb'},
 }
-
-vim.g.tokyonight_style = "night"
-vim.cmd[[colorscheme tokyonight]]
-vim.cmd[[hi ColorColumn guibg=#1f2335]]
 
 require('telescope').setup {
   defaults = {
