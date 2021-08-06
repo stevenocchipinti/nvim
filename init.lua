@@ -9,48 +9,51 @@
 --                  https://github.com/stevenocchipinti/nvim
 --
 
--- NOTE: Plugin config in after/plugin
+-- NOTE: Plugin config in the plugin directory
 require "packer_bootstrap"
-require("packer").startup(function(use)
-  use "tpope/vim-commentary"
-  use "tpope/vim-fugitive"
-  use "tpope/vim-surround"
-  use "tpope/vim-repeat"
-  use "tpope/vim-unimpaired"
-  use "michaeljsmith/vim-indent-object"
-  use "chaoren/vim-wordmotion"
-  use "vim-scripts/matchit.zip"
-  use "godlygeek/tabular"
-  use "mattn/emmet-vim"
-  use "bogado/file-line"
-  use "mhinz/vim-startify"
-  use "wincent/terminus"
-  use "gcmt/taboo.vim"
-  use "folke/tokyonight.nvim"
+require("packer").startup {
+  function(use)
+    use "tpope/vim-commentary"
+    use "tpope/vim-fugitive"
+    use "tpope/vim-surround"
+    use "tpope/vim-repeat"
+    use "tpope/vim-unimpaired"
+    use "michaeljsmith/vim-indent-object"
+    use "chaoren/vim-wordmotion"
+    use "godlygeek/tabular"
+    use "mattn/emmet-vim"
+    use "bogado/file-line"
+    use "mhinz/vim-startify"
+    use "wincent/terminus"
+    use "gcmt/taboo.vim"
 
-  use { "neoclide/coc.nvim", branch = "release" }
-
-  -- lua
-  use "nvim-lua/popup.nvim"
-  use "nvim-lua/plenary.nvim"
-  use "kyazdani42/nvim-web-devicons"
-  use "shadmansaleh/lualine.nvim"
-  use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
-  use "JoosepAlviste/nvim-ts-context-commentstring"
-  use "nvim-treesitter/nvim-treesitter-textobjects"
-  use "nvim-treesitter/playground"
-  use "nvim-telescope/telescope.nvim"
-  use "fannheyward/telescope-coc.nvim"
-  use "TaDaa/vimade"
-  use "karb94/neoscroll.nvim"
-  use "lewis6991/gitsigns.nvim"
-  use {
-    "glacambre/firenvim",
-    run = function()
-      vim.fn["firenvim#install"](0)
-    end,
-  }
-end)
+    -- Neovim specific
+    use { "neoclide/coc.nvim", branch = "release" }
+    use "folke/tokyonight.nvim"
+    use "nvim-lua/popup.nvim"
+    use "nvim-lua/plenary.nvim"
+    use "kyazdani42/nvim-web-devicons"
+    use "shadmansaleh/lualine.nvim"
+    use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
+    use "JoosepAlviste/nvim-ts-context-commentstring"
+    use "nvim-treesitter/nvim-treesitter-textobjects"
+    use "nvim-treesitter/playground"
+    use "nvim-telescope/telescope.nvim"
+    use "fannheyward/telescope-coc.nvim"
+    use "TaDaa/vimade"
+    use "karb94/neoscroll.nvim"
+    use "lewis6991/gitsigns.nvim"
+    use {
+      "glacambre/firenvim",
+      run = function()
+        vim.fn["firenvim#install"](0)
+      end,
+    }
+  end,
+  config = {
+    display = { open_fn = require("packer.util").float },
+  },
+}
 
 --------------------------------------------------------------------------------
 --                           STANDARD VIM SETTINGS                            --

@@ -93,10 +93,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/lualine.nvim"
   },
-  ["matchit.zip"] = {
-    loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/matchit.zip"
-  },
   ["neoscroll.nvim"] = {
     loaded = true,
     path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/neoscroll.nvim"
