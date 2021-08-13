@@ -12,5 +12,3 @@ if fn.empty(fn.glob(install_path)) > 0 then
   }
   execute "packadd packer.nvim"
 end
-
-vim.cmd [[autocmd BufWritePost init.lua source init.lua | PackerCompile]]
