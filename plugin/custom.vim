@@ -24,16 +24,6 @@ noremap <leader>y "+y
 nnoremap Y y$
 
 
-" Better use of slash:
-"   Single slash = Search WITHOUT highlighting (for jumping around)
-"   Double slash = Search WITH highlighting (for viewing results)
-"
-" ProTip, this also allows:
-"   //<ESC> = turn on highlighting
-"   /<ESC>  = turn off highlighting
-nnoremap // :set hls<CR>/
-nnoremap / :set nohls<CR>/
-
 " Keep the cursor still and highlight matches when pressing *
 nnoremap <silent><expr> * v:count
 \ ? '*'

@@ -153,6 +153,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/vim-commentary"
   },
+  ["vim-cool"] = {
+    loaded = true,
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/vim-cool"
+  },
   ["vim-fugitive"] = {
     loaded = true,
     path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/vim-fugitive"

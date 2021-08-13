@@ -26,6 +26,7 @@ require("packer").startup {
     use "mhinz/vim-startify"
     use "wincent/terminus"
     use "gcmt/taboo.vim"
+    use "romainl/vim-cool"
 
     -- Neovim specific
     use { "neoclide/coc.nvim", branch = "release" }
@@ -70,7 +71,6 @@ vim.opt.ruler = true -- Show row and column in status bar
 vim.opt.showcmd = true -- Show operator pending commands in statusbar
 vim.opt.ignorecase = true -- Case insensitive search by default
 vim.opt.smartcase = true -- Case sensitive when containing any uppercase
-vim.opt.hlsearch = false -- Don't highlight search, more useful for jumping
 vim.opt.scrolloff = 3 -- Always show lines at the top & bottom
 vim.opt.colorcolumn = "81" -- Highlight the 81st column
 vim.opt.cursorline = true -- Highlight the line which the cursor is on
