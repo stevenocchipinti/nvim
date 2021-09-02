@@ -14,7 +14,12 @@ local diagnostics = {
   symbols = { error = " ", warn = " ", info = " ", hint = " " },
 }
 
-local filetype = { "filetype", colored = false }
+local filetype = {
+  "filetype",
+  disable_text = true,
+  colored = false,
+  right_padding = 2,
+}
 
 require("lualine").setup {
   options = {
