@@ -16,19 +16,24 @@ require("telescope").load_extension "coc"
 EOF
 
 nnoremap <leader>tt <cmd>Telescope<cr>
-nnoremap <leader>tf <cmd>Telescope find_files<cr>
-nnoremap <leader>tg <cmd>Telescope live_grep<cr>
-nnoremap <leader>tG <cmd>Telescope grep_string<cr>
 nnoremap <leader>tb <cmd>Telescope buffers<cr>
 nnoremap <leader>th <cmd>Telescope help_tags<cr>
 nnoremap <leader>te <cmd>Telescope file_browser<cr>
 nnoremap <leader>tq <cmd>Telescope quickfix<cr>
 nnoremap <leader>tr i<cmd>Telescope registers<cr>
 " imap <C-r> <cmd>Telescope registers<cr>  " Buggy
-nnoremap <C-p> <cmd>Telescope find_files<cr>
-nnoremap <leader>g <cmd>Telescope grep_string<cr>
-nnoremap <leader>G <cmd>Telescope live_grep<cr>
 
+" Files
+nnoremap <C-p> <cmd>Telescope find_files<cr>
+nnoremap <leader>tf <cmd>Telescope find_files<cr>
+
+" Grep
+nnoremap <leader>tg <cmd>Telescope live_grep<cr>
+nnoremap <leader>g <cmd>Telescope live_grep<cr>
+nnoremap <leader>tG <cmd>Telescope grep_string<cr>
+nnoremap <leader>G <cmd>Telescope grep_string<cr>
+
+" Vim config
 nnoremap <leader>. :lua require('telescope.builtin').find_files({
   \ search_dirs={"~/.config/nvim"}
   \ })<cr>

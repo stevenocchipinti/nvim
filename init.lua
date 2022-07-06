@@ -79,6 +79,7 @@ vim.opt.shiftround = true -- Indent to the closest shiftwidth
 vim.opt.secure = true -- Make sure those project .vimrc's are safe
 vim.opt.mouse = "a" -- Enable the mouse
 vim.opt.list = true -- Show `listchars` characters
+vim.opt.laststatus = 3 -- One status bas per window
 vim.opt.listchars = { tab = "├─", trail = "·" }
 vim.opt.showbreak = "⤿"
 vim.opt.encoding = "UTF-8"

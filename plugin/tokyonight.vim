@@ -6,3 +6,4 @@ EOF
 
 colorscheme tokyonight
 hi ColorColumn guibg=#1f2335
+hi VertSplit guifg=#33467C
