@@ -57,7 +57,7 @@ end
 time([[Luarocks path setup]], false)
 time([[try_loadstring definition]], true)
 local function try_loadstring(s, component, name)
-  local success, result = pcall(loadstring(s))
+  local success, result = pcall(loadstring(s), name, _G.packer_plugins[name])
   if not success then
     vim.schedule(function()
       vim.api.nvim_notify('packer.nvim: Error running ' .. component .. ' for ' .. name .. ': ' .. result, vim.log.levels.ERROR, {})
@@ -71,123 +71,153 @@ time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   ["coc.nvim"] = {
     loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/coc.nvim"
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/coc.nvim",
+    url = "https://github.com/neoclide/coc.nvim"
   },
   ["emmet-vim"] = {
     loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/emmet-vim"
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/emmet-vim",
+    url = "https://github.com/mattn/emmet-vim"
   },
   ["file-line"] = {
     loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/file-line"
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/file-line",
+    url = "https://github.com/bogado/file-line"
   },
   firenvim = {
     loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/firenvim"
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/firenvim",
+    url = "https://github.com/glacambre/firenvim"
   },
   ["gitsigns.nvim"] = {
     loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
+    url = "https://github.com/lewis6991/gitsigns.nvim"
   },
   ["lualine.nvim"] = {
     loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/lualine.nvim"
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/lualine.nvim",
+    url = "https://github.com/nvim-lualine/lualine.nvim"
   },
   ["neoscroll.nvim"] = {
     loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/neoscroll.nvim"
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/neoscroll.nvim",
+    url = "https://github.com/karb94/neoscroll.nvim"
   },
   ["nvim-treesitter"] = {
     loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["nvim-treesitter-textobjects"] = {
     loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects"
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
   },
   ["nvim-ts-context-commentstring"] = {
     loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring"
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring",
+    url = "https://github.com/JoosepAlviste/nvim-ts-context-commentstring"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
   playground = {
     loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/playground"
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/playground",
+    url = "https://github.com/nvim-treesitter/playground"
   },
   ["plenary.nvim"] = {
     loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/plenary.nvim"
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/plenary.nvim",
+    url = "https://github.com/nvim-lua/plenary.nvim"
   },
   ["popup.nvim"] = {
     loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/popup.nvim"
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/popup.nvim",
+    url = "https://github.com/nvim-lua/popup.nvim"
   },
   ["taboo.vim"] = {
     loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/taboo.vim"
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/taboo.vim",
+    url = "https://github.com/gcmt/taboo.vim"
   },
   tabular = {
     loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/tabular"
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/tabular",
+    url = "https://github.com/godlygeek/tabular"
   },
   ["telescope-coc.nvim"] = {
     loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/telescope-coc.nvim"
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/telescope-coc.nvim",
+    url = "https://github.com/fannheyward/telescope-coc.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/telescope.nvim"
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/telescope.nvim",
+    url = "https://github.com/nvim-telescope/telescope.nvim"
   },
   terminus = {
     loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/terminus"
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/terminus",
+    url = "https://github.com/wincent/terminus"
   },
   ["tokyonight.nvim"] = {
     loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/tokyonight.nvim"
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
+    url = "https://github.com/folke/tokyonight.nvim"
   },
   ["vim-commentary"] = {
     loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/vim-commentary"
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/vim-commentary",
+    url = "https://github.com/tpope/vim-commentary"
   },
   ["vim-cool"] = {
     loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/vim-cool"
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/vim-cool",
+    url = "https://github.com/romainl/vim-cool"
   },
   ["vim-fugitive"] = {
     loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/vim-fugitive"
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/vim-fugitive",
+    url = "https://github.com/tpope/vim-fugitive"
   },
   ["vim-indent-object"] = {
     loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/vim-indent-object"
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/vim-indent-object",
+    url = "https://github.com/michaeljsmith/vim-indent-object"
   },
   ["vim-repeat"] = {
     loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/vim-repeat"
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/vim-repeat",
+    url = "https://github.com/tpope/vim-repeat"
   },
   ["vim-startify"] = {
     loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/vim-startify"
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/vim-startify",
+    url = "https://github.com/mhinz/vim-startify"
   },
   ["vim-surround"] = {
     loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/vim-surround"
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/vim-surround",
+    url = "https://github.com/tpope/vim-surround"
   },
   ["vim-unimpaired"] = {
     loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/vim-unimpaired"
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/vim-unimpaired",
+    url = "https://github.com/tpope/vim-unimpaired"
   },
   ["vim-wordmotion"] = {
     loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/vim-wordmotion"
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/vim-wordmotion",
+    url = "https://github.com/chaoren/vim-wordmotion"
   },
   vimade = {
     loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/vimade"
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/vimade",
+    url = "https://github.com/TaDaa/vimade"
   }
 }
 
@@ -197,5 +227,6 @@ if should_profile then save_profiles() end
 end)
 
 if not no_errors then
+  error_msg = error_msg:gsub('"', '\\"')
   vim.api.nvim_command('echohl ErrorMsg | echom "Error in packer_compiled: '..error_msg..'" | echom "Please check your config for correctness" | echohl None')
 end

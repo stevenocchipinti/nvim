@@ -34,7 +34,7 @@ require("packer").startup {
     use "nvim-lua/popup.nvim"
     use "nvim-lua/plenary.nvim"
     use "kyazdani42/nvim-web-devicons"
-    use "shadmansaleh/lualine.nvim"
+    use "nvim-lualine/lualine.nvim"
     use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
     use "JoosepAlviste/nvim-ts-context-commentstring"
     use "nvim-treesitter/nvim-treesitter-textobjects"
