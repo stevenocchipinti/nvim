@@ -9,7 +9,10 @@
 --                  https://github.com/stevenocchipinti/nvim
 --
 
--- NOTE: Plugin config in the plugin directory
+--------------------------------------------------------------------------------
+--          NOTE: The rest of the config is in the plugin directory           --
+--------------------------------------------------------------------------------
+
 require "packer_bootstrap"
 require("packer").startup {
   function(use)
@@ -92,3 +95,92 @@ vim.opt.undoreload = 10000 -- number of lines to save for undo
 
 -- Live search and replace!
 vim.opt.inccommand = "nosplit"
+
+--------------------------------------------------------------------------------
+--                                  KEY MAPS                                  --
+--------------------------------------------------------------------------------
+
+-- Easier way to copy and paste from the system clipboard
+vim.keymap.set("", "<leader>p", '"+p')
+vim.keymap.set("", "<leader>y", '"+y')
+-- Y should act like C and D!
+vim.keymap.set("n", "Y", "y$")
+
+-- Shortcut for spellcheck
+vim.keymap.set("n", "<leader>z", ":set spell<cr>:Telescope spell_suggest<cr>")
+vim.keymap.set("n", "<leader>Z", ":set nospell<cr>")
+
+-- TODO: Can these formatters be replaced with LSP?
+
+-- Format JSON - filter the file through Python to format it
+vim.keymap.set("n", "=j", ":%!python -m json.tool<cr>")
+vim.keymap.set("v", "=j", ":'<,'>!python -m json.tool<cr>")
+
+-- Format XML - filter the file through xmllint to format it
+vim.keymap.set("n", "=x", ":%!xmllint -format -<cr>")
+vim.keymap.set("v", "=x", ":'<,'>!xmllint -format -<cr>")
+
+-- Remove un-needed whitespace
+vim.keymap.set("n", "=w", function()
+  if not vim.o.binary and vim.o.filetype ~= "diff" then
+    local current_view = vim.fn.winsaveview()
+    vim.cmd [[keeppatterns %s/\s\+$//e]]
+    vim.fn.winrestview(current_view)
+  end
+end)
+
+-- Sudo write
+vim.keymap.set("c", "w!!", "w !sudo tee %")
+
+-- Keep the cursor still and highlight matches when pressing *
+vim.keymap.set(
+  "n",
+  "*",
+  [[ v:count ? '*' : ':set hls <Bar> execute "keepjumps normal! *" <Bar> call winrestview(' . string(winsaveview()) . ')<CR>' ]],
+  { silent = true, expr = true }
+)
+
+--------------------------------------------------------------------------------
+--                                AUTOCOMMANDS                                --
+--------------------------------------------------------------------------------
+
+-- Highlight what was just yanked
+vim.api.nvim_create_autocmd("TextYankPost", {
+  command = "silent! lua vim.highlight.on_yank()",
+})
+
+-- Better Markdown file and git commit defaults
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "octopress", "markdown", "gitcommit" },
+  command = "setlocal spell",
+})
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "octopress", "markdown", "gitcommit" },
+  command = "setlocal textwidth=80",
+})
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "octopress", "markdown", "gitcommit" },
+  command = "nnoremap <leader>= yyp:s/./=/g<cr>",
+})
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "octopress", "markdown", "gitcommit" },
+  command = "nnoremap <leader>- yyp:s/./-/g<cr>",
+})
+
+--------------------------------------------------------------------------------
+--                 STUFF I COULDN'T WORK OUT HOW TO DO IN LUA                 --
+--------------------------------------------------------------------------------
+
+-- :Q is an accidental error for :q
+vim.cmd "cnoreabbrev Q q"
+
+-- Set a nicer foldtext function
+vim.cmd [[
+set foldtext=MinimalFoldText()
+function! MinimalFoldText()
+  let line = getline(v:foldstart)
+  let n = v:foldend - v:foldstart + 1
+  set fillchars=fold:\ 
+  return line . " ⏎ " . n
+endfunction 
+]]
