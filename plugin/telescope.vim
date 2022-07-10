@@ -12,7 +12,6 @@ require("telescope").setup {
     },
   },
 }
-require("telescope").load_extension "coc"
 EOF
 
 nnoremap <leader>tt <cmd>Telescope<cr>
@@ -37,19 +36,3 @@ nnoremap <leader>G <cmd>Telescope grep_string<cr>
 nnoremap <leader>. :lua require('telescope.builtin').find_files({
   \ search_dirs={"~/.config/nvim"}
   \ })<cr>
-
-" COC in Telescope
-nnoremap <leader>cm <cmd>Telescope coc mru<cr>
-nnoremap <leader>cl <cmd>Telescope coc links<cr>
-nnoremap <leader>cc <cmd>Telescope coc commands<cr>
-nnoremap <leader>cr <cmd>Telescope coc references<cr>
-nnoremap <leader>cd <cmd>Telescope coc definitions<cr>
-nnoremap <leader>cD <cmd>Telescope coc declarations<cr>
-nnoremap <leader>ci <cmd>Telescope coc implementations<cr>
-nnoremap <leader>ct <cmd>Telescope coc type_definitions<cr>
-nnoremap <leader>cg <cmd>Telescope coc diagnostics<cr>
-nnoremap <leader>ca <cmd>Telescope coc code_actions<cr>
-nnoremap <leader>cA <cmd>Telescope coc file_code_actions<cr>
-nnoremap <leader>cs <cmd>Telescope coc document_symbols<cr>
-nnoremap <leader>cS <cmd>Telescope coc workspace_symbols<cr>
-nnoremap <leader>cG <cmd>Telescope coc workspace_diagnostics<cr>

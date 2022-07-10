@@ -10,7 +10,6 @@ end
 
 local diagnostics = {
   "diagnostics",
-  sources = { "coc" },
   symbols = { error = " ", warn = " ", info = " ", hint = " " },
 }
 

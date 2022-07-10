@@ -32,10 +32,14 @@ require("packer").startup {
     use "romainl/vim-cool"
 
     -- Neovim specific
-    use { "neoclide/coc.nvim", branch = "release" }
+    use "neovim/nvim-lspconfig"
+    use "williamboman/nvim-lsp-installer"
+    use "jose-elias-alvarez/null-ls.nvim"
+    use { "nvim-neo-tree/neo-tree.nvim", branch = "v2.x" }
     use "folke/tokyonight.nvim"
     use "nvim-lua/popup.nvim"
     use "nvim-lua/plenary.nvim"
+    use "MunifTanjim/nui.nvim"
     use "kyazdani42/nvim-web-devicons"
     use "nvim-lualine/lualine.nvim"
     use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
@@ -43,7 +47,6 @@ require("packer").startup {
     use "nvim-treesitter/nvim-treesitter-textobjects"
     use "nvim-treesitter/playground"
     use "nvim-telescope/telescope.nvim"
-    use "fannheyward/telescope-coc.nvim"
     use "TaDaa/vimade"
     use "karb94/neoscroll.nvim"
     use "lewis6991/gitsigns.nvim"
@@ -83,6 +86,7 @@ vim.opt.secure = true -- Make sure those project .vimrc's are safe
 vim.opt.mouse = "a" -- Enable the mouse
 vim.opt.list = true -- Show `listchars` characters
 vim.opt.laststatus = 3 -- One status bas per window
+vim.opt.signcolumn = "yes" -- Always show the gutter (git signs and diagnostics)
 vim.opt.listchars = { tab = "├─", trail = "·" }
 vim.opt.showbreak = "⤿"
 vim.opt.encoding = "UTF-8"
@@ -109,16 +113,6 @@ vim.keymap.set("n", "Y", "y$")
 -- Shortcut for spellcheck
 vim.keymap.set("n", "<leader>z", ":set spell<cr>:Telescope spell_suggest<cr>")
 vim.keymap.set("n", "<leader>Z", ":set nospell<cr>")
-
--- TODO: Can these formatters be replaced with LSP?
-
--- Format JSON - filter the file through Python to format it
-vim.keymap.set("n", "=j", ":%!python -m json.tool<cr>")
-vim.keymap.set("v", "=j", ":'<,'>!python -m json.tool<cr>")
-
--- Format XML - filter the file through xmllint to format it
-vim.keymap.set("n", "=x", ":%!xmllint -format -<cr>")
-vim.keymap.set("v", "=x", ":'<,'>!xmllint -format -<cr>")
 
 -- Remove un-needed whitespace
 vim.keymap.set("n", "=w", function()
