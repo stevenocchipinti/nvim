@@ -174,15 +174,15 @@ _G.packer_plugins = {
     path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
-  terminus = {
-    loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/terminus",
-    url = "https://github.com/wincent/terminus"
-  },
   ["tokyonight.nvim"] = {
     loaded = true,
     path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
+  },
+  ["typescript.nvim"] = {
+    loaded = true,
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/typescript.nvim",
+    url = "https://github.com/jose-elias-alvarez/typescript.nvim"
   },
   ["vim-commentary"] = {
     loaded = true,

@@ -48,38 +48,29 @@ end
 require("nvim-lsp-installer").setup { automatic_installation = true }
 local lspconfig = require "lspconfig"
 
-lspconfig.tsserver.setup {
+require("typescript").setup {
   on_attach = function(client, bufnr)
     on_attach(client, bufnr)
     -- Disable tsserver's formatting in favour of prettier/eslint
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
   end,
-  commands = {
-    OrganiseImports = {
-      function()
-        vim.lsp.buf.execute_command {
-          command = "_typescript.organizeImports",
-          arguments = { vim.api.nvim_buf_get_name(0) },
-          title = "",
-        }
-      end,
-      description = "Organise imports",
-    },
-  },
 }
 
 lspconfig.bashls.setup { on_attach = on_attach }
-lspconfig.graphql.setup { on_attach = on_attach }
-lspconfig.emmet_ls.setup {}
 
 lspconfig.sumneko_lua.setup {
-  on_attach = on_attach,
+  on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
+    -- Disable sumnekos formatting in favour of stylua
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
+  end,
   settings = {
     Lua = {
       runtime = {
         -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT',
+        version = "LuaJIT",
       },
       diagnostics = {
         -- Get the language server to recognize the `vim` global
@@ -93,8 +84,8 @@ lspconfig.sumneko_lua.setup {
       telemetry = {
         enable = false,
       },
-    }
-  }
+    },
+  },
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -113,6 +104,7 @@ null_ls.setup {
     -- null_ls.builtins.formatting.prettier,
     -- null_ls.builtins.formatting.eslint_d,
     null_ls.builtins.formatting.xmllint,
+    null_ls.builtins.formatting.stylua,
 
     null_ls.builtins.diagnostics.eslint_d,
     null_ls.builtins.diagnostics.fish,

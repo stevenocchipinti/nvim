@@ -16,6 +16,7 @@
 require "packer_bootstrap"
 require("packer").startup {
   function(use)
+    -- Not neovim specific (the rest are)
     use "tpope/vim-commentary"
     use "tpope/vim-fugitive"
     use "tpope/vim-surround"
@@ -27,29 +28,37 @@ require("packer").startup {
     use "mattn/emmet-vim"
     use "bogado/file-line"
     use "mhinz/vim-startify"
-    use "wincent/terminus"
     use "gcmt/taboo.vim"
     use "romainl/vim-cool"
 
-    -- Neovim specific
+    -- Could possibly replace this and vim-commentary with comment.nvim
+    use "JoosepAlviste/nvim-ts-context-commentstring"
+
+    -- LSP
     use "neovim/nvim-lspconfig"
     use "williamboman/nvim-lsp-installer"
     use "jose-elias-alvarez/null-ls.nvim"
-    use { "nvim-neo-tree/neo-tree.nvim", branch = "v2.x" }
-    use "folke/tokyonight.nvim"
-    use "nvim-lua/popup.nvim"
-    use "nvim-lua/plenary.nvim"
-    use "MunifTanjim/nui.nvim"
-    use "kyazdani42/nvim-web-devicons"
-    use "nvim-lualine/lualine.nvim"
+    use "jose-elias-alvarez/typescript.nvim"
+
+    -- Treesitter
     use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
-    use "JoosepAlviste/nvim-ts-context-commentstring"
     use "nvim-treesitter/nvim-treesitter-textobjects"
     use "nvim-treesitter/playground"
+
+    use { "nvim-neo-tree/neo-tree.nvim", branch = "v2.x" }
+    use "folke/tokyonight.nvim"
+    use "nvim-lualine/lualine.nvim"
     use "nvim-telescope/telescope.nvim"
     use "TaDaa/vimade"
     use "karb94/neoscroll.nvim"
     use "lewis6991/gitsigns.nvim"
+
+    -- Dependencies for other plugins
+    use "nvim-lua/popup.nvim"
+    use "nvim-lua/plenary.nvim"
+    use "MunifTanjim/nui.nvim"
+    use "kyazdani42/nvim-web-devicons"
+
     use {
       "glacambre/firenvim",
       run = function()
