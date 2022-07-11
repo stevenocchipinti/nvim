@@ -17,7 +17,6 @@ require "packer_bootstrap"
 require("packer").startup {
   function(use)
     -- Not neovim specific (the rest are)
-    use "tpope/vim-commentary"
     use "tpope/vim-fugitive"
     use "tpope/vim-surround"
     use "tpope/vim-repeat"
@@ -31,9 +30,6 @@ require("packer").startup {
     use "gcmt/taboo.vim"
     use "romainl/vim-cool"
 
-    -- Could possibly replace this and vim-commentary with comment.nvim
-    use "JoosepAlviste/nvim-ts-context-commentstring"
-
     -- LSP
     use "neovim/nvim-lspconfig"
     use "williamboman/nvim-lsp-installer"
@@ -45,6 +41,11 @@ require("packer").startup {
     use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
     use "nvim-treesitter/nvim-treesitter-textobjects"
     use "nvim-treesitter/playground"
+
+    use {
+      'numToStr/Comment.nvim',
+      config = function() require('Comment').setup() end
+    }
 
     use { "nvim-neo-tree/neo-tree.nvim", branch = "v2.x" }
     use "folke/tokyonight.nvim"
@@ -155,6 +156,11 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- Better Markdown file and git commit defaults
+-- autocmd BufNewFile,BufRead requirements*.txt set ft=python
+vim.api.nvim_create_autocmd({'BufNewFile' ,'BufRead'}, {
+  pattern = "*.mdx",
+  command = "setlocal ft=markdown",
+})
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "octopress", "markdown", "gitcommit" },
   command = "setlocal spell",

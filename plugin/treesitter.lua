@@ -1,8 +1,7 @@
 require("nvim-treesitter.configs").setup {
-  ensure_installed = { "javascript", "typescript", "lua", "json", "json5", "jsdoc", "html", "css", "fish" },
+  ensure_installed = { "javascript", "typescript", "lua", "json", "json5", "jsdoc", "html", "css", "fish", "markdown" },
   highlight = { enable = true },
   indent = { enable = true },
-  context_commentstring = { enable = true },
   incremental_selection = {
     enable = true,
     keymaps = {
