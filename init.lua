@@ -53,6 +53,7 @@ require("packer").startup {
     use "TaDaa/vimade"
     use "karb94/neoscroll.nvim"
     use "lewis6991/gitsigns.nvim"
+    use "rcarriga/nvim-notify"
 
     -- Dependencies for other plugins
     use "nvim-lua/popup.nvim"
