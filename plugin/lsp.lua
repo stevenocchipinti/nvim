@@ -84,9 +84,7 @@ lspconfig.sumneko_lua.setup {
         library = vim.api.nvim_get_runtime_file("", true),
       },
       -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
+      telemetry = { enable = false },
     },
   },
 }
@@ -106,17 +104,11 @@ null_ls.setup {
     null_ls.builtins.formatting.prettierd,
     -- null_ls.builtins.formatting.prettier,
     -- null_ls.builtins.formatting.eslint_d,
-    null_ls.builtins.formatting.xmllint,
-    null_ls.builtins.formatting.stylua,
+    null_ls.builtins.formatting.xmllint, null_ls.builtins.formatting.lua_format,
 
-    null_ls.builtins.diagnostics.eslint_d,
-    null_ls.builtins.diagnostics.fish,
-    null_ls.builtins.diagnostics.zsh,
-
-    null_ls.builtins.code_actions.eslint_d,
-    null_ls.builtins.code_actions.gitsigns,
-
-    null_ls.builtins.hover.dictionary,
+    null_ls.builtins.diagnostics.eslint_d, null_ls.builtins.diagnostics.fish,
+    null_ls.builtins.diagnostics.zsh, null_ls.builtins.code_actions.eslint_d,
+    null_ls.builtins.code_actions.gitsigns, null_ls.builtins.hover.dictionary,
   },
   on_attach = on_attach,
 }

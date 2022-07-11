@@ -4,9 +4,7 @@ local filename = {
   symbols = { modified = "  ", readonly = "  " },
 }
 
-local buffer = function()
-  return "﬘ " .. vim.api.nvim_get_current_buf()
-end
+local buffer = function() return "﬘ " .. vim.api.nvim_get_current_buf() end
 
 local diagnostics = {
   "diagnostics",

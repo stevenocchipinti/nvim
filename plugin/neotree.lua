@@ -3,10 +3,9 @@ vim.cmd [[ let g:neo_tree_remove_legacy_commands = 1 ]]
 
 vim.keymap.set("n", "<leader>f", ":Neotree reveal float\n")
 
+-- LuaFormatter off
 require("neo-tree").setup {
-  filesystem = {
-    follow_current_file = true,
-  },
+  filesystem = { follow_current_file = true },
   window = {
     mappings = {
       ["l"] = "open",
@@ -14,3 +13,4 @@ require("neo-tree").setup {
     },
   },
 }
+-- LuaFormatter on

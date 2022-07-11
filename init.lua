@@ -8,11 +8,9 @@
 --
 --                  https://github.com/stevenocchipinti/nvim
 --
-
 --------------------------------------------------------------------------------
 --          NOTE: The rest of the config is in the plugin directory           --
 --------------------------------------------------------------------------------
-
 require "packer_bootstrap"
 require("packer").startup {
   function(use)
@@ -33,9 +31,9 @@ require("packer").startup {
     -- LSP
     use "neovim/nvim-lspconfig"
     use "williamboman/nvim-lsp-installer"
+    use "onsails/lspkind.nvim"
     use "jose-elias-alvarez/null-ls.nvim"
     use "jose-elias-alvarez/typescript.nvim"
-    use "onsails/lspkind.nvim"
 
     -- Treesitter
     use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
@@ -44,7 +42,7 @@ require("packer").startup {
 
     use {
       'numToStr/Comment.nvim',
-      config = function() require('Comment').setup() end
+      config = function() require('Comment').setup() end,
     }
 
     use { "nvim-neo-tree/neo-tree.nvim", branch = "v2.x" }
@@ -64,14 +62,10 @@ require("packer").startup {
 
     use {
       "glacambre/firenvim",
-      run = function()
-        vim.fn["firenvim#install"](0)
-      end,
+      run = function() vim.fn["firenvim#install"](0) end,
     }
   end,
-  config = {
-    display = { open_fn = require("packer.util").float },
-  },
+  config = { display = { open_fn = require("packer.util").float } },
 }
 
 --------------------------------------------------------------------------------
@@ -139,25 +133,21 @@ end)
 vim.keymap.set("c", "w!!", "w !sudo tee %")
 
 -- Keep the cursor still and highlight matches when pressing *
-vim.keymap.set(
-  "n",
-  "*",
+vim.keymap.set("n", "*",
   [[ v:count ? '*' : ':set hls <Bar> execute "keepjumps normal! *" <Bar> call winrestview(' . string(winsaveview()) . ')<CR>' ]],
-  { silent = true, expr = true }
-)
+  { silent = true, expr = true })
 
 --------------------------------------------------------------------------------
 --                                AUTOCOMMANDS                                --
 --------------------------------------------------------------------------------
 
 -- Highlight what was just yanked
-vim.api.nvim_create_autocmd("TextYankPost", {
-  command = "silent! lua vim.highlight.on_yank()",
-})
+vim.api.nvim_create_autocmd("TextYankPost",
+  { command = "silent! lua vim.highlight.on_yank()" })
 
 -- Better Markdown file and git commit defaults
 -- autocmd BufNewFile,BufRead requirements*.txt set ft=python
-vim.api.nvim_create_autocmd({'BufNewFile' ,'BufRead'}, {
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
   pattern = "*.mdx",
   command = "setlocal ft=markdown",
 })

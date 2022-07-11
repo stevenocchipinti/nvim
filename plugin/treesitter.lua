@@ -1,5 +1,8 @@
 require("nvim-treesitter.configs").setup {
-  ensure_installed = { "javascript", "typescript", "lua", "json", "json5", "jsdoc", "html", "css", "fish", "markdown" },
+  ensure_installed = {
+    "javascript", "typescript", "lua", "json", "json5", "jsdoc", "html", "css",
+    "fish", "markdown",
+  },
   highlight = { enable = true },
   indent = { enable = true },
   incremental_selection = {
