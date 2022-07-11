@@ -28,6 +28,11 @@ require("packer").startup {
     use "gcmt/taboo.vim"
     use "romainl/vim-cool"
 
+    -- Treesitter
+    use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
+    use "nvim-treesitter/nvim-treesitter-textobjects"
+    use "nvim-treesitter/playground"
+
     -- LSP
     use "neovim/nvim-lspconfig"
     use "williamboman/nvim-lsp-installer"
@@ -35,14 +40,20 @@ require("packer").startup {
     use "jose-elias-alvarez/null-ls.nvim"
     use "jose-elias-alvarez/typescript.nvim"
 
-    -- Treesitter
-    use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
-    use "nvim-treesitter/nvim-treesitter-textobjects"
-    use "nvim-treesitter/playground"
+    -- Autocomplete
+    use "hrsh7th/cmp-nvim-lsp"
+    use "hrsh7th/cmp-buffer"
+    use "hrsh7th/cmp-path"
+    use "hrsh7th/cmp-cmdline"
+    use "hrsh7th/nvim-cmp"
+
+    -- Snippets (needed for nvim-cmp above)
+    use "L3MON4D3/LuaSnip"
+    use "saadparwaiz1/cmp_luasnip"
 
     use {
-      'numToStr/Comment.nvim',
-      config = function() require('Comment').setup() end,
+      "numToStr/Comment.nvim",
+      config = function() require("Comment").setup() end,
     }
 
     use { "nvim-neo-tree/neo-tree.nvim", branch = "v2.x" }
@@ -111,8 +122,8 @@ vim.opt.inccommand = "nosplit"
 --------------------------------------------------------------------------------
 
 -- Easier way to copy and paste from the system clipboard
-vim.keymap.set("", "<leader>p", '"+p')
-vim.keymap.set("", "<leader>y", '"+y')
+vim.keymap.set("", "<leader>p", "\"+p")
+vim.keymap.set("", "<leader>y", "\"+y")
 -- Y should act like C and D!
 vim.keymap.set("n", "Y", "y$")
 
@@ -147,7 +158,7 @@ vim.api.nvim_create_autocmd("TextYankPost",
 
 -- Better Markdown file and git commit defaults
 -- autocmd BufNewFile,BufRead requirements*.txt set ft=python
-vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   pattern = "*.mdx",
   command = "setlocal ft=markdown",
 })

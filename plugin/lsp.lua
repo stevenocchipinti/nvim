@@ -10,10 +10,6 @@ vim.keymap.set("n", "<leader>lq", vim.diagnostic.setloclist, opts)
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local on_attach = function(client, bufnr)
 
-  -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-  vim.cmd([[ autocmd CompleteDone * pclose ]]) -- Close the preview window
-
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
@@ -120,7 +116,3 @@ for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
-
--- Custom lsp omnicomplete icons
-
-require('lspkind').init({ mode = 'symbol_text' })
