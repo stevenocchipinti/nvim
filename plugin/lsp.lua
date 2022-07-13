@@ -7,38 +7,41 @@ vim.keymap.set("n", "<leader>lq", vim.diagnostic.setloclist, opts)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-local on_attach = function(client, bufnr)
-
+local keymap_on_attach = function(_, bufnr)
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
   vim.keymap.set("n", "gD", vim.lsp.buf.type_definition, bufopts)
-  -- vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
   vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
   vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
   vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
-  -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-  -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-  -- vim.keymap.set('n', '<space>wl', function()
-  --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  -- end, bufopts)
   vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
   vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
   vim.keymap.set("n", "<leader>lgq", vim.lsp.buf.formatting, bufopts)
+end
 
-  -- Format on save
-  if client.supports_method "textDocument/formatting" then
-    vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      group = augroup,
-      buffer = bufnr,
-      callback = function()
-        -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-        vim.lsp.buf.formatting_sync()
-      end,
-    })
+-- Requires neovim 0.8:
+--   https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Avoiding-LSP-formatting-conflicts
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+local format_on_save_on_attach = function(client, bufnr)
+  if client.supports_method("textDocument/formatting") then
+    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+    vim.api.nvim_create_autocmd(
+      "BufWritePre", {
+        group = augroup,
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.format(
+            {
+              -- apply whatever logic you want (in this example, we'll only use null-ls)
+              filter = function(c) return c.name == "null-ls" end,
+              bufnr = bufnr,
+            }
+          )
+        end,
+      }
+    )
   end
 end
 
@@ -48,23 +51,11 @@ require("nvim-lsp-installer").setup { automatic_installation = true }
 local lspconfig = require "lspconfig"
 
 require("typescript").setup {
-  on_attach = function(client, bufnr)
-    on_attach(client, bufnr)
-    -- Disable tsserver's formatting in favour of prettier/eslint
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
-  end,
+  on_attach = function(client, bufnr) keymap_on_attach(client, bufnr) end,
 }
 
-lspconfig.bashls.setup { on_attach = on_attach }
-
 lspconfig.sumneko_lua.setup {
-  on_attach = function(client, bufnr)
-    on_attach(client, bufnr)
-    -- Disable sumnekos formatting in favour of stylua
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
-  end,
+  server = function(client, bufnr) keymap_on_attach(client, bufnr) end,
   settings = {
     Lua = {
       runtime = {
@@ -85,12 +76,22 @@ lspconfig.sumneko_lua.setup {
   },
 }
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+local vim_capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = require("cmp_nvim_lsp").update_capabilities(
+  vim_capabilities
+)
+
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-lspconfig.html.setup { capabilities = capabilities, on_attach = on_attach }
-lspconfig.cssls.setup { capabilities = capabilities, on_attach = on_attach }
-lspconfig.jsonls.setup { capabilities = capabilities, on_attach = on_attach }
+lspconfig.html
+  .setup { capabilities = capabilities, on_attach = keymap_on_attach }
+
+lspconfig.cssls.setup {
+  capabilities = capabilities,
+  on_attach = keymap_on_attach,
+}
+
+lspconfig.bashls.setup { on_attach = keymap_on_attach }
 
 -- Null-ls configs (non language server integrations)
 
@@ -100,13 +101,22 @@ null_ls.setup {
     null_ls.builtins.formatting.prettierd,
     -- null_ls.builtins.formatting.prettier,
     -- null_ls.builtins.formatting.eslint_d,
-    null_ls.builtins.formatting.xmllint, null_ls.builtins.formatting.lua_format,
+    null_ls.builtins.formatting.xmllint,
+    null_ls.builtins.formatting.lua_format,
 
-    null_ls.builtins.diagnostics.eslint_d, null_ls.builtins.diagnostics.fish,
-    null_ls.builtins.diagnostics.zsh, null_ls.builtins.code_actions.eslint_d,
-    null_ls.builtins.code_actions.gitsigns, null_ls.builtins.hover.dictionary,
+    null_ls.builtins.diagnostics.eslint_d,
+    null_ls.builtins.diagnostics.fish,
+    null_ls.builtins.diagnostics.zsh,
+
+    null_ls.builtins.code_actions.eslint_d,
+    null_ls.builtins.code_actions.gitsigns,
+
+    null_ls.builtins.hover.dictionary,
   },
-  on_attach = on_attach,
+  on_attach = function(client, bufnr)
+    keymap_on_attach(client, bufnr)
+    format_on_save_on_attach(client, bufnr)
+  end,
 }
 
 -- Custom diagnostic icons

@@ -25,7 +25,7 @@ require("packer").startup {
     use "mattn/emmet-vim"
     use "bogado/file-line"
     use "mhinz/vim-startify"
-    use "gcmt/taboo.vim"
+    use "gcmt/taboo.vim" -- May be able to use com/nanozuki/tabby.nvim instead
     use "romainl/vim-cool"
 
     -- Treesitter
@@ -56,25 +56,36 @@ require("packer").startup {
       config = function() require("Comment").setup() end,
     }
 
+    -- Floating file browser
     use { "nvim-neo-tree/neo-tree.nvim", branch = "v2.x" }
-    use "folke/tokyonight.nvim"
-    use "nvim-lualine/lualine.nvim"
+
+    -- Fuzzy finder
     use "nvim-telescope/telescope.nvim"
+
+    -- Status bar
+    use "nvim-lualine/lualine.nvim"
+
+    -- Git diff, blame, signs, etc.
+    use "lewis6991/gitsigns.nvim"
+
+    -- Colour scheme
+    use "folke/tokyonight.nvim"
+
+    -- Misc
     use "TaDaa/vimade"
     use "karb94/neoscroll.nvim"
-    use "lewis6991/gitsigns.nvim"
     use "rcarriga/nvim-notify"
+
+    use {
+      "glacambre/firenvim",
+      run = function() vim.fn["firenvim#install"](0) end,
+    }
 
     -- Dependencies for other plugins
     use "nvim-lua/popup.nvim"
     use "nvim-lua/plenary.nvim"
     use "MunifTanjim/nui.nvim"
     use "kyazdani42/nvim-web-devicons"
-
-    use {
-      "glacambre/firenvim",
-      run = function() vim.fn["firenvim#install"](0) end,
-    }
   end,
   config = { display = { open_fn = require("packer.util").float } },
 }
