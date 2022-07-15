@@ -14,20 +14,6 @@
 require "packer_bootstrap"
 require("packer").startup {
   function(use)
-    -- Not neovim specific (the rest are)
-    use "tpope/vim-fugitive"
-    use "tpope/vim-surround"
-    use "tpope/vim-repeat"
-    use "tpope/vim-unimpaired"
-    use "michaeljsmith/vim-indent-object"
-    use "chaoren/vim-wordmotion"
-    use "godlygeek/tabular"
-    use "mattn/emmet-vim"
-    use "bogado/file-line"
-    use "mhinz/vim-startify"
-    use "gcmt/taboo.vim" -- May be able to use com/nanozuki/tabby.nvim instead
-    use "romainl/vim-cool"
-
     -- Treesitter
     use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
     use "nvim-treesitter/nvim-treesitter-textobjects"
@@ -41,20 +27,15 @@ require("packer").startup {
     use "jose-elias-alvarez/typescript.nvim"
 
     -- Autocomplete
+    use "hrsh7th/nvim-cmp"
     use "hrsh7th/cmp-nvim-lsp"
     use "hrsh7th/cmp-buffer"
     use "hrsh7th/cmp-path"
     use "hrsh7th/cmp-cmdline"
-    use "hrsh7th/nvim-cmp"
 
     -- Snippets (needed for nvim-cmp above)
     use "L3MON4D3/LuaSnip"
     use "saadparwaiz1/cmp_luasnip"
-
-    use {
-      "numToStr/Comment.nvim",
-      config = function() require("Comment").setup() end,
-    }
 
     -- Floating file browser
     use { "nvim-neo-tree/neo-tree.nvim", branch = "v2.x" }
@@ -62,19 +43,35 @@ require("packer").startup {
     -- Fuzzy finder
     use "nvim-telescope/telescope.nvim"
 
-    -- Status bar
+    -- Status and tab bar
     use "nvim-lualine/lualine.nvim"
-
-    -- Git diff, blame, signs, etc.
-    use "lewis6991/gitsigns.nvim"
+    use "nanozuki/tabby.nvim"
 
     -- Colour scheme
     use "folke/tokyonight.nvim"
 
+    -- Git (diff, blame, signs, etc.)
+    use "lewis6991/gitsigns.nvim"
+    use "tpope/vim-fugitive"
+
     -- Misc
+    use "tpope/vim-surround"
+    use "tpope/vim-repeat"
+    use "tpope/vim-unimpaired"
+    use "michaeljsmith/vim-indent-object"
+    use "chaoren/vim-wordmotion"
+    use "godlygeek/tabular"
+    use "mattn/emmet-vim"
+    use "bogado/file-line"
+    use "mhinz/vim-startify"
+    use "romainl/vim-cool"
     use "TaDaa/vimade"
     use "karb94/neoscroll.nvim"
     use "rcarriga/nvim-notify"
+    use {
+      "numToStr/Comment.nvim",
+      config = function() require("Comment").setup() end,
+    }
 
     use {
       "glacambre/firenvim",
@@ -143,52 +140,65 @@ vim.keymap.set("n", "<leader>z", ":set spell<cr>:Telescope spell_suggest<cr>")
 vim.keymap.set("n", "<leader>Z", ":set nospell<cr>")
 
 -- Remove un-needed whitespace
-vim.keymap.set("n", "=w", function()
-  if not vim.o.binary and vim.o.filetype ~= "diff" then
-    local current_view = vim.fn.winsaveview()
-    vim.cmd [[keeppatterns %s/\s\+$//e]]
-    vim.fn.winrestview(current_view)
+vim.keymap.set(
+  "n", "=w", function()
+    if not vim.o.binary and vim.o.filetype ~= "diff" then
+      local current_view = vim.fn.winsaveview()
+      vim.cmd [[keeppatterns %s/\s\+$//e]]
+      vim.fn.winrestview(current_view)
+    end
   end
-end)
+)
 
 -- Sudo write
 vim.keymap.set("c", "w!!", "w !sudo tee %")
 
 -- Keep the cursor still and highlight matches when pressing *
-vim.keymap.set("n", "*",
-  [[ v:count ? '*' : ':set hls <Bar> execute "keepjumps normal! *" <Bar> call winrestview(' . string(winsaveview()) . ')<CR>' ]],
-  { silent = true, expr = true })
+vim.keymap.set(
+  "n", "*",
+    [[ v:count ? '*' : ':set hls <Bar> execute "keepjumps normal! *" <Bar> call winrestview(' . string(winsaveview()) . ')<CR>' ]],
+    { silent = true, expr = true }
+)
 
 --------------------------------------------------------------------------------
 --                                AUTOCOMMANDS                                --
 --------------------------------------------------------------------------------
 
 -- Highlight what was just yanked
-vim.api.nvim_create_autocmd("TextYankPost",
-  { command = "silent! lua vim.highlight.on_yank()" })
+vim.api.nvim_create_autocmd(
+  "TextYankPost", { command = "silent! lua vim.highlight.on_yank()" }
+)
 
 -- Better Markdown file and git commit defaults
 -- autocmd BufNewFile,BufRead requirements*.txt set ft=python
-vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-  pattern = "*.mdx",
-  command = "setlocal ft=markdown",
-})
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "octopress", "markdown", "gitcommit" },
-  command = "setlocal spell",
-})
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "octopress", "markdown", "gitcommit" },
-  command = "setlocal textwidth=80",
-})
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "octopress", "markdown", "gitcommit" },
-  command = "nnoremap <leader>= yyp:s/./=/g<cr>",
-})
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "octopress", "markdown", "gitcommit" },
-  command = "nnoremap <leader>- yyp:s/./-/g<cr>",
-})
+vim.api.nvim_create_autocmd(
+  { "BufNewFile", "BufRead" },
+    { pattern = "*.mdx", command = "setlocal ft=markdown" }
+)
+vim.api.nvim_create_autocmd(
+  "FileType", {
+    pattern = { "octopress", "markdown", "gitcommit" },
+    command = "setlocal spell",
+  }
+)
+vim.api.nvim_create_autocmd(
+  "FileType", {
+    pattern = { "octopress", "markdown", "gitcommit" },
+    command = "setlocal textwidth=80",
+  }
+)
+vim.api.nvim_create_autocmd(
+  "FileType", {
+    pattern = { "octopress", "markdown", "gitcommit" },
+    command = "nnoremap <leader>= yyp:s/./=/g<cr>",
+  }
+)
+vim.api.nvim_create_autocmd(
+  "FileType", {
+    pattern = { "octopress", "markdown", "gitcommit" },
+    command = "nnoremap <leader>- yyp:s/./-/g<cr>",
+  }
+)
 
 --------------------------------------------------------------------------------
 --                 STUFF I COULDN'T WORK OUT HOW TO DO IN LUA                 --

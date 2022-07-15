@@ -1,10 +1,13 @@
+local bufferText =
+  function() return "﬘ " .. vim.api.nvim_get_current_buf() end
+
+local buffer = { bufferText, separator = { left = "", right = "" } }
+
 local filename = {
   "filename",
   path = 1,
   symbols = { modified = "  ", readonly = "  " },
 }
-
-local buffer = function() return "﬘ " .. vim.api.nvim_get_current_buf() end
 
 local diagnostics = {
   "diagnostics",
@@ -16,6 +19,7 @@ local filetype = {
   disable_text = true,
   colored = false,
   right_padding = 2,
+  separator = { left = "", right = "" },
 }
 
 require("lualine").setup {
@@ -37,6 +41,6 @@ require("lualine").setup {
     lualine_c = { filename },
     lualine_x = {},
     lualine_y = {},
-    lualine_z = {},
+    lualine_z = { diagnostics },
   },
 }

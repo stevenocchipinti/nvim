@@ -205,10 +205,10 @@ _G.packer_plugins = {
     path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
   },
-  ["taboo.vim"] = {
+  ["tabby.nvim"] = {
     loaded = true,
-    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/taboo.vim",
-    url = "https://github.com/gcmt/taboo.vim"
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/tabby.nvim",
+    url = "https://github.com/nanozuki/tabby.nvim"
   },
   tabular = {
     loaded = true,
