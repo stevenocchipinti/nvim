@@ -1,7 +1,15 @@
 require("nvim-treesitter.configs").setup {
   ensure_installed = {
-    "javascript", "typescript", "lua", "json", "json5", "jsdoc", "html", "css",
-    "fish", "markdown",
+    "javascript",
+    "typescript",
+    "lua",
+    "json",
+    "json5",
+    "jsdoc",
+    "html",
+    "css",
+    "fish",
+    "markdown",
   },
   highlight = { enable = true },
   indent = { enable = true },
@@ -26,4 +34,5 @@ require("nvim-treesitter.configs").setup {
     },
   },
   playground = { enable = true },
+  context_commentstring = { enable = true, enable_autocmd = false },
 }

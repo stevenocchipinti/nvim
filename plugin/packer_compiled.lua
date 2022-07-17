@@ -185,6 +185,11 @@ _G.packer_plugins = {
     path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects",
     url = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
   },
+  ["nvim-ts-context-commentstring"] = {
+    loaded = true,
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring",
+    url = "https://github.com/JoosepAlviste/nvim-ts-context-commentstring"
+  },
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
