@@ -27,6 +27,7 @@ require("packer").startup {
     use "jose-elias-alvarez/null-ls.nvim"
     use "jose-elias-alvarez/typescript.nvim"
     use "aca/emmet-ls"
+    use "folke/trouble.nvim"
 
     -- Autocomplete
     use "hrsh7th/nvim-cmp"

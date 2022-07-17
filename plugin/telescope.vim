@@ -1,4 +1,7 @@
 lua << EOF
+local actions = require("telescope.actions")
+local trouble = require("trouble.providers.telescope")
+
 require("telescope").setup {
   defaults = {
     winblend = 5,
@@ -8,7 +11,9 @@ require("telescope").setup {
       i = {
         ["<C-j>"] = require("telescope.actions").move_selection_better,
         ["<C-k>"] = require("telescope.actions").move_selection_worse,
+        ["<c-t>"] = trouble.open_with_trouble
       },
+      n = { ["<c-t>"] = trouble.open_with_trouble },
     },
   },
 }
@@ -36,3 +41,4 @@ nnoremap <leader>G <cmd>Telescope grep_string<cr>
 nnoremap <leader>. :lua require('telescope.builtin').find_files({
   \ search_dirs={"~/.config/nvim"}
   \ })<cr>
+
