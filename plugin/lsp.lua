@@ -93,6 +93,22 @@ lspconfig.cssls.setup {
 
 lspconfig.bashls.setup { on_attach = keymap_on_attach }
 
+lspconfig.emmet_ls.setup(
+  {
+    on_attach = keymap_on_attach,
+    capabilities = capabilities,
+    filetypes = {
+      "html",
+      "typescriptreact",
+      "javascriptreact",
+      "css",
+      "sass",
+      "scss",
+      "less",
+    },
+  }
+)
+
 -- Null-ls configs (non language server integrations)
 
 local null_ls = require "null-ls"

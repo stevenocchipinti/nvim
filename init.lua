@@ -26,6 +26,7 @@ require("packer").startup {
     use "onsails/lspkind.nvim"
     use "jose-elias-alvarez/null-ls.nvim"
     use "jose-elias-alvarez/typescript.nvim"
+    use "aca/emmet-ls"
 
     -- Autocomplete
     use "hrsh7th/nvim-cmp"
@@ -62,7 +63,6 @@ require("packer").startup {
     use "michaeljsmith/vim-indent-object"
     use "chaoren/vim-wordmotion"
     use "godlygeek/tabular"
-    use "mattn/emmet-vim"
     use "bogado/file-line"
     use "mhinz/vim-startify"
     use "romainl/vim-cool"
