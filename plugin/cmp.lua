@@ -16,8 +16,7 @@ cmp.setup(
     mapping = cmp.mapping.preset.insert(
       {
         ["<C-Space>"] = cmp.mapping.complete({}),
-        -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-        ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        ["<CR>"] = cmp.mapping.confirm(),
         ["<C-e>"] = cmp.mapping.abort(),
         ["<C-u>"] = cmp.mapping.scroll_docs(-4),
         ["<C-d>"] = cmp.mapping.scroll_docs(4),
