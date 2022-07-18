@@ -34,15 +34,36 @@ local function buffer_name(focus_win)
   return name
 end
 
+local function number_icon(n)
+  local icons = {
+    "",
+    "  ",
+    "  ",
+    "  ",
+    "  ",
+    "  ",
+    "  ",
+    "  ",
+    "  ",
+    "  ",
+  }
+
+  if n > 9 then
+    return icons[10]
+  elseif n > 1 then
+    return icons[n]
+  else
+    return ""
+  end
+end
+
 local function tab_label(tabid)
   local windows = win.all_in_tab(tabid)
   local focus_win = tab.get_current_win(tabid)
   local buf_name_custom = tab.get_raw_name(tabid)
   local buf_name = buffer_name(focus_win)
 
-  local name = ""
-
-  if #windows > 1 then name = name .. " " .. #windows end
+  local name = number_icon(#windows)
 
   local function has_modified_buf(_, window)
     local buf = vim.api.nvim_win_get_buf(window)
