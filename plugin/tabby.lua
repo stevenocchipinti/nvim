@@ -15,12 +15,30 @@ local function some(table, predicate)
   return result
 end
 
+-- Shows the filename with the path
+-- Unless it's index.ext, then it shows parent-dir/  instead
+local function buffer_name(focus_win)
+  local name = ""
+
+  local buf_name = win.get_bufname(focus_win)
+  local icon = devicons.get_icon(buf_name)
+
+  local buf_handle = vim.api.nvim_win_get_buf(focus_win)
+  local buf_path = vim.api.nvim_buf_get_name(buf_handle)
+  local path_and_index, n = string.gsub(
+    buf_path, ".+/(.+)/index%.%w+$", "%1/ "
+  )
+
+  name = n == 0 and buf_name or path_and_index
+  if icon then name = name .. " " .. icon end
+  return name
+end
+
 local function tab_label(tabid)
   local windows = win.all_in_tab(tabid)
   local focus_win = tab.get_current_win(tabid)
   local buf_name_custom = tab.get_raw_name(tabid)
-  local buf_name = win.get_bufname(focus_win)
-  local icon = devicons.get_icon(buf_name)
+  local buf_name = buffer_name(focus_win)
 
   local name = ""
 
@@ -39,8 +57,6 @@ local function tab_label(tabid)
   else
     name = name .. " " .. buf_name
   end
-
-  if icon then name = name .. " " .. icon end
 
   return name .. " "
 end
@@ -72,4 +88,4 @@ local tabline = {
   },
 }
 
-require("tabby").setup({ tabline = tabline })
+require("tabby").setup({ tabline = tabline, opt = { show_at_least = 2 } })
