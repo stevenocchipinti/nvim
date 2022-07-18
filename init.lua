@@ -70,6 +70,8 @@ require("packer").startup {
     use "TaDaa/vimade"
     use "karb94/neoscroll.nvim"
     use "rcarriga/nvim-notify"
+    use "stevearc/dressing.nvim"
+
     use {
       "numToStr/Comment.nvim",
       config = function() require("Comment").setup() end,
