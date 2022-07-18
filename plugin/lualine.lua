@@ -3,6 +3,8 @@ local bufferText =
 
 local buffer = { bufferText, separator = { left = "", right = "" } }
 
+local branch = { "branch", icon = "" }
+
 local filename = {
   "filename",
   path = 1,
@@ -29,7 +31,7 @@ require("lualine").setup {
   },
   sections = {
     lualine_a = { buffer },
-    lualine_b = { "branch" },
+    lualine_b = { branch },
     lualine_c = { filename },
     lualine_x = {},
     lualine_y = { diagnostics },
