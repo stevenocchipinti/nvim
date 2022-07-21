@@ -2,7 +2,7 @@ local luasnip = require("luasnip")
 local snip = luasnip.snippet
 -- local sn = luasnip.snippet_node
 -- local isn = luasnip.indent_snippet_node
-local t = luasnip.text_node
+-- local t = luasnip.text_node
 local i = luasnip.insert_node
 local f = luasnip.function_node
 -- local c = luasnip.choice_node
@@ -22,6 +22,9 @@ luasnip.config.set_config {
 
   -- This one is cool cause if you have dynamic snippets, it updates as you type!
   updateevents = "TextChanged,TextChangedI",
+
+  -- This might be useful for when stopping using a snippet halfway
+  delete_check_events = "TextChanged,InsertLeave",
 
   -- Autosnippets:
   enable_autosnippets = true,
@@ -55,21 +58,17 @@ vim.keymap.set(
 luasnip.add_snippets(
   "javascript", {
     snip(
-      "import", fmt(
-        [[import {{ {} }} from "{}"]], { i(2, "name"), i(1, "package-name") },
-          { desc = "xxxxImport a named thing" }
-      )
+      { trig = "import", name = "import named" },
+        fmt([[import {{ {} }} from "{}"]], { i(2), i(1) })
     ),
 
     snip(
-      "import", fmt(
-        [[import {} from "{}"]], { i(1, "name"), i(2, "package-name") },
-          { desc = "Import a default thing" }
-      )
+      { trig = "import", name = "import default" },
+        fmt([[import {} from "{}"]], { i(1), i(2) })
     ),
 
     snip(
-      "useState", fmt(
+      { trig = "useState", name = "React useState" }, fmt(
         [[const [{}] = useState({})]], {
           f(
             function(args)
@@ -83,7 +82,7 @@ luasnip.add_snippets(
     ),
 
     snip(
-      "useEffect", fmt(
+      { trig = "useEffect", name = "React useEffect" }, fmt(
         [[useEffect(() => {{
   {}
 }}, [{}])
