@@ -119,6 +119,8 @@ vim.opt.signcolumn = "yes" -- Always show the gutter (git signs and diagnostics)
 vim.opt.listchars = { tab = "├─", trail = "·" }
 vim.opt.showbreak = "⤿"
 vim.opt.encoding = "UTF-8"
+vim.opt.termguicolors = true -- Use the colours from the terminal
+vim.opt.winblend = 5 -- Use pseudo-transparency on floating windows
 
 -- Make vim remember undos, even when the file is closed!
 vim.opt.undofile = true -- Save undo's after file closes
