@@ -16,9 +16,15 @@ local keymap_on_attach = function(_, bufnr)
   vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
   vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
-  vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
   vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
   vim.keymap.set("n", "<leader>lgq", vim.lsp.buf.formatting, bufopts)
+  -- vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
+  vim.keymap.set(
+    "n", "<leader>rn", function()
+      vim.cmd [[ VimadeDisable ]]
+      require("inc_rename").rename({ default = vim.fn.expand("<cword>") })
+    end, bufopts
+  )
 end
 
 -- Requires neovim 0.8:
