@@ -141,6 +141,11 @@ _G.packer_plugins = {
     path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/lspkind.nvim",
     url = "https://github.com/onsails/lspkind.nvim"
   },
+  ["lua-dev.nvim"] = {
+    loaded = true,
+    path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/lua-dev.nvim",
+    url = "https://github.com/folke/lua-dev.nvim"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/Users/steve.occhipinti/.local/share/nvim/site/pack/packer/start/lualine.nvim",

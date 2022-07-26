@@ -24,6 +24,7 @@ local keymap_on_attach = function(_, bufnr)
   -- vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
   vim.keymap.set(
     "n", "<leader>rn", function()
+      ---@diagnostic disable-next-line: missing-parameter
       require("inc_rename").rename({ default = vim.fn.expand("<cword>") })
     end, bufopts
   )

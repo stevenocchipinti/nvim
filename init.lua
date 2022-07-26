@@ -28,6 +28,7 @@ require("packer").startup {
     use "jose-elias-alvarez/typescript.nvim"
     use "aca/emmet-ls"
     use "folke/trouble.nvim"
+    use "folke/lua-dev.nvim"
     use {
       "smjonas/inc-rename.nvim",
       config = function() require("inc_rename").setup() end,
