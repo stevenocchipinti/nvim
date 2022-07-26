@@ -54,9 +54,14 @@ local format_on_save_on_attach = function(client, bufnr)
   end
 end
 
+-- Mason (previously lspinstall)
+-- Installs the nessesary binaries for LSP to work (tsserver, etc.)
+
+require("mason").setup()
+require("mason-lspconfig").setup { automatic_installation = true }
+
 -- LSP config
 
-require("nvim-lsp-installer").setup { automatic_installation = true }
 local lspconfig = require "lspconfig"
 
 require("typescript").setup {
