@@ -17,7 +17,10 @@ local keymap_on_attach = function(_, bufnr)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
   vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
   vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set("n", "<leader>lgq", vim.lsp.buf.formatting, bufopts)
+  vim.keymap.set(
+    "n", "<leader>q", function() vim.lsp.buf.format({ async = true }) end,
+      bufopts
+  )
   -- vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
   vim.keymap.set(
     "n", "<leader>rn", function()
