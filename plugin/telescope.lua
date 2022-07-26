@@ -22,18 +22,21 @@ vim.keymap.set("n", "<leader>tb", "<cmd>Telescope buffers<cr>")
 vim.keymap.set("n", "<leader>th", "<cmd>Telescope help_tags<cr>")
 vim.keymap.set("n", "<leader>tq", "<cmd>Telescope quickfix<cr>")
 vim.keymap.set("n", "<leader>tr", "i<cmd>Telescope registers<cr>")
---
--- " Files
+
+-- Files
 vim.keymap.set("n", "<C-p>", "<cmd>Telescope find_files<cr>")
 vim.keymap.set("n", "<leader>tf", "<cmd>Telescope find_files<cr>")
---
--- " Grep
+
+-- Grep
 vim.keymap.set("n", "<leader>tg", "<cmd>Telescope live_grep<cr>")
 vim.keymap.set("n", "<leader>g", "<cmd>Telescope live_grep<cr>")
 vim.keymap.set("n", "<leader>tG", "<cmd>Telescope grep_string<cr>")
 vim.keymap.set("n", "<leader>G", "<cmd>Telescope grep_string<cr>")
---
--- " Vim config
+
+-- Todos
+vim.keymap.set("n", "<leader>tT", "<cmd>TodoTelescope<cr>")
+
+-- Vim config
 vim.keymap.set(
   "n", "<leader>.", function()
     require("telescope.builtin").find_files(

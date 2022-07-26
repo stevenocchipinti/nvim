@@ -19,7 +19,14 @@ vim.keymap.set(
   "n", "<leader>xq", "<cmd>Trouble quickfix<cr>",
     { silent = true, noremap = true }
 )
+
 vim.keymap.set(
   "n", "gR", "<cmd>Trouble lsp_references<cr>",
     { silent = true, noremap = true }
+)
+
+require("todo-comments").setup()
+
+vim.keymap.set(
+  "n", "<leader>xt", "<cmd>TodoTrouble<cr>", { silent = true, noremap = true }
 )
