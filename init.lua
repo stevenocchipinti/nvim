@@ -78,6 +78,7 @@ require("packer").startup {
     use "karb94/neoscroll.nvim"
     use "rcarriga/nvim-notify"
     use "stevearc/dressing.nvim"
+    use "folke/which-key.nvim"
 
     use {
       "numToStr/Comment.nvim",

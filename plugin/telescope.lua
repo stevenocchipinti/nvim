@@ -1,5 +1,6 @@
 local actions = require("telescope.actions")
 local trouble = require("trouble.providers.telescope")
+local wk = require("which-key")
 
 require("telescope").setup {
   defaults = {
@@ -17,30 +18,41 @@ require("telescope").setup {
   },
 }
 
-vim.keymap.set("n", "<leader>tt", "<cmd>Telescope<cr>")
-vim.keymap.set("n", "<leader>tb", "<cmd>Telescope buffers<cr>")
-vim.keymap.set("n", "<leader>th", "<cmd>Telescope help_tags<cr>")
-vim.keymap.set("n", "<leader>tq", "<cmd>Telescope quickfix<cr>")
-vim.keymap.set("n", "<leader>tr", "i<cmd>Telescope registers<cr>")
+wk.register(
+  {
+    ["<leader>t"] = {
+      name = "+Telescope",
+      t = { "<cmd>Telescope<cr>", "Open Telescope" },
+      b = { "<cmd>Telescope buffers<cr>", "Buffers" },
+      h = { "<cmd>Telescope help_tags<cr>", "Help" },
+      q = { "<cmd>Telescope quickfix<cr>", "Quickfix" },
+      r = { "<cmd>Telescope registers<cr>", "Registers" },
+      f = { "<cmd>Telescope find_files<cr>", "Files" },
+      g = { "<cmd>Telescope live_grep<cr>", "Grep" },
+      G = { "<cmd>Telescope grep_string<cr>", "Grep under cursor" },
+    },
 
--- Files
-vim.keymap.set("n", "<C-p>", "<cmd>Telescope find_files<cr>")
-vim.keymap.set("n", "<leader>tf", "<cmd>Telescope find_files<cr>")
+    -- Grep
+    ["<leader>g"] = {
+      name = "+Grep",
+      g = { "<cmd>Telescope live_grep<cr>", "Grep" },
+      G = { "<cmd>Telescope grep_string<cr>", "Grep under cursor" },
+    },
 
--- Grep
-vim.keymap.set("n", "<leader>tg", "<cmd>Telescope live_grep<cr>")
-vim.keymap.set("n", "<leader>g", "<cmd>Telescope live_grep<cr>")
-vim.keymap.set("n", "<leader>tG", "<cmd>Telescope grep_string<cr>")
-vim.keymap.set("n", "<leader>G", "<cmd>Telescope grep_string<cr>")
+    -- Files
+    ["<C-p>"] = { "<cmd>Telescope find_files<cr>", "Files" },
 
--- Todos
-vim.keymap.set("n", "<leader>tT", "<cmd>TodoTelescope<cr>")
+    -- Todos
+    ["<leader>tT"] = { "<cmd>TodoTelescope<cr>", "Todos" },
 
--- Vim config
-vim.keymap.set(
-  "n", "<leader>.", function()
-    require("telescope.builtin").find_files(
-      { search_dirs = { "~/.config/nvim" } }
-    )
-  end
+    -- Neovim Config
+    ["<leader>."] = {
+      function()
+        require("telescope.builtin").find_files(
+          { search_dirs = { "~/.config/nvim" } }
+        )
+      end,
+      "Open Neovim config",
+    },
+  }
 )
