@@ -26,7 +26,7 @@ local function buffer_name(focus_win)
   local buf_handle = vim.api.nvim_win_get_buf(focus_win)
   local buf_path = vim.api.nvim_buf_get_name(buf_handle)
   local path_and_index, n = string.gsub(
-    buf_path, ".+/(.+)/index%.%w+$", "%1/ "
+    buf_path, ".+/(.+)/index%.%w+$", "%1/ "
   )
 
   name = n == 0 and buf_name or path_and_index
