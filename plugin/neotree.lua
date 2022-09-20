@@ -9,5 +9,11 @@ require("neo-tree").setup {
     hijack_netrw_behavior = "open_current",
   },
   popup_border_style = "rounded",
-  window = { mappings = { ["l"] = "open", ["h"] = "close_node" } },
+  window = {
+    mappings = {
+      ["l"] = "open",
+      ["h"] = "close_node",
+      ["<esc>"] = "close_window",
+    },
+  },
 }
