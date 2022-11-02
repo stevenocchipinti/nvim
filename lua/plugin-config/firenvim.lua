@@ -1,3 +1,4 @@
+vim.cmd [[
 let g:firenvim_config = {
   \ 'globalSettings': {
   \   'alt': 'all',
@@ -16,3 +17,4 @@ let g:firenvim_config = {
 if exists('g:started_by_firenvim')
   set guifont=Caskaydia\ Cove\ Nerd\ Font\ Mono:h20
 endif
+]]

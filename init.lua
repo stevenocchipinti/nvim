@@ -98,6 +98,8 @@ require("packer").startup {
   config = { display = { open_fn = require("packer.util").float } },
 }
 
+require("plugin-config")
+
 --------------------------------------------------------------------------------
 --                           STANDARD VIM SETTINGS                            --
 --------------------------------------------------------------------------------
