@@ -50,18 +50,30 @@ require("inc_rename").setup {input_buffer_type = "dressing"}
 -- Installs the nessesary binaries for LSP to work (tsserver, etc.)
 
 require("mason").setup()
-require("mason-lspconfig").setup {automatic_installation = true}
+require("mason-lspconfig").setup {
+  ensure_installed = {},
+  automatic_installation = true
+}
+
+-- Special non-LSP typescript tools config
+-- Hopefully one day this will be replaced with a proper LSP version
+require("typescript-tools").setup {
+  settings = {
+    tsserver_plugins = {
+      -- for TypeScript v4.9+
+      "@styled/typescript-styled-plugin",
+      -- or for older TypeScript versions
+      -- "typescript-styled-plugin",
+    },
+  },
+}
 
 -- LSP config
 
 local lspconfig = require "lspconfig"
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-require("typescript").setup {
-    on_attach = function(client, bufnr) keymap_on_attach(client, bufnr) end
-}
-
-require'lspconfig'.rust_analyzer.setup {
+lspconfig.rust_analyzer.setup {
     on_attach = keymap_on_attach,
     capabilities = capabilities,
     cmd = {"rustup", "run", "stable", "rust-analyzer"}

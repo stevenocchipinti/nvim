@@ -30,12 +30,12 @@ require("packer").startup {
         use "williamboman/mason-lspconfig.nvim"
         use "onsails/lspkind.nvim"
         use "jose-elias-alvarez/null-ls.nvim"
-        use "jose-elias-alvarez/typescript.nvim"
         use "aca/emmet-ls"
         use "folke/trouble.nvim"
         use "folke/todo-comments.nvim"
         use "folke/lua-dev.nvim"
         use "smjonas/inc-rename.nvim"
+        use "pmizio/typescript-tools.nvim"
 
         -- Autocomplete
         use "hrsh7th/nvim-cmp"

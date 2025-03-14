@@ -1,5 +1,5 @@
 local bufferText =
-  function() return "﬘ " .. vim.api.nvim_get_current_buf() end
+  function() return "󰧭 " .. vim.api.nvim_get_current_buf() end
 
 local buffer = { bufferText, separator = { left = "", right = "" } }
 
