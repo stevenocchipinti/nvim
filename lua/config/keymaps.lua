@@ -3,8 +3,8 @@
 -- Add any additional keymaps here
 
 -- Easier way to copy and paste from the system clipboard
-vim.keymap.set("", "<leader>p", '"+p', { desc = "Global clipboard paste" })
-vim.keymap.set("", "<leader>y", '"+y', { desc = "Global clipboard copy" })
+vim.keymap.set("", "<localleader>p", '"+p', { desc = "Global clipboard paste" })
+vim.keymap.set("", "<localleader>y", '"+y', { desc = "Global clipboard copy" })
 
 -- Shortcut for spellcheck
 vim.keymap.set(
@@ -30,9 +30,3 @@ vim.keymap.set(
   [[ v:count ? '*' : ':set hls <Bar> execute "keepjumps normal! *" <Bar> call winrestview(' . string(winsaveview()) . ')<CR>' ]],
   { silent = true, expr = true }
 )
-
--- TODO: Signature help keeps popping up automatically instead of on this keymap
--- Not sure if it's configurable or actually a problem
-vim.keymap.set("i", "<C-s>", function()
-  vim.lsp.buf.signature_help()
-end, { desc = "Signature help" })
