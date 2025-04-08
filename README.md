@@ -1,15 +1,15 @@
-# Neovim Config
+# 💤 LazyVim config
 
-This configuration has been customised for Neovim and will no longer work with
-Vim.
+This configuration now uses [LazyVim](https://github.com/LazyVim/LazyVim) as
+it's base.
 
-To install Neovim on OSX, use:
+My previous config is still in the git history of this repo but was getting a
+little bit difficult to keep up to date.
 
-```
+## Installation
+
+```bash
 brew install neovim
+git clone git@github.com:stevenocchipinti/nvim.git ~/.config/nvim
+alias vim=nvim
 ```
-
-## Setup
-
-1. Clone this repo to `~/.config/nvim`
-2. Add `alias vim=nvim` to shell config

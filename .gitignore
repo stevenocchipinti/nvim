@@ -1,6 +1,8 @@
-plugged/
-.netrwhist
-session/
-spell
-undo/
-sessions/
+tt.*
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+data
