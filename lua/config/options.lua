@@ -6,4 +6,4 @@ vim.opt.clipboard = ""
 vim.opt.relativenumber = false
 vim.opt.colorcolumn = "81"
 vim.opt.listchars = { tab = "├─", trail = "·" }
-vim.opt.showbreak = "⤿"
+vim.opt.mousescroll = "ver:1,hor:0"
