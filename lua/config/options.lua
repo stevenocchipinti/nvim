@@ -7,3 +7,4 @@ vim.opt.relativenumber = false
 vim.opt.colorcolumn = "81"
 vim.opt.listchars = { tab = "├─", trail = "·" }
 vim.opt.mousescroll = "ver:1,hor:0"
+vim.opt.textwidth = 80

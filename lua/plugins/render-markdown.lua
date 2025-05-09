@@ -1,6 +1,7 @@
 return {
   {
     "MeanderingProgrammer/render-markdown.nvim",
+    ft = { "markdown.mdx", "markdown", "norg", "rmd", "org", "codecompanion" },
     opts = {
       code = {
         sign = false,
