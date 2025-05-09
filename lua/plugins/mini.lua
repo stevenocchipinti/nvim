@@ -81,6 +81,14 @@ return {
     },
   },
   {
+    "folke/which-key.nvim",
+    opts = {
+      spec = {
+        { "gs", icon = "󰾹", group = "+Surround" },
+      },
+    },
+  },
+  {
     "echasnovski/mini.ai",
     opts = {
       custom_textobjects = {

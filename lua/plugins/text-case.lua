@@ -55,10 +55,10 @@ return {
   {
     "folke/which-key.nvim",
     opts = {
-      defaults = {
-        ["gz"] = { name = "+Text case with operator" },
-        ["ga"] = { name = "+Text case" },
-        ["gA"] = { name = "+Text case with LSP" },
+      spec = {
+        { "gz", icon = "󰬶", group = "+Text case with operator" },
+        { "ga", icon = "󰬶", group = "+Text case" },
+        { "gA", icon = "󰬶", group = "+Text case with LSP" },
       },
     },
   },
