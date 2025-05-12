@@ -36,6 +36,7 @@ return {
       end)
     end,
   },
+
   {
     "echasnovski/mini.files",
     version = false,
@@ -74,10 +75,24 @@ return {
       },
     },
   },
+
   {
     "echasnovski/mini.surround",
     opts = {
       n_lines = 300,
+      search_method = "cover_or_next",
+      mappings = {
+        add = "<localleader>s", --            Add surrounding in Normal and Visual modes
+        delete = "<localleader>d", --         Delete surrounding
+        replace = "<localleader>c", --        Replace surrounding
+        -- Not so useful ones
+        find = "<localleader>f", --           Find surrounding (to the right)
+        find_left = "<localleader>F", --      Find surrounding (to the left)
+        highlight = "<localleader>h", --      Highlight surrounding
+        update_n_lines = "<localleader>L", -- Update `n_lines`
+        suffix_last = "l", --                 Suffix to search with "prev" method
+        suffix_next = "n", --                 Suffix to search with "next" method
+      },
     },
   },
   {
@@ -88,22 +103,29 @@ return {
       },
     },
   },
+
   {
     "echasnovski/mini.ai",
     opts = {
       custom_textobjects = {
         -- Keys and values for CSS
-        k = { "^[ ]*().-():" },
-        v = { ":[ ]*().-();" },
-
-        -- TODO: Keys and values for JS
-        -- These need to have defined treesitter queries
-        --
-        -- K = gen_spec.treesitter({ a = '@function.outer', i = '@function.inner' }),
-        -- V = gen_spec.treesitter({ a = '@function.outer', i = '@function.inner' }),
+        K = { "^[ ]*().-():" },
+        V = { ":[ ]*().-();" },
       },
     },
   },
+  {
+    "folke/which-key.nvim",
+    opts = {
+      spec = {
+        { "iK", mode = { "o", "x" }, desc = "CSS key" },
+        { "aK", mode = { "o", "x" }, desc = "CSS key" },
+        { "iV", mode = { "o", "x" }, desc = "CSS value" },
+        { "aV", mode = { "o", "x" }, desc = "CSS value" },
+      },
+    },
+  },
+
   {
     "echasnovski/mini.align",
     version = false,

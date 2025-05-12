@@ -30,3 +30,7 @@ vim.keymap.set(
   [[ v:count ? '*' : ':set hls <Bar> execute "keepjumps normal! *" <Bar> call winrestview(' . string(winsaveview()) . ')<CR>' ]],
   { silent = true, expr = true }
 )
+
+-- These LazyVim "defaults" annoy me
+vim.keymap.del("n", "L")
+vim.keymap.del("n", "H")
