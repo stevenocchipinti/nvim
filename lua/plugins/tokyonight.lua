@@ -8,6 +8,7 @@ return {
       hl.LineNr = { fg = c.dark3, bg = c.black }
       hl.CursorLineNr = { bg = c.black, fg = c.orange }
       hl.Folded = { bg = c.black }
+      hl.DiagnosticUnnecessary = {}
     end,
   },
 }
