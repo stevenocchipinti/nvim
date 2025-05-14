@@ -80,7 +80,6 @@ return {
     "echasnovski/mini.surround",
     opts = {
       n_lines = 300,
-      search_method = "cover_or_next",
       mappings = {
         add = "<localleader>s", --            Add surrounding in Normal and Visual modes
         delete = "<localleader>d", --         Delete surrounding
