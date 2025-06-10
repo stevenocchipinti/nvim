@@ -1,8 +1,14 @@
-local bufferText = function()
-  return "󰧭 " .. vim.api.nvim_get_current_buf()
-end
-
-local buffer = { bufferText, separator = { left = "", right = "" } }
+local buffer_or_macro = {
+  function()
+    local rec = vim.fn.reg_recording()
+    if rec == "" then
+      return "󰧭 " .. vim.api.nvim_get_current_buf()
+    else
+      return "  " .. rec
+    end
+  end,
+  separator = { left = "", right = "" },
+}
 
 local branch = { "branch", icon = "" }
 
@@ -34,7 +40,7 @@ return {
         component_separators = { left = "", right = "" },
       },
       sections = {
-        lualine_a = { buffer },
+        lualine_a = { buffer_or_macro },
         lualine_b = { branch },
         lualine_c = { filename },
         lualine_x = {},
@@ -42,7 +48,7 @@ return {
         lualine_z = { filetype },
       },
       inactive_sections = {
-        lualine_a = { buffer },
+        lualine_a = { buffer_or_macro },
         lualine_b = {},
         lualine_c = { filename },
         lualine_x = {},

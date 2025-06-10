@@ -1,5 +1,3 @@
-local gen_spec = require("mini.ai").gen_spec
-
 return {
   {
     "echasnovski/mini.pairs",
@@ -81,9 +79,9 @@ return {
     opts = {
       n_lines = 300,
       mappings = {
-        add = "<localleader>s", --            Add surrounding in Normal and Visual modes
-        delete = "<localleader>d", --         Delete surrounding
-        replace = "<localleader>c", --        Replace surrounding
+        add = "ys",
+        delete = "ds",
+        replace = "cs",
         -- Not so useful ones
         find = "<localleader>f", --           Find surrounding (to the right)
         find_left = "<localleader>F", --      Find surrounding (to the left)
