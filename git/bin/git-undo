@@ -1,0 +1,44 @@
+#!/bin/bash
+# Shorthand, more intuitive commands for `git reset`
+
+function exec-git() {
+  read -p "Execute \`git $1\` (y/n)? " choice
+  case "$choice" in
+    y|Y ) eval "git $1";;
+    n|N ) echo "Cancelled";;
+    * ) echo "Cancelled";;
+  esac
+}
+
+case "$1" in
+  commit)
+    echo -e "Undoing:\n- \`git commit\`\n"
+    exec-git "reset --soft HEAD~"
+    ;;
+  add)
+    echo -e "Undoing:\n- \`git commit\`\n- \`git add\`\n"
+    exec-git "reset HEAD~"
+    ;;
+  edit)
+    echo -e "Undoing\n- \`git commit\`\n- \`git add\`\n - working directory changes\n"
+    exec-git "reset --soft HEAD~"
+    ;;
+  *)
+    echo "Usage: git undo <commit|add|edit>"
+    exit 1
+    ;;
+esac
+
+# OTHER_REPOSITORY=$1
+# REMOTE_NAME=candidate
+
+# function random_branch_name() {
+#   curl -s "http://names.drycodes.com/1?nameOptions=starwarsTitles&format=text&case=lower&separator=-"
+# }
+
+# git remote add $REMOTE_NAME $OTHER_REPOSITORY 2> /dev/null
+# git fetch $REMOTE_NAME
+# git checkout $REMOTE_NAME/master
+# git rebase master
+# git checkout -b ${2:-$(random_branch_name)}
+# git remote remove $REMOTE_NAME

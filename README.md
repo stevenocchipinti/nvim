@@ -1,15 +1,45 @@
-# 💤 LazyVim config
+# Dotfiles
 
-This configuration now uses [LazyVim](https://github.com/LazyVim/LazyVim) as
-it's base.
+This repo used to _just_ contain my Neovim config, however I've decided to merge
+this with the rest of my dotfiles to simplify things.
 
-My previous config is still in the git history of this repo but was getting a
-little bit difficult to keep up to date.
+## Installing dotfiles
 
-## Installation
+```bash
+git clone git@github.com:stevenocchipinti/dotfiles.git ~/.dotfiles
+~/.dotfiles/setup_mac.sh
+```
+
+## Installing JUST the Neovim config
+
+As this repo used to be just for neovim, here is how you can achieve the same
+thing.
 
 ```bash
 brew install neovim
-git clone git@github.com:stevenocchipinti/nvim.git ~/.config/nvim
+git clone git@github.com:stevenocchipinti/dotfiles.git ~/.dotfiles
+ln -s ~/.dotfiles/nvim/.config/nvim ~/.config/nvim
 alias vim=nvim
 ```
+
+## Stow
+
+My old dotfiles were previously stored in [my homesync
+repo](https://github.com/stevenocchipinti/homesync) and included a custom bash
+script to manage the symlinks. I've since learned that `stow` does this much
+better!
+
+You can install `stow` with most package managers:
+
+```bash
+brew install stow
+```
+
+## LazyVim
+
+This repo used used to include my own basic Vim config (started in 2011), which
+then migrated to NeoVim and is now based on
+[LazyVim](https://github.com/LazyVim/LazyVim) (as of e8d11b8).
+
+Checkout the [LazyVim docs](https://www.lazyvim.org/) for more information on
+how to use it, as it includes many pre-configured plugins, options and keybinds.

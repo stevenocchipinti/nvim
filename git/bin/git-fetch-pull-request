@@ -1,0 +1,12 @@
+#!/bin/bash
+# Create a local branch for a remote GitHub pull request
+
+# Usage
+if [ $# -ne 1 ]; then
+    echo "Usage: git fetch-pull-request <pull-request-id>"
+    exit 1
+fi
+
+PULL_REQUEST_ID=$1
+
+git fetch origin pull/$PULL_REQUEST_ID/head:pull-$PULL_REQUEST_ID

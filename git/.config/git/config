@@ -1,0 +1,127 @@
+# vim: ft=gitconfig
+# A good reference for next time I want to edit this file:
+# https://github.com/codingjerk/dotfiles/blob/main/config/git/config
+
+[user]
+  name = Steve Occhipinti
+  # email left intentially blank to encourage setting it per repository
+  useConfigOnly = true
+
+[init]
+  defaultBranch = main
+
+[color]
+  diff = auto
+  branch = auto
+  interactive = auto
+  pager = true
+  status = auto
+  ui = auto
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow
+  frag = magenta
+  old = red
+  new = green
+[color "status"]
+  added = green
+  changed = red
+  untracked = cyan
+
+[core]
+  excludesfile = ~/.config/git/gitignore
+  whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+
+[pager]
+  diff = delta
+  log = delta
+  reflog = delta
+  show = delta
+
+[delta]
+  features = decorations
+  plus-style = "syntax #012800"
+  minus-style = "syntax #340001"
+  syntax-theme = base16
+  navigate = true
+  tabs = 2
+  file-added-label =  Added
+  file-modified-label =  Modified
+  file-removed-label =  Removed
+  file-renamed-label =  Renamed
+
+[delta "decorations"]
+  file-style = yellow box
+  file-decoration-style = none
+  hunk-header-decoration-style = cyan ul dim
+
+[interactive]
+  diffFilter = delta --color-only
+
+[branch]
+  autosetupmerge = true
+
+[diff]
+  renames = copy
+
+# Custom format called 'nice'
+[pretty]
+  nice = %C(yellow)%h%C(red)%d %C(reset)%s %C(green)%an %C(brightblack)%cr
+
+[log]
+  date = relative
+
+[pager]
+  status = true
+  show-branch = true
+
+[push]
+  autoSetupRemote = true  # easier to push new branches
+  default = current  # push only current branch by default
+
+[rebase]
+  stat = true
+
+[rerere]
+  # remembers manual conflict resolutions so you don't have to redo them later
+  enabled = false
+  autoupdate = true
+
+# [commit]
+#   template = /Users/steve.occhipinti/.git_commit_template
+
+[help]
+  autocorrect = -1
+
+# This block of aliases should be last in this file (see ~/.bash_git)
+[alias]
+  a = add
+  aa = add -A .
+  ap = add -p
+  ai = add -i
+  c = commit -v
+  ca = commit -v -a
+  cam = commit -v --amend
+  co = checkout
+  b = branch
+  d = diff
+  dc = diff --cached
+  dw = diff --word-diff
+  f = fetch
+  p = pull
+  pr = pull --rebase
+  l = log --graph --format=nice
+  la = log --graph --format=nice --all
+  s = status -sb
+  st = status -sb
+  ri = rebase -i
+  rc = rebase --continue
+  ra = rebase --abort
+  serve = daemon --verbose --export-all --base-path=.git --reuseaddr --strict-paths .git/
+
+[pull]
+  ff = only
+

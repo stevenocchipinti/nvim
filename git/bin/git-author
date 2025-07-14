@@ -1,0 +1,16 @@
+#!/bin/bash
+set -e
+
+email_list_file="$HOME/.config/git/author-emails"
+has_fzf=$(type fzf >/dev/null 2>&1)
+
+echo "Current author: $(git config user.name) <$(git config user.email)>"
+
+if [ -f $email_list_file ] && $has_fzf; then
+  email=$(fzf <$email_list_file)
+else
+  echo -n "Enter a new email address: "
+  read email
+fi
+
+git config user.email $email

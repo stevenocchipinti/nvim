@@ -1,0 +1,22 @@
+#!/bin/bash
+# Rebase a whole repository onto the current repository as a new branch
+
+# Usage
+if [ $# -ne 1 ] || [ $# -ne 2 ]; then
+  echo "Usage: git rebase-whole-repo <repo-to-pull-from> [<new-branch-name>]"
+  exit 1
+fi
+
+OTHER_REPOSITORY=$1
+REMOTE_NAME=candidate
+
+function random_branch_name() {
+  curl -s "http://names.drycodes.com/1?nameOptions=starwarsTitles&format=text&case=lower&separator=-"
+}
+
+git remote add $REMOTE_NAME $OTHER_REPOSITORY 2> /dev/null
+git fetch $REMOTE_NAME
+git checkout $REMOTE_NAME/master
+git rebase master
+git checkout -b ${2:-$(random_branch_name)}
+git remote remove $REMOTE_NAME
