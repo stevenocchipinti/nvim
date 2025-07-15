@@ -22,7 +22,7 @@ brew install fish git neovim
 brew install zoxide fzf eza bat fd git-delta ripgrep gnu-sed wget
 
 # Casks
-brew install ghostty visual-studio-code docker font-caskaydia-cove-nerd-font
+brew install raycast ghostty visual-studio-code docker font-caskaydia-cove-nerd-font
 
 # NodeJS
 curl -fsSL https://fnm.vercel.app/install | bash
