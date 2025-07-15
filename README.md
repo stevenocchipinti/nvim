@@ -7,7 +7,8 @@ this with the rest of my dotfiles to simplify things.
 
 ```bash
 git clone git@github.com:stevenocchipinti/dotfiles.git ~/.dotfiles
-~/.dotfiles/setup_mac.sh
+cd ~/.dotfiles
+./setup_mac.sh
 ```
 
 ## Installing JUST the Neovim config
@@ -20,19 +21,6 @@ brew install neovim
 git clone git@github.com:stevenocchipinti/dotfiles.git ~/.dotfiles
 ln -s ~/.dotfiles/nvim/.config/nvim ~/.config/nvim
 alias vim=nvim
-```
-
-## Stow
-
-My old dotfiles were previously stored in [my homesync
-repo](https://github.com/stevenocchipinti/homesync) and included a custom bash
-script to manage the symlinks. I've since learned that `stow` does this much
-better!
-
-You can install `stow` with most package managers:
-
-```bash
-brew install stow
 ```
 
 ## LazyVim
