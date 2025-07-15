@@ -1,0 +1,5 @@
+git remote -v \
+  | grep origin \
+  | head -1 \
+  | sed -e "s#.*git@\(.*\):\(.*\.git\).*#https://\1/\2#" \
+  | xargs open

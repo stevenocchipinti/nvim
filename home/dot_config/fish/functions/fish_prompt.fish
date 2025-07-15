@@ -1,0 +1,57 @@
+function extract_version_from -d "Extract a semver from a string"
+    echo $argv | \grep -o "\d\+\.\d\+\.\d\+"
+end
+
+function fish_prompt --description 'Write out the prompt'
+    set -l last_status $status
+
+    # Background jobs
+    set -l jobs (jobs | wc -l | tr -d '[:space:]')
+    if test $jobs -eq 1
+        set_color magenta
+        echo -n ' '
+    else if test $jobs -gt 1
+        set_color magenta
+        echo -n $jobs' '
+    end
+
+    # Node version
+    set_color green
+    set -l node_version ""
+    if type -q node
+        set -l node_version (extract_version_from (node -v))
+        echo -n ' '$node_version' '
+    end
+
+    # Responsive PWD
+    set_color blue
+    set -g fish_prompt_pwd_dir_length 0
+    set -l pwd_length (string length $node_version' '(prompt_pwd))
+    if test $pwd_length -gt $COLUMNS
+        set -g fish_prompt_pwd_dir_length 1
+    end
+    prompt_pwd
+
+    # Valid AWS auth
+    set_color normal
+    if test -n "$AWS_SESSION_EXPIRES"
+        set -l aws_session_expiry (date -j -u -f "%FT%TZ" $AWS_SESSION_EXPIRES +%s)
+        set -l current_time (date -u +%s)
+        if test $aws_session_expiry -gt $current_time
+
+            echo -n " "
+        end
+    end
+
+    # Git status prompt
+    set_color normal
+    git_prompt
+
+    # Colored icon based on exit status
+    set_color white
+    if not test $last_status -eq 0
+        set_color $fish_color_error
+    end
+    printf "\Uf023a "
+    set_color normal
+end

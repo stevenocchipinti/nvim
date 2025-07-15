@@ -1,0 +1,37 @@
+#!/bin/bash
+set -e
+
+email_file="$HOME/.config/git/author-emails"
+has_fzf=$(command -v fzf >/dev/null 2>&1 && echo true || echo false)
+
+echo "Current author: $(git config user.name) <$(git config user.email)>"
+
+if [ ! -f "$email_file" ]; then
+  echo "No email list found at $email_file"
+  echo -n "Enter an email address: "
+  read -r email
+  git config user.email "$email"
+  exit 0
+fi
+
+number_of_emails=$(wc -l <"$email_file")
+
+if [ "$number_of_emails" -eq 0 ]; then
+  echo "No emails found in $email_file"
+  echo -n "Enter an email address: "
+  read -r email
+
+elif [ "$number_of_emails" -eq 1 ]; then
+  email=$(cat "$email_file")
+  echo "Using the only available email: $email"
+
+elif $has_fzf; then
+  email=$(fzf <"$email_file")
+
+else
+  echo "Multiple emails found but fzf is not installed."
+  echo -n "Enter an email address: "
+  read -r email
+fi
+
+git config user.email "$email"
