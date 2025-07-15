@@ -1,42 +1,35 @@
 #!/bin/bash
 set -e
 
-personal_email_file="$HOME/.config/git/author-emails"
-private_email_file="$HOME/.config/git/author-emails.private"
-has_fzf=$(type fzf >/dev/null 2>&1 && echo true || echo false)
+email_file="$HOME/.config/git/author-emails"
+has_fzf=$(command -v fzf >/dev/null 2>&1 && echo true || echo false)
 
 echo "Current author: $(git config user.name) <$(git config user.email)>"
 
-declare -a emails
-
-if [ -f "$personal_email_file" ]; then
-  while IFS= read -r line; do
-    [ -n "$line" ] && emails+=("$line")
-  done <"$personal_email_file"
+if [ ! -f "$email_file" ]; then
+  echo "No email list found at $email_file"
+  echo -n "Enter an email address: "
+  read -r email
+  git config user.email "$email"
+  exit 0
 fi
 
-if [ -f "$private_email_file" ]; then
-  while IFS= read -r line; do
-    [ -n "$line" ] && emails+=("$line")
-  done <"$private_email_file"
-fi
+number_of_emails=$(wc -l <"$email_file")
 
-if [ ${#emails[@]} -gt 0 ]; then
-  email_count=${#emails[@]}
+if [ "$number_of_emails" -eq 0 ]; then
+  echo "No emails found in $email_file"
+  echo -n "Enter an email address: "
+  read -r email
 
-  if [ "$email_count" -eq 1 ]; then
-    email="${emails[0]}"
-    echo "Using the only available email: $email"
-  elif $has_fzf; then
-    email=$(printf '%s\n' "${emails[@]}" | fzf)
-  else
-    echo "Multiple emails found but fzf is not installed."
-    echo -n "Enter an email address: "
-    read -r email
-  fi
+elif [ "$number_of_emails" -eq 1 ]; then
+  email=$(cat "$email_file")
+  echo "Using the only available email: $email"
+
+elif $has_fzf; then
+  email=$(fzf <"$email_file")
 
 else
-  echo "No email lists found at $personal_email_file or $private_email_file"
+  echo "Multiple emails found but fzf is not installed."
   echo -n "Enter an email address: "
   read -r email
 fi
