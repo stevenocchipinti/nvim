@@ -12,8 +12,8 @@ if ! hash brew 2>/dev/null; then
 fi
 
 # Setup dotfiles
-brew install stow
-stow fish git nvim ghostty
+brew install chezmoi
+chezmoi --source ~/.dotfiles apply
 
 # The important stuff
 brew install fish git neovim

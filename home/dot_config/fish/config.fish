@@ -4,6 +4,10 @@ if test -f /opt/homebrew/bin/brew
     eval "$(/opt/homebrew/bin/brew shellenv)"
 end
 
+if type -q fzf
+    fzf --fish | source
+end
+
 if type -q fnm
     fnm env --use-on-cd --shell fish | source
 end
