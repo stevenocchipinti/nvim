@@ -15,3 +15,7 @@ set -x FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS \
   --color=spinner:#7dcfff \
   --color=gutter:#24283b \
 "
+
+if type -q fzf
+    fzf --fish | source
+end
